@@ -1,0 +1,443 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<model cmeta:id="RE_S" name="reactions_set" xmlns="http://www.cellml.org/cellml/1.1#" xmlns:cellml="http://www.cellml.org/cellml/1.1#" xmlns:cmeta="http://www.cellml.org/metadata/1.0#">
+    <!-- DIMENSIONS-->
+    <units name="mM_per_sec">
+        <unit prefix="milli" units="mole"/>
+        <unit exponent="-1" units="litre"/>
+        <unit exponent="-1" units="second"/>
+    </units>
+    <units name="mM">
+        <unit prefix="milli" units="mole"/>
+        <unit exponent="-1" units="litre"/>
+    </units>
+    <units name="per_sec">
+        <unit exponent="-1" units="second"/>
+    </units>
+    <units name="per_sec_per_11mM">
+        <unit exponent="-1" units="second"/>
+        <unit exponent="-11" units="mM"/>
+    </units>
+    <units name="per_sec_per_7mM">
+        <unit exponent="-1" units="second"/>
+        <unit exponent="-7" units="mM"/>
+    </units>
+    <units name="per_sec_per_mM">
+        <unit exponent="-1" units="second"/>
+        <unit exponent="-1" units="mM"/>
+    </units>
+    <units name="per_sec_per_3mM">
+        <unit exponent="-1" units="second"/>
+        <unit exponent="-3" units="mM"/>
+    </units>
+    <units name="per_sec_per_2mM">
+        <unit exponent="-1" units="second"/>
+        <unit exponent="-2" units="mM"/>
+    </units>
+    <component cmeta:id="CONS" name="concentrations">
+        <!-- The id of a variable contains different abbreviations and numbers formatted as explained below:
+ First two alphabets show if it is a variable or coefficient of a variable: ||| va => variable ||| co => coefficient of a variable |||
+ An underline separates this first section from the second section. THe second section is a 5 digit number representing the ChEBI ID of the chemical compound
+ The third section which is separated again by an underline shows the number of the reaction where the ccoefficient is used
+ Some examples: {va_17234} ===> First section is {va} which implies that it is a variable, and the second section is {17234} which is the ChEBI id of the compound
+ {co_17234_1} ===> First section is {co} which shows that it is a coefficient, the second section is {17234} which is the ChEBI id, the third section is {1} which ...
+ implies that this is the stoichiometric coefficient of the compound in the first reaction-->
+        <!-- Variables-->
+        <variable cmeta:id="va_17234" initial_value="0.1" name="x_glu" units="mM"/>
+        <variable cmeta:id="va_15846" initial_value="1" name="x_NAD" units="mM"/>
+        <variable cmeta:id="va_16761" initial_value="0.2" name="x_ADP" units="mM"/>
+        <variable cmeta:id="va_18367" initial_value="1" name="x_Pi" units="mM"/>
+        <variable cmeta:id="va_32816" initial_value="1" name="x_pyr" units="mM"/>
+        <variable cmeta:id="va_16908" initial_value="1" name="x_NADH" units="mM"/>
+        <variable cmeta:id="va_15422" initial_value="1" name="x_ATP" units="mM"/>
+        <variable cmeta:id="va_15377" initial_value="1" name="x_water" units="mM"/>
+        <variable cmeta:id="va_29235" initial_value="1" name="x_H" units="mM"/>
+        <variable cmeta:id="va_16526" initial_value="1" name="x_CO2" units="mM"/>
+        <variable cmeta:id="va_27561" initial_value="1" name="x_oxirane" units="mM"/>
+        <variable cmeta:id="va_16236" initial_value="1" name="x_ethanol" units="mM"/>
+        <variable name="t" units="second"/>
+        <!-- Stoichiometric coefficients for reaction <<< 1 >>>-->
+        <variable cmeta:id="co_17234_1" initial_value="-1" name="glu_r1" units="dimensionless"/>
+        <variable cmeta:id="co_15846_1" initial_value="-2" name="NAD_r1" units="dimensionless"/>
+        <variable cmeta:id="co_16761_1" initial_value="-2" name="ADP_r1" units="dimensionless"/>
+        <variable cmeta:id="co_18367_1" initial_value="-2" name="Pi_r1" units="dimensionless"/>
+        <variable cmeta:id="co_29235_1" initial_value="-4" name="H_r1" units="dimensionless"/>
+        <variable cmeta:id="co_32816_1" initial_value="2" name="pyr_r1" units="dimensionless"/>
+        <variable cmeta:id="co_16908_1" initial_value="2" name="NADH_r1" units="dimensionless"/>
+        <variable cmeta:id="co_15422_1" initial_value="2" name="ATP_r1" units="dimensionless"/>
+        <variable cmeta:id="co_15377_1" initial_value="2" name="water_r1" units="dimensionless"/>
+        <!-- Stoichiometric coefficients for reaction <<< 2 >>>-->
+        <variable cmeta:id="co_32816_2" initial_value="-2" name="pyr_r2" units="dimensionless"/>
+        <variable cmeta:id="co_16526_2" initial_value="2" name="CO2_r2" units="dimensionless"/>
+        <variable cmeta:id="co_27561_2" initial_value="2" name="oxirane_r2" units="dimensionless"/>
+        <!-- Stoichiometric coefficients for reaction <<< 3 >>>-->
+        <variable cmeta:id="co_27561_3" initial_value="-1" name="oxirane_r3" units="dimensionless"/>
+        <variable cmeta:id="co_16908_3" initial_value="-2" name="NADH_r3" units="dimensionless"/>
+        <variable cmeta:id="co_16236_3" initial_value="1" name="ethanol_r3" units="dimensionless"/>
+        <variable cmeta:id="co_15846_3" initial_value="2" name="NAD_r3" units="dimensionless"/>
+        <!-- <><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+      <<<      Reaction 1      >>>-->
+        <variable cmeta:id="rc_f_1" initial_value="0.1" name="k_f_1" units="per_sec_per_11mM"/>
+        <variable cmeta:id="rc_r_1" initial_value="0.01" name="k_r_1" units="per_sec_per_7mM"/>
+        <variable cmeta:id="ra_1" name="v_1" units="mM_per_sec"/>
+        <!-- The rate of reaction (v-1) based on the concentrations of the constituents-->
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <ci>v_1</ci>
+                <apply>
+                    <minus/>
+                    <apply>
+                        <times/>
+                        <ci>k_f_1</ci>
+                        <apply>
+                            <power/>
+                            <ci>x_glu</ci>
+                            <ci>glu_r1</ci>
+                        </apply>
+                        <apply>
+                            <power/>
+                            <ci>x_NAD</ci>
+                            <ci>NAD_r1</ci>
+                        </apply>
+                        <apply>
+                            <power/>
+                            <ci>x_ADP</ci>
+                            <ci>ADP_r1</ci>
+                        </apply>
+                        <apply>
+                            <power/>
+                            <ci>x_Pi</ci>
+                            <ci>Pi_r1</ci>
+                        </apply>
+                        <apply>
+                            <power/>
+                            <ci>x_H</ci>
+                            <ci>H_r1</ci>
+                        </apply>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <ci>k_r_1</ci>
+                        <apply>
+                            <power/>
+                            <ci>x_pyr</ci>
+                            <ci>pyr_r1</ci>
+                        </apply>
+                        <apply>
+                            <power/>
+                            <ci>x_NADH</ci>
+                            <ci>NADH_r1</ci>
+                        </apply>
+                        <apply>
+                            <power/>
+                            <ci>x_ATP</ci>
+                            <ci>ATP_r1</ci>
+                        </apply>
+                        <apply>
+                            <power/>
+                            <ci>x_water</ci>
+                            <ci>water_r1</ci>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+        </math>
+        <!-- ########################################################################################################-->
+        <!-- <><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+     <<<      Reaction 2      >>>-->
+        <variable cmeta:id="rc_f_2" initial_value="0.1" name="k_f_2" units="per_sec_per_mM"/>
+        <variable cmeta:id="rc_r_2" initial_value="0.001" name="k_r_2" units="per_sec_per_3mM"/>
+        <variable cmeta:id="ra_2" name="v_2" units="mM_per_sec"/>
+        <!-- The rate of reaction (v_2) based on the concentrations of the constituents-->
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <ci>v_2</ci>
+                <apply>
+                    <minus/>
+                    <apply>
+                        <times/>
+                        <ci>k_f_2</ci>
+                        <apply>
+                            <power/>
+                            <ci>x_pyr</ci>
+                            <ci>pyr_r2</ci>
+                        </apply>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <ci>k_r_2</ci>
+                        <apply>
+                            <power/>
+                            <ci>x_CO2</ci>
+                            <ci>CO2_r2</ci>
+                        </apply>
+                        <apply>
+                            <power/>
+                            <ci>x_oxirane</ci>
+                            <ci>oxirane_r2</ci>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+        </math>
+        <!-- ########################################################################################################-->
+        <!-- <><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+     <<<      Reaction 3      >>>-->
+        <variable cmeta:id="rc_f_3" initial_value="0.1" name="k_f_3" units="per_sec_per_2mM"/>
+        <variable cmeta:id="rc_r_3" initial_value="0.01" name="k_r_3" units="per_sec_per_2mM"/>
+        <variable cmeta:id="ra_3" name="v_3" units="mM_per_sec"/>
+        <!-- The rate of reaction (v_3) based on the concentrations of the constituents-->
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <ci>v_3</ci>
+                <apply>
+                    <minus/>
+                    <apply>
+                        <times/>
+                        <ci>k_f_3</ci>
+                        <apply>
+                            <power/>
+                            <ci>x_oxirane</ci>
+                            <ci>oxirane_r3</ci>
+                        </apply>
+                        <apply>
+                            <power/>
+                            <ci>x_NADH</ci>
+                            <ci>NADH_r3</ci>
+                        </apply>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <ci>k_r_3</ci>
+                        <apply>
+                            <power/>
+                            <ci>x_ethanol</ci>
+                            <ci>ethanol_r3</ci>
+                        </apply>
+                        <apply>
+                            <power/>
+                            <ci>x_NAD</ci>
+                            <ci>NAD_r3</ci>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <!-- ########################################################################################################-->
+            <!-- rates of consumption or production of constituents-->
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>x_glu</ci>
+                </apply>
+                <apply>
+                    <times/>
+                    <ci>glu_r1</ci>
+                    <ci>v_1</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>x_NAD</ci>
+                </apply>
+                <apply>
+                    <plus/>
+                    <apply>
+                        <times/>
+                        <ci>NAD_r1</ci>
+                        <ci>v_1</ci>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <ci>NAD_r3</ci>
+                        <ci>v_3</ci>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>x_ADP</ci>
+                </apply>
+                <apply>
+                    <times/>
+                    <ci>ADP_r1</ci>
+                    <ci>v_1</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>x_Pi</ci>
+                </apply>
+                <apply>
+                    <times/>
+                    <ci>Pi_r1</ci>
+                    <ci>v_1</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>x_pyr</ci>
+                </apply>
+                <apply>
+                    <plus/>
+                    <apply>
+                        <times/>
+                        <ci>pyr_r1</ci>
+                        <ci>v_1</ci>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <ci>pyr_r2</ci>
+                        <ci>v_2</ci>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>x_NADH</ci>
+                </apply>
+                <apply>
+                    <plus/>
+                    <apply>
+                        <times/>
+                        <ci>NADH_r1</ci>
+                        <ci>v_1</ci>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <ci>NADH_r3</ci>
+                        <ci>v_3</ci>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>x_ATP</ci>
+                </apply>
+                <apply>
+                    <times/>
+                    <ci>ATP_r1</ci>
+                    <ci>v_1</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>x_water</ci>
+                </apply>
+                <apply>
+                    <times/>
+                    <ci>water_r1</ci>
+                    <ci>v_1</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>x_H</ci>
+                </apply>
+                <apply>
+                    <times/>
+                    <ci>H_r1</ci>
+                    <ci>v_1</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>x_CO2</ci>
+                </apply>
+                <apply>
+                    <times/>
+                    <ci>CO2_r2</ci>
+                    <ci>v_2</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>x_oxirane</ci>
+                </apply>
+                <apply>
+                    <plus/>
+                    <apply>
+                        <times/>
+                        <ci>oxirane_r2</ci>
+                        <ci>v_2</ci>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <ci>oxirane_r3</ci>
+                        <ci>v_3</ci>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>x_ethanol</ci>
+                </apply>
+                <apply>
+                    <times/>
+                    <ci>ethanol_r3</ci>
+                    <ci>v_3</ci>
+                </apply>
+            </apply>
+        </math>
+    </component>
+</model>
