@@ -13,7 +13,7 @@ import excel_read as xls
 
 def stochiometric_matrix_builder( reactions ):
 
-    com_indices = {}
+    compound_indices = {}
 
     counter = 0
 
@@ -25,10 +25,10 @@ def stochiometric_matrix_builder( reactions ):
 
         for compound in reactions[index]:
 
-            if compound[0] in com_indices:
+            if compound[0] in compound_indices:
                 pass
             else:
-                com_indices[compound[0]] = counter
+                compound_indices[compound[0]] = counter
                 counter += 1
         index += 1
 
@@ -40,10 +40,10 @@ def stochiometric_matrix_builder( reactions ):
 
         for compound in reactions[index]:
 
-            sto_mat[com_indices[compound[0]], index]  = compound[1]
+            sto_mat[compound_indices[compound[0]], index]  = compound[1]
         
         index += 1
 
-    return com_indices, sto_mat
+    return compound_indices, sto_mat
 
 #print(sto_mat)

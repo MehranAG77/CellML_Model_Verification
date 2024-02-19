@@ -10,57 +10,57 @@ and does some operations to check the model's validity
 import numpy as np
 import sympy as sp
 
-def verification(st_array, el_array, rate_array = 0):
+def verification(stoichiometric_array, elemental_array, rate_array = 0):
 
-    print( "\nElemental matrix is:\n", el_array )
-    print( "\nStoichiometric matrix is:\n", st_array )
+    print( "\nElemental matrix is:\n", elemental_array )
+    print( "\nStoichiometric matrix is:\n", stoichiometric_array )
 
-    el_array = sp.Matrix(el_array)
-    st_array = sp.Matrix(st_array)
+    elemental_matrix = sp.Matrix(elemental_array)
+    stoichiometric_matrix = sp.Matrix(stoichiometric_array)
 
     if rate_array != 0:
 
-        con_mat = el_array * st_array
+        conservation_matrix = elemental_matrix * stoichiometric_matrix 
 
-        con_mat = np.array( con_mat )
+        conservation_array = np.array( conservation_matrix )
 
-        if np.all( ( con_mat == 0 ) ) == True:
+        if np.all( ( conservation_array == 0 ) ) == True:
 
-            st_array_tr =st_array.transpose()
-            tr_null = st_array_tr.nullspace()
-            l = len(tr_null)
+            stoichiometric_matrix_transposed =stoichiometric_matrix.transpose()
+            nullspace_transposed = stoichiometric_matrix_transposed.nullspace()
+            l = len(nullspace_transposed)
         
             if l == 0:
                 print('There is no Left Null Space for this matrix')
             elif l == 1:
-                n = np.transpose(np.array(tr_null[0]))
-                print('\nThe Left Null Sapce is:\n', n)
-                con_eqs_arr = n * rate_array
-                print('\nConservation equations are:\n', con_eqs_arr[0], ' = 0\n', con_eqs_arr[1], ' = 0\n' )
-                return n
+                nullspace = np.transpose(np.array(nullspace_transposed[0]))
+                print('\nThe Left Null Sapce is:\n', nullspace )
+                conservation_equations_array = nullspace * rate_array
+                print('\nConservation equations are:\n', conservation_equations_array[0], ' = 0\n', conservation_equations_array[1], ' = 0\n' )
+                return nullspace
             else:
-                n_t = np.array(tr_null[0])
+                n_t = np.array(nullspace_transposed[0])
                 counter = 1
                 while counter < l:
-                    n_t = np.concatenate((n_t, tr_null[counter]), axis=1)
+                    n_t = np.concatenate( ( n_t, nullspace_transposed[counter] ), axis=1 )
                     counter+=1
-                n = np.transpose(n_t)
-                print('\nThe Left Null Space is:\n', n)
-                con_eqs_arr = n * rate_array
+                nullspace = np.transpose(n_t)
+                print('\nThe Left Null Space is:\n', nullspace)
+                conservation_equations_array = nullspace * rate_array
                 print('\nConservation equations are:\n')
                 
                 count = 0
                 while count < l:
-                    print( con_eqs_arr[count], ' = 0\n')
+                    print( conservation_equations_array[count], ' = 0\n')
                     count += 1
-                return n
+                return nullspace
 
         else:
             print('Conservation of Mass is violated\n')
             
-            length = con_mat.shape[1]
+            length = conservation_array.shape[1]
             for i in  range(0,length):
-                if np.all(con_mat[:, i] == 0):
+                if np.all(conservation_array[:, i] == 0):
                     pass
                 else:
                     print ('Reaction number %i is not correctly defined' %(i+1))
@@ -69,37 +69,37 @@ def verification(st_array, el_array, rate_array = 0):
 
     else:
 
-        con_mat = el_array * st_array
+        conservation_matrix = elemental_matrix * stoichiometric_matrix 
 
-        con_mat = np.array( con_mat )
+        conservation_array = np.array( conservation_matrix )
 
-        if np.all( ( con_mat == 0 ) ) == True:
+        if np.all( ( conservation_array == 0 ) ) == True:
         
-            st_array_tr=st_array.transpose()
-            tr_null= st_array_tr.nullspace()
-            l = len(tr_null)
+            stoichiometric_matrix_transposed=stoichiometric_matrix.transpose()
+            nullspace_transposed= stoichiometric_matrix_transposed.nullspace()
+            l = len(nullspace_transposed)
 
             if l == 0:
                 print('There is no Left Null Space for this matrix')
             elif l == 1:
-                n = np.transpose(np.array(tr_null[0]))
-                print('\nThe Left Null Sapce is:\n', n)
-                return n
+                nullspace = np.transpose(np.array(nullspace_transposed[0]))
+                print('\nThe Left Null Sapce is:\n', nullspace)
+                return nullspace
             else:
-                n_t = np.array(tr_null[0])
+                n_t = np.array(nullspace_transposed[0])
                 counter = 1
                 while counter < l:
-                    n_t = np.concatenate((n_t, tr_null[counter]), axis=1)
+                    n_t = np.concatenate((n_t, nullspace_transposed[counter]), axis=1)
                     counter+=1
-                n = np.transpose(n_t)
-                print('\nThe Left Null Space is:\n', n)
-                con_eqs_arr = n * rate_array
+                nullspace = np.transpose(n_t)
+                print('\nThe Left Null Space is:\n', nullspace)
+                conservation_equations_array = nullspace * rate_array
 
         else:
             print('Conservation of Mass is violated\n')
             
-            length = con_mat.shape[1]
+            length = conservation_array.shape[1]
             for i in  range(0,length):
-                if np.all(con_mat[:, i] == 0):
+                if np.all(conservation_array[:, i] == 0):
                     print ('Reaction number %i is not correctly defined' %i)
                     break

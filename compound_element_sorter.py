@@ -27,13 +27,13 @@ def cellml_compound_element_sorter ( component ):
 
     compound_indices = {} # This dictionary keeps an index for each compound to be used as a reference to construct stoichiometric matrix ==> {'C6H12O6': 0, 'CO2': 1, ...} so we know that row 0 in matrix is for C6H12O6
 
-    ele_indices ={}    # This dictionary contains elements as keys and assigns a number for each in order to construct the elemental matrix as values ==> {'C': 0, 'H': 1, 'O': 2}
+    element_indices ={}    # This dictionary contains elements as keys and assigns a number for each in order to construct the elemental matrix as values ==> {'C': 0, 'H': 1, 'O': 2}
 
-    c_index = 0     # This variable keeps the ordered number for assigning any compound a number
+    compound_index = 0     # This variable keeps the ordered number for assigning any compound a number
 
-    e_index = 0     # This index keeps track of the order each new element will be put in the elemental matrix
+    element_index = 0     # This index keeps track of the order each new element will be put in the elemental matrix
 
-    r_index = 0     # This index keeps track of the order for reactions to be used as a reference for the column in stoichiometric matrix
+    reaction_index = 0     # This index keeps track of the order for reactions to be used as a reference for the column in stoichiometric matrix
 
     number_of_variables = component.variableCount()
 
@@ -41,7 +41,7 @@ def cellml_compound_element_sorter ( component ):
 
     coefficients = []       # The difference between variables and coefficients is identified by the first part of their id which is like "va_12345_r1", first part indicates that this parameter is a variable
 
-    sym_list = []       # This list contains 
+    symbols_list = []       # This list contains 
 
     for v in range( 0, number_of_variables ):
 
@@ -68,41 +68,41 @@ def cellml_compound_element_sorter ( component ):
 
         if formula not in compound_indices:
              
-             compound_indices[formula] = c_index
-             c_index += 1
+             compound_indices[formula] = compound_index
+             compound_index += 1
         
-        if name not in sym_list:
+        if name not in symbols_list:
 
-            sym_list.append( name )
+            symbols_list.append( name )
 
-        for ele in composition:
+        for element in composition:
                     
-            if ele not in ele_indices:
+            if element not in element_indices:
 
-                ele_indices[ele] = e_index
-                e_index += 1
+                element_indices[element] = element_index
+                element_index += 1
 
     for coefficient in coefficients:
          
         chebi_code = coefficient.id().split('_')[1]
 
-        re_number = coefficient.id().split('_')[2]
+        reaction_number = coefficient.id().split('_')[2]
 
-        if re_number not in reaction_indices:
-             reaction_indices[re_number] = r_index
-             r_index += 1
+        if reaction_number not in reaction_indices:
+             reaction_indices[reaction_number] = reaction_index
+             reaction_index += 1
 
     columns = len( reaction_indices ) # Number of columns will be equal to number of reactions in the Stoichiometric matrix
 
     rows = len( compound_indices ) # Number of rows will be equal to number of compounds in the Stoichiometric matrix
 
-    sto_mat = np.zeros(( rows, columns), dtype = int)
+    stoichiometric_matrix = np.zeros(( rows, columns), dtype = int)
 
     for coefficient in coefficients:
 
         chebi_code = coefficient.id().split('_')[1]
 
-        re_number = coefficient.id().split('_')[2]
+        reaction_number = coefficient.id().split('_')[2]
 
         formula = chf.chebi_formula( chebi_code )
 
@@ -113,11 +113,11 @@ def cellml_compound_element_sorter ( component ):
         except KeyError as KE:
 
             print("The stoichiometric coefficient for compound {v} cannot be found in your coefficients of CellML".format( v = KE ))
-            sys.exit("Exiting due to an error\nModify CellML file and check to see if you have this compound or errors in a ChEBI code in reaction {r}".format( r = re_number))
+            sys.exit("Exiting due to an error\nModify CellML file and check to see if you have this compound or errors in a ChEBI code in reaction {r}".format( r = reaction_number))
 
-        column = reaction_indices[re_number]
+        column = reaction_indices[reaction_number]
 
-        sto_mat[ row, column ] = coefficient.initialValue()
+        stoichiometric_matrix[ row, column ] = coefficient.initialValue()
         
 
-    return ele_indices, compound_indices, sym_list, compounds, sto_mat
+    return element_indices, compound_indices, symbols_list, compounds, stoichiometric_matrix

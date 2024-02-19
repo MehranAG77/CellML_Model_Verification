@@ -31,25 +31,25 @@ import sympy as sp
 import sys
 
 
-def elemental_matrix_builder ( com_indices, ele_indices, compounds ):
+def elemental_matrix_builder ( compound_indices, element_indices, compounds ):
 
-    rows = len( ele_indices )   # The number of rows will be the number of elements we have so it is as the length of the element dictionary
+    rows = len( element_indices )   # The number of rows will be the number of elements we have so it is as the length of the element dictionary
     
-    columns = len( com_indices )    # The number of columns will be the number of compounds we have so it is as the length of the compounds dictionary
+    columns = len( compound_indices )    # The number of columns will be the number of compounds we have so it is as the length of the compounds dictionary
 
-    ele_matrix = np.zeros((rows, columns), dtype = int) # construction of an empty matrix containing only zeros so that we can assign a number for elements in the matrix and the rest will be zeros
+    elemental_matrix = np.zeros((rows, columns), dtype = int) # construction of an empty matrix containing only zeros so that we can assign a number for elements in the matrix and the rest will be zeros
 
-    for compound, cindex in com_indices.items():
+    for compound, compound_index in compound_indices.items():
 
-        column = cindex
+        column = compound_index
         try:
-          for element, eindex in compounds[compound].items():
+          for element, element_index in compounds[compound].items():
 
-              row = ele_indices[element]
-              value = eindex
-              ele_matrix[row][column] = value
+              row = element_indices[element]
+              value = element_index
+              elemental_matrix[row][column] = value
         except KeyError as KE:
             print("The compound {v} cannot be found in your variables of CellML".format( v = KE ))
             sys.exit("Exiting due to an error\nModify CellML file and add {v}".format( v = KE))
 
-    return ele_matrix
+    return elemental_matrix

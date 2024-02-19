@@ -8,11 +8,11 @@ import numpy as np
 import sympy as sp
 
 
-def rate_mat_builder( coms ):
+def rate_matrix_builder( compounds ):
 
-    symbols_list = sp.symbols(coms)
+    symbols_list = sp.symbols(compounds)
 
-    rate_mat = sp.Matrix(symbols_list)
+    rate_matrix = sp.Matrix(symbols_list)
 
-    return rate_mat
+    return rate_matrix
         

@@ -45,7 +45,7 @@ def equation_builder( component ):
 
             reaction_products = {}
 
-            sym_list = {}
+            symbols_list = {}
 
             id = rate_constant.id()
             #print(id)
@@ -93,29 +93,31 @@ def equation_builder( component ):
                     print("The stoichiometric coefficient for {c} is set to zero which is wrong".format( c = coefficient ))
                     exit()
 
-                sym_list[variable] = symbols(variable)
-                sym_list[coefficient] = symbols(coefficient)
+                symbols_list[variable] = symbols(variable)
+                symbols_list[coefficient] = symbols(coefficient)
 
         rhs_f = forward_rate
 
         for item in reaction_reactants:
 
-            rhs_f = rhs_f * sym_list[item] ** sym_list[ reaction_reactants[item] ]
+            rhs_f = rhs_f * symbols_list[item] ** symbols_list[ reaction_reactants[item] ]
 
         #print(rhs_f)
         rhs_r = reverse_rate
 
         for item in reaction_products:
 
-            rhs_r = rhs_r * sym_list[item] ** sym_list[ reaction_products[item] ]
+            rhs_r = rhs_r * symbols_list[item] ** symbols_list[ reaction_products[item] ]
 
         #print(rhs_r)
         equations.append(Eq(rate,rhs_f-rhs_r))
 
-    print('\nRate equations for the reaction are as below:\n                \u2193\u2193\u2193\u2193\u2193\u2193\u2193\u2193\u2193\u2193\u2193\u2193')
+    print('\nRate equations for the reaction are as below:\n                \u2193\u2193\u2193\u2193\u2193\u2193\u2193\u2193\u2193\u2193\u2193\u2193\n')
     for equation in equations:
 
             print(equation.lhs, '=', equation.rhs)
+
+    print("\n**********************************************************************")
 
 
     rate_equations = []
@@ -175,7 +177,9 @@ def equation_builder( component ):
 
         rate_equations.append(Eq(lhs,rhs))
 
-    print('\nRate equations for variables\' concentration are as below: \n                  \u2193\u2193\u2193\u2193\u2193\u2193\u2193\u2193\u2193\u2193\u2193\u2193')
+    print('\nRate equations for variables\' concentration are as below: \n                  \u2193\u2193\u2193\u2193\u2193\u2193\u2193\u2193\u2193\u2193\u2193\u2193\n')
     for equation in rate_equations:
 
         print(equation.lhs, '=', equation.rhs)
+    
+    print("\n**********************************************************************")
