@@ -25,15 +25,15 @@ import compound_element_sorter as ces
 import equation_builder as eb
 
 
-cellml_file_dir = './docs/reactions_set.cellml'
-cellml_file = './docs/reactions_set.cellml'
+cellml_file_dir = './docs/huang_ferrell_1996.cellml'
+cellml_file = './docs/huang_ferrell_1996.cellml'
 cellml_strict_mode = False
 
-component = cmlr.CellML_reader( cellml_file, cellml_file_dir, cellml_strict_mode )
+components = cmlr.CellML_reader( cellml_file, cellml_file_dir, cellml_strict_mode )
 
-eb.equation_builder( component )
+# eb.equation_builder( components )
 
-element_indices, compound_indices, symbols_list, compounds, stoichiometric_matrix = ces.cellml_compound_element_sorter ( component )
+element_indices, compound_indices, symbols_list, compounds, stoichiometric_matrix = ces.cellml_compound_element_sorter ( components )
 
 element_matrix = emb.elemental_matrix_builder( compound_indices, element_indices, compounds )
 

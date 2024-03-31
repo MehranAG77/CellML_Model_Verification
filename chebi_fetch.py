@@ -15,7 +15,7 @@ def chebi_comp_parser( chebi_code ):
     chebi_entity = chb.ChebiEntity(chebi_code)
     name = chebi_entity.get_name()
 
-    parsed_comp={}
+    parsed_compound={}
 
     if __name__ == '__main__':
         print(f"\nThe name of this compound is: {name}")
@@ -27,13 +27,13 @@ def chebi_comp_parser( chebi_code ):
         if __name__ == '__main__':
             print("No formula is registered for this compound")
 
-        parsed_comp = None
+        parsed_compound = None
         formula = None
 
     elif len(formulae) == 1:
 
         formula = chebi_entity.get_formula()
-        parsed_comp = chp.parse_formula(formula)
+        parsed_compound = chp.parse_formula(formula)
         if __name__ == '__main__':
             print( "Chemical formula for this copmound is: {v}".format( v = formula ) )
             print(chp.parse_formula(formula))
@@ -41,13 +41,13 @@ def chebi_comp_parser( chebi_code ):
     else:
 
         formula = formulae[1].get_formula()
-        parsed_comp = chp.parse_formula(formula)
+        parsed_compound = chp.parse_formula(formula)
 
         if __name__ == '__main__':
             print( "Chemical formula for this copmound is: {v}".format( v = formula ) )
             print(chp.parse_formula(formula))
 
-    return formula, parsed_comp
+    return formula, parsed_compound
 
 
 

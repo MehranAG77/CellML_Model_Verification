@@ -19,8 +19,8 @@ import sys
 
 
 
-cellml_file_dir = '/Users/makb047/Library/CloudStorage/OneDrive-TheUniversityofAuckland/UoA/Codes/Stoichiometric-Matrix/docs/reactions_set.cellml'
-cellml_file = '/Users/makb047/Library/CloudStorage/OneDrive-TheUniversityofAuckland/UoA/Codes/Stoichiometric-Matrix/docs/reactions_set.cellml'
+cellml_file_dir = './docs/huang_ferrell_1996.cellml'
+cellml_file = './docs/huang_ferrell_1996.cellml'
 cellml_strict_mode = False
 
 def CellML_reader( cellml_file, cellml_file_dir, cellml_strict_mode ):        # strict_mode is True when CellML version is 2.0 and False when 1.0 and 1.1
@@ -48,112 +48,24 @@ def CellML_reader( cellml_file, cellml_file_dir, cellml_strict_mode ):        # 
 
     print('Model was flattened without any issues.')
 
-    component = model.component(0)
-    component_name = component.name()
-    component_id = component.id()
+    
 
-    return component
+    number_of_components = model.componentCount()
+    #print('numer of components:  ', number_of_components)
+    
+    if number_of_components >= 1 :
 
-"""    compounds = {}  # This dictionary will strore the compounds and their chemical composition
+        components = []
 
-    reaction_indices = {} # This dictionary keeps an index for each reaction that is used in constructing stoichiometric matrix
+        for component in range(0, number_of_components):
 
-    compound_indices = {}
+            components.append( model.component( component ) )
 
-    ele_indices ={}    # This dictionary contains elements as keys and assigns a number for each in order to construct the elemental matrix as values
+    else:
+        print( 'There is no component in the CellML file' )
+        exit(-4)
 
-    c_index = 0
-
-    e_index = 0 # This index keeps track of the order each new element will be put in the elemental matrix
-
-    r_index = 0
-
-    number_of_variables = component.variableCount()
-
-    variables = []
-
-    coefficients = []
-
-    sym_list = []
-
-    for v in range( 0, number_of_variables ):
-
-        if component.variable(v).id():
-
-            id = component.variable(v).id()
-
-            identifier = id.split('_')[0]
-
-            if identifier == 'va': variables.append( component.variable(v) )
-            elif identifier == 'co': coefficients.append( component.variable(v) )
-
-    for variable in variables:
-        
-        name = variable.name()
-
-        chebi_code =  variable.id().split('_')[1]
-
-        formula, composition = chf.chebi_comp_parser( chebi_code )
-
-        if formula not in compounds:
-             
-            compounds[formula] = composition
-
-        if formula not in compound_indices:
-             
-             compound_indices[formula] = c_index
-             c_index += 1
-        
-        if name not in sym_list:
-
-            sym_list.append( name )
-
-        for ele in composition:
-                    
-            if ele not in ele_indices:
-
-                ele_indices[ele] = e_index
-                e_index += 1
-
-    for coefficient in coefficients:
-         
-        chebi_code = coefficient.id().split('_')[1]
-
-        re_number = coefficient.id().split('_')[2]
-
-        if re_number not in reaction_indices:
-             reaction_indices[re_number] = r_index
-             r_index += 1
-
-    reactions_no = len( reaction_indices )
-
-    rows = len( compound_indices )
-
-    sto_mat = np.zeros(( rows, reactions_no), dtype = int)
-
-    for coefficient in coefficients:
-
-        chebi_code = coefficient.id().split('_')[1]
-
-        re_number = coefficient.id().split('_')[2]
-
-        formula = chf.chebi_formula( chebi_code )
-
-        try:
-
-            row = compound_indices[formula]
-
-        except KeyError as KE:
-
-            print("The stoichiometric coefficient for compound {v} cannot be found in your coefficients of CellML".format( v = KE ))
-            sys.exit("Exiting due to an error\nModify CellML file and check to see if you have this compound or errors in a ChEBI code in reaction {r}".format( r = re_number))
-
-        column = reaction_indices[re_number]
-
-        sto_mat[ row, column ] = coefficient.initialValue()
-        
-
-    return ele_indices, compound_indices, sym_list, compounds, sto_mat """
+    return components
 
 
 if __name__ == '__main__':

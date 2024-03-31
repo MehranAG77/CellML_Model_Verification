@@ -15,20 +15,22 @@ rates = []      # This list contains all the rate variables for all equations th
 
 rate_constants = []     # This list contains the rate constants that are in the model
 
-def equation_builder( component ):
+def equation_builder( components ):
     
-    number_of_variables = component.variableCount()
+    for component in components:
 
-    for v in range( 0, number_of_variables ):
+        number_of_variables = component.variableCount()
 
-        id = component.variable(v).id()
+        for v in range( 0, number_of_variables ):
 
-        identifier = id.split('_')[0]
+            id = component.variable(v).id()
 
-        if identifier == 'va': variables.append( component.variable(v) )    # Since we have two different types of parameters in CellML, I put them in different lists
-        elif identifier == 'co': coefficients.append( component.variable(v) )
-        elif identifier == 'rc': rate_constants.append( component.variable(v) )
-        elif identifier == 'ra': rates.append( component.variable(v) )
+            identifier = id.split('_')[0]
+
+            if identifier == 'va': variables.append( component.variable(v) )    # Since we have two different types of parameters in CellML, I put them in different lists
+            elif identifier == 'co': coefficients.append( component.variable(v) )
+            elif identifier == 'rc': rate_constants.append( component.variable(v) )
+            elif identifier == 'ra': rates.append( component.variable(v) )
 
     equations=[]
 
