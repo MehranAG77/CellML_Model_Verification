@@ -25,8 +25,8 @@ import compound_element_sorter as ces
 import equation_builder as eb
 
 
-cellml_file_dir = './docs/huang_ferrell_1996.cellml'
-cellml_file = './docs/huang_ferrell_1996.cellml'
+cellml_file_dir = './docs/aguda_b_1999.cellml'
+cellml_file = './docs/aguda_b_1999.cellml'
 cellml_strict_mode = False
 
 components = cmlr.CellML_reader( cellml_file, cellml_file_dir, cellml_strict_mode )

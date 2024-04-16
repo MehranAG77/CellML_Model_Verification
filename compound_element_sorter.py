@@ -18,6 +18,7 @@ import chebi_fetch as chf
 
 import sys
 
+# This function determines if the characters used in a variable are all digits or alphabets
 def all_digits( word ):
 
     return all( char.isdigit() for char in word )
@@ -61,7 +62,10 @@ def cellml_compound_element_sorter ( components ):
 
                 identifier = id.split('_')[0]
 
-                if identifier == 'va': variables.append( component.variable(v) )    # Since we have two different types of parameters in CellML, I put them in different lists
+                if identifier == 'va':
+                    transient_variable = component.variable(v)
+                    if transient_variable not in variables:
+                        variables.append( component.variable(v) )    # Since we have two different types of parameters in CellML, I put them in different lists
                 elif identifier == 'co': coefficients.append( component.variable(v) )
 
     for variable in variables:      # After putting the parameters in their corresponding list, I get their ChEBI code and build the matrices
@@ -75,17 +79,27 @@ def cellml_compound_element_sorter ( components ):
             formula, composition = chf.chebi_comp_parser( chebi_code )
 
         else:
+            
+            if ( len(chebi_code.split('-')) == 1 ):
+                compound = chebi_code
+                composition={ chebi_code: 1 }
+            
+            else:
 
-            formula = chebi_code
-            composition={ chebi_code: 1 }
+                compound = chebi_code.split('-')[0]
+                formula = chebi_code.split('-')[1].split('.')
 
-        if formula not in compounds:
+                composition={}
+                for element in formula:
+                    composition[element] = 1
+
+        if compound not in compounds:
                 
-            compounds[formula] = composition
+            compounds[compound] = composition
 
-        if formula not in compound_indices:
+        if compound not in compound_indices:
                 
-            compound_indices[formula] = compound_index
+            compound_indices[compound] = compound_index
             compound_index += 1
             
         if name not in symbols_list:
@@ -109,6 +123,11 @@ def cellml_compound_element_sorter ( components ):
             reaction_indices[reaction_number] = reaction_index
             reaction_index += 1
 
+    reactions_to_print = list[reaction_indices.keys()]
+    compunds_to_print = list[compound_indices.keys()]
+
+    print('\n', reactions_to_print)
+    print('\n', compunds_to_print)
     columns = len( reaction_indices ) # Number of columns will be equal to number of reactions in the Stoichiometric matrix
 
     rows = len( compound_indices ) # Number of rows will be equal to number of compounds in the Stoichiometric matrix
