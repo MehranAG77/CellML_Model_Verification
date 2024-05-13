@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<model name="NOBr" xmlns="http://www.cellml.org/cellml/1.1#" xmlns:cellml="http://www.cellml.org/cellml/1.1#" xmlns:cmeta="http://www.cellml.org/metadata/1.0#">
+    <!-- Your code goes here-->
+    <units name="M">
+        <unit units="mole"/>
+        <unit exponent="-1" units="litre"/>
+    </units>
+    <units name="M_per_sec">
+        <unit units="M"/>
+        <unit exponent="-1" units="second"/>
+    </units>
+    <units name="per_sec_per_M2">
+        <unit exponent="-1" units="second"/>
+        <unit exponent="-2" units="M"/>
+    </units>
+    <units name="per_sec_per_M">
+        <unit exponent="-1" units="second"/>
+        <unit exponent="-1" units="M"/>
+    </units>
+    <component name="reaction_rate">
+        <variable cmeta:id="va_16480" initial_value="1" name="x_NO" units="M"/>
+        <variable cmeta:id="va_36889" initial_value="1" name="x_Br2" units="M"/>
+        <variable cmeta:id="va_NOBR-N.O.Br" initial_value="0" name="x_NOBr" units="M"/>
+        <variable name="t" units="second"/>
+        <variable cmeta:id="co_16480_1" initial_value="-2" name="NO_r1" units="dimensionless"/>
+        <variable cmeta:id="co_36889_1" initial_value="-1" name="Br2_r1" units="dimensionless"/>
+        <variable cmeta:id="co_NOBR_1" initial_value="2" name="NOBr_r1" units="dimensionless"/>
+        <variable cmeta:id="rc_f_1" initial_value="0.42" name="k_f" units="per_sec_per_M2"/>
+        <variable cmeta:id="rc_r_1" initial_value="0.17" name="k_r" units="per_sec_per_M"/>
+        <variable cmeta:id="ra_1" name="v_1" units="M"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <ci>v_1</ci>
+                <apply>
+                    <minus/>
+                    <apply>
+                        <times/>
+                        <ci>k_f</ci>
+                        <apply>
+                            <power/>
+                            <ci>x_NO</ci>
+                            <apply>
+                                <abs/>
+                                <ci>NO_r1</ci>
+                            </apply>
+                        </apply>
+                        <apply>
+                            <power/>
+                            <ci>x_Br2</ci>
+                            <apply>
+                                <abs/>
+                                <ci>Br2_r1</ci>
+                            </apply>
+                        </apply>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <ci>k_r</ci>
+                        <apply>
+                            <power/>
+                            <ci>x_NOBr</ci>
+                            <apply>
+                                <abs/>
+                                <ci>NOBr_r1</ci>
+                            </apply>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>x_NO</ci>
+                </apply>
+                <apply>
+                    <times/>
+                    <ci>NO_r1</ci>
+                    <ci>v_1</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>x_Br2</ci>
+                </apply>
+                <apply>
+                    <times/>
+                    <ci>Br2_r1</ci>
+                    <ci>v_1</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>x_NOBr</ci>
+                </apply>
+                <apply>
+                    <times/>
+                    <ci>NOBr_r1</ci>
+                    <ci>v_1</ci>
+                </apply>
+            </apply>
+        </math>
+    </component>
+</model>

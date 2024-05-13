@@ -6,6 +6,8 @@
     *                                                                                                                             *
     *  Then using the modules provided constructs stoichiometric and elemental matrices and verifies the model                    *
     *                                                                                                                             *
+    *  Then the corresponding Concentration Rate Equations are generated using the Stoichiometric matrix and solved               *
+    *                                                                                                                             *
     *******************************************************************************************************************************
 """
 
@@ -23,21 +25,30 @@ import verification as vf
 import CellML_reader as cmlr
 import compound_element_sorter as ces
 import equation_builder as eb
+import matrix_equation_builder as meb
+import sympy_ode_solver as sos
 
 
-cellml_file_dir = './docs/aguda_b_1999.cellml'
-cellml_file = './docs/aguda_b_1999.cellml'
+
+
+
+cellml_file_dir = './docs/reactions_set.cellml'
+cellml_file = './docs/reactions_set.cellml'
 cellml_strict_mode = False
 
 components = cmlr.CellML_reader( cellml_file, cellml_file_dir, cellml_strict_mode )
 
-# eb.equation_builder( components )
+reaction_rate_equations_dict= eb.equation_builder( components )
 
-element_indices, compound_indices, symbols_list, compounds, stoichiometric_matrix = ces.cellml_compound_element_sorter ( components )
+element_indices, compound_indices, symbols_list, compounds, stoichiometric_matrix, reaction_indices = ces.cellml_compound_element_sorter ( components )
 
 element_matrix = emb.elemental_matrix_builder( compound_indices, element_indices, compounds )
+
+concentration_rate_equations = meb.matrix_equation_builder ( stoichiometric_matrix, compound_indices, reaction_indices, reaction_rate_equations_dict, components )
 
 rate_matrix = rmb.rate_matrix_builder ( symbols_list )
 
 # Calling the function
 vf.verification( stoichiometric_matrix, element_matrix, rate_matrix )
+
+sos.sympy_ode_solver( components, concentration_rate_equations )

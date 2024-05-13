@@ -4,6 +4,9 @@ CellML reader now gives a dictionary containing variable names as keys and varia
 and give to chemparse to parse it into its constituents and return it as a dictionary.
 Then we put these chemicals into compounds dictionary where keys are chemical formula and values are dictionaries containing its constituents and their corresponding quantity
 Elements dictionary which contains indices of elements is also constructed and returned
+In the latest update (April 16, 2024), variable annotation can include the composition of the compound which is given by its name to CellML: 
+'va_mekppmapk-mek.mapk': This annotation containes two parts separated by an underline(_). 2nd part contains the compound name and its composition. The minus sign(-) separates component name and composition.
+So the first part (mekppmapk) is the component name. The 2nd part (mek.mapk) shows that it is composed of 'mek' and 'mapk'.
 """
 
 import numpy as np
@@ -22,6 +25,93 @@ import sys
 def all_digits( word ):
 
     return all( char.isdigit() for char in word )
+
+
+# This function sorts the variables of the CellMl file into the corresponding lists
+def variable_sorter( components, all_vars = 'Y' ):
+
+    variables = []
+
+    coefficients = []
+
+    rate_constants = []
+
+    rates = []
+
+    for component in components:
+
+        number_of_variables = component.variableCount()
+
+        if ( all_vars == "Y" or all_vars == "y" ): 
+            
+            for v in range( 0, number_of_variables ):
+                
+                if component.variable(v).id():      # There are some variables in CellML like time (t) that I don't want to import to python,so I left it without id and here I can import those variables with id that I need here
+
+                    id = component.variable(v).id()
+
+                    identifier = id.split('_')[0]
+
+                    if identifier == 'va': variables.append( component.variable(v) )    # Since we have two different types of parameters in CellML, I put them in different lists
+                    elif identifier == 'co': coefficients.append( component.variable(v) )
+                    elif identifier == 'rc': rate_constants.append( component.variable(v) )
+                    elif identifier == 'ra': rates.append( component.variable(v) )
+
+            return variables, coefficients, rates, rate_constants
+
+        else:
+                    
+            for v in range( 0, number_of_variables ):
+                
+                if component.variable(v).id():      # There are some variables in CellML like time (t) that I don't want to import to python,so I left it without id and here I can import those variables with id that I need here
+
+                    id = component.variable(v).id()
+
+                    identifier = id.split('_')[0]
+
+                    if identifier == 'va': variables.append( component.variable(v) ) 
+                    elif identifier == 'co': coefficients.append( component.variable(v) )
+
+            return variables, coefficients
+
+
+
+def variable_name_mapper( components ):
+
+    '''
+    This function receives the components of a CellML file and maps the chebi codes to the variable name,
+    and returns a dictionary mapping chebi code to the CellML variable name
+    chebi_toCellML = { 'C2H6O12': x_glu, ... }
+    '''
+
+    chebi_to_CellML = {}
+
+    chebi_initialvalues = {}
+
+    variables, _ = variable_sorter( components , 'n')
+
+    for variable in variables:      # After putting the parameters in their corresponding list, I get their ChEBI code and build the matrices
+            
+        name = variable.name()
+
+        intial_value = variable.initialValue()
+
+        chebi_code =  variable.id().split('_')[1]
+
+        if all_digits( chebi_code ):
+
+            compound, _ = chf.chebi_comp_parser( chebi_code )
+
+        else:
+
+            compound = chebi_code.split('-')[0]
+
+        chebi_initialvalues[compound] = intial_value
+
+        chebi_to_CellML[compound] = name
+
+    return chebi_to_CellML, chebi_initialvalues
+
 
 
 def cellml_compound_element_sorter ( components ):
@@ -48,25 +138,7 @@ def cellml_compound_element_sorter ( components ):
 
     number_of_components = len( components )
 
-    for component in components:
-
-        #print( component.name() )
-
-        number_of_variables = component.variableCount()
-
-        for v in range( 0, number_of_variables ):
-
-            if component.variable(v).id():      # There are some variables in CellML like time (t) that I don't want to import to python,so I left it without id and here I can import those variables with id that I need here
-
-                id = component.variable(v).id()
-
-                identifier = id.split('_')[0]
-
-                if identifier == 'va':
-                    transient_variable = component.variable(v)
-                    if transient_variable not in variables:
-                        variables.append( component.variable(v) )    # Since we have two different types of parameters in CellML, I put them in different lists
-                elif identifier == 'co': coefficients.append( component.variable(v) )
+    variables, coefficients = variable_sorter( components , 'n')
 
     for variable in variables:      # After putting the parameters in their corresponding list, I get their ChEBI code and build the matrices
             
@@ -76,7 +148,7 @@ def cellml_compound_element_sorter ( components ):
 
         if all_digits( chebi_code ):
 
-            formula, composition = chf.chebi_comp_parser( chebi_code )
+            compound, composition = chf.chebi_comp_parser( chebi_code )
 
         else:
             
@@ -123,14 +195,12 @@ def cellml_compound_element_sorter ( components ):
             reaction_indices[reaction_number] = reaction_index
             reaction_index += 1
 
-    reactions_to_print = list[reaction_indices.keys()]
-    compunds_to_print = list[compound_indices.keys()]
-
-    print('\n', reactions_to_print)
-    print('\n', compunds_to_print)
     columns = len( reaction_indices ) # Number of columns will be equal to number of reactions in the Stoichiometric matrix
 
     rows = len( compound_indices ) # Number of rows will be equal to number of compounds in the Stoichiometric matrix
+
+    # print("The reactions are: {l1}".format(l1=list(reaction_indices.keys())))
+    # print("The Compounds are: {l2}".format(l2=list(compound_indices.keys())))
 
     stoichiometric_matrix = np.zeros(( rows, columns), dtype = int)
 
@@ -162,4 +232,4 @@ def cellml_compound_element_sorter ( components ):
         stoichiometric_matrix[ row, column ] = coefficient.initialValue()
         
 
-    return element_indices, compound_indices, symbols_list, compounds, stoichiometric_matrix
+    return element_indices, compound_indices, symbols_list, compounds, stoichiometric_matrix, reaction_indices
