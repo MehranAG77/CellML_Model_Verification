@@ -4,13 +4,12 @@ This function receives stoichiometric matrix (numpy array), elemental matrix (nu
 and does some operations to check the model's validity
 """
 
-
-
-# importing external or built-in packages
-import numpy as np
-import sympy as sp
-
 def verification(stoichiometric_array, elemental_array, rate_array = 0):
+
+    # importing external or built-in packages
+    import numpy as np
+    import sympy as sp
+    import sys
 
     print( "\nElemental matrix is:\n", elemental_array )
     print( "\nStoichiometric matrix is:\n", stoichiometric_array )
@@ -66,6 +65,7 @@ def verification(stoichiometric_array, elemental_array, rate_array = 0):
                     print ('Reaction number %i is not correctly defined' %(i+1))
                     break
             
+            sys.exit("\nModify the equations and run the simulations again to see the figures")
 
     else:
 
@@ -103,3 +103,5 @@ def verification(stoichiometric_array, elemental_array, rate_array = 0):
                 if np.all(conservation_array[:, i] == 0):
                     print ('Reaction number %i is not correctly defined' %i)
                     break
+
+            sys.exit("\nModify the equations and run the simulations again to see the figures")

@@ -7,7 +7,7 @@ from utilities import print_model
 import cellml
 
 
-def equation_builder( components ):
+def equation_builder( components, print = 'off' ):
 
     variables = []      # This list contains the variables of cellml file [In CellML file]
 
@@ -116,17 +116,28 @@ def equation_builder( components ):
 
             rhs_f = rhs_f * ( symbols_list[item] ** reaction_reactants[item] )
 
-        rhs_r = reverse_rate
-        rhs_r = rhs_r.subs( reverse_rate, reverse_rate_value )
+        try: 
+        
+            reverse_rate
 
-        for item in reaction_products:
+            rhs_r = reverse_rate
+            rhs_r = rhs_r.subs( reverse_rate, reverse_rate_value )
 
-            rhs_r = rhs_r * ( symbols_list[item] ** reaction_products[item] )
+            for item in reaction_products:
 
-        reaction_rate_equations_dict[reaction_rate.name()] = rhs_f-rhs_r
-        reaction_rate_equations.append(Eq(rate,rhs_f-rhs_r))
+                rhs_r = rhs_r * ( symbols_list[item] ** reaction_products[item] )
 
-    #printer( reaction_rate_equations )
+            reaction_rate_equations_dict[reaction_rate.name()] = rhs_f-rhs_r
+            reaction_rate_equations.append(Eq(rate,rhs_f-rhs_r))
+
+        except:
+
+            reaction_rate_equations_dict[reaction_rate.name()] = rhs_f
+            reaction_rate_equations.append(Eq(rate,rhs_f))
+
+    if print == 'on' or print =='On' or print == 'ON':
+
+        printer( reaction_rate_equations, 'Rate equations of reactions are as below:' )
 
 
 
@@ -146,7 +157,7 @@ def equation_builder( components ):
 
         id = v_item.id()
 
-        ChEBI = id.split('_')[1]    # Variable chebi code or name is the second in the id
+        ChEBI = id.split('_')[1].split('-')[0]    # Variable chebi code or name is the second in the id
 
         variable = v_item.name()
 
@@ -195,7 +206,10 @@ def equation_builder( components ):
 
         concentration_rate_equations.append(Eq(lhs,rhs))
 
-    #printer( concentration_rate_equations )
+    if print == 'on' or print == 'On' or print == 'ON':
+
+        printer( concentration_rate_equations, 'Concentration rate equations are as below:' )
+
 
     return reaction_rate_equations_dict
 
@@ -203,9 +217,9 @@ def equation_builder( components ):
 
 
 
-def printer( equations ):
+def printer( equations, description ):
 
-    print('\nRate equations for the reaction are as below:\n                \u2193\u2193\u2193\u2193\u2193\u2193\u2193\u2193\u2193\u2193\u2193\u2193\n')
+    print('\n', description, '\n                \u2193\u2193\u2193\u2193\u2193\u2193\u2193\u2193\u2193\u2193\u2193\u2193\n')
     for equation in equations:
 
             print(equation.lhs, '=', equation.rhs)

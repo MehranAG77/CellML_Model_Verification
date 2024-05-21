@@ -57,8 +57,6 @@ def variable_sorter( components, all_vars = 'Y' ):
                     elif identifier == 'rc': rate_constants.append( component.variable(v) )
                     elif identifier == 'ra': rates.append( component.variable(v) )
 
-            return variables, coefficients, rates, rate_constants
-
         else:
                     
             for v in range( 0, number_of_variables ):
@@ -71,10 +69,15 @@ def variable_sorter( components, all_vars = 'Y' ):
 
                     if identifier == 'va': variables.append( component.variable(v) ) 
                     elif identifier == 'co': coefficients.append( component.variable(v) )
+                    
 
-            return variables, coefficients
+    if ( all_vars == "Y" or all_vars == "y" ): 
 
+        return variables, coefficients, rates, rate_constants
+    
+    else:
 
+        return variables, coefficients
 
 def variable_name_mapper( components ):
 

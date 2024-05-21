@@ -76,8 +76,8 @@
         <variable cmeta:id="co_15846_3" initial_value="2" name="NAD_r3" units="dimensionless"/>
         <!-- <><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
       <<<      Reaction 1      >>>-->
-        <variable cmeta:id="rc_f_1" initial_value="0.05" name="k_f_1" units="per_sec_per_11mM"/>
-        <variable cmeta:id="rc_r_1" initial_value="0.08" name="k_r_1" units="per_sec_per_7mM"/>
+        <variable cmeta:id="rc_f_1" initial_value="0.1" name="k_f_1" units="per_sec_per_11mM"/>
+        <variable cmeta:id="rc_r_1" initial_value="0.2" name="k_r_1" units="per_sec_per_7mM"/>
         <variable cmeta:id="ra_1" name="v_1" units="mM_per_sec"/>
         <!-- The rate of reaction (v-1) based on the concentrations of the constituents-->
         <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -92,27 +92,42 @@
                         <apply>
                             <power/>
                             <ci>x_glu</ci>
-                            <ci>glu_r1</ci>
+                            <apply>
+                                <abs/>
+                                <ci>glu_r1</ci>
+                            </apply>
                         </apply>
                         <apply>
                             <power/>
                             <ci>x_NAD</ci>
-                            <ci>NAD_r1</ci>
+                            <apply>
+                                <abs/>
+                                <ci>NAD_r1</ci>
+                            </apply>
                         </apply>
                         <apply>
                             <power/>
                             <ci>x_ADP</ci>
-                            <ci>ADP_r1</ci>
+                            <apply>
+                                <abs/>
+                                <ci>ADP_r1</ci>
+                            </apply>
                         </apply>
                         <apply>
                             <power/>
                             <ci>x_Pi</ci>
-                            <ci>Pi_r1</ci>
+                            <apply>
+                                <abs/>
+                                <ci>Pi_r1</ci>
+                            </apply>
                         </apply>
                         <apply>
                             <power/>
                             <ci>x_H</ci>
-                            <ci>H_r1</ci>
+                            <apply>
+                                <abs/>
+                                <ci>H_r1</ci>
+                            </apply>
                         </apply>
                     </apply>
                     <apply>
@@ -121,22 +136,34 @@
                         <apply>
                             <power/>
                             <ci>x_pyr</ci>
-                            <ci>pyr_r1</ci>
+                            <apply>
+                                <abs/>
+                                <ci>pyr_r1</ci>
+                            </apply>
                         </apply>
                         <apply>
                             <power/>
                             <ci>x_NADH</ci>
-                            <ci>NADH_r1</ci>
+                            <apply>
+                                <abs/>
+                                <ci>NADH_r1</ci>
+                            </apply>
                         </apply>
                         <apply>
                             <power/>
                             <ci>x_ATP</ci>
-                            <ci>ATP_r1</ci>
+                            <apply>
+                                <abs/>
+                                <ci>ATP_r1</ci>
+                            </apply>
                         </apply>
                         <apply>
                             <power/>
                             <ci>x_water</ci>
-                            <ci>water_r1</ci>
+                            <apply>
+                                <abs/>
+                                <ci>water_r1</ci>
+                            </apply>
                         </apply>
                     </apply>
                 </apply>
@@ -145,8 +172,8 @@
         <!-- ########################################################################################################-->
         <!-- <><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
      <<<      Reaction 2      >>>-->
-        <variable cmeta:id="rc_f_2" initial_value="5" name="k_f_2" units="per_sec_per_mM"/>
-        <variable cmeta:id="rc_r_2" initial_value="2" name="k_r_2" units="per_sec_per_3mM"/>
+        <variable cmeta:id="rc_f_2" initial_value="0.3" name="k_f_2" units="per_sec_per_mM"/>
+        <variable cmeta:id="rc_r_2" initial_value="0.4" name="k_r_2" units="per_sec_per_3mM"/>
         <variable cmeta:id="ra_2" name="v_2" units="mM_per_sec"/>
         <!-- The rate of reaction (v_2) based on the concentrations of the constituents-->
         <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -161,7 +188,10 @@
                         <apply>
                             <power/>
                             <ci>x_pyr</ci>
-                            <ci>pyr_r2</ci>
+                            <apply>
+                                <abs/>
+                                <ci>pyr_r2</ci>
+                            </apply>
                         </apply>
                     </apply>
                     <apply>
@@ -170,12 +200,18 @@
                         <apply>
                             <power/>
                             <ci>x_CO2</ci>
-                            <ci>CO2_r2</ci>
+                            <apply>
+                                <abs/>
+                                <ci>CO2_r2</ci>
+                            </apply>
                         </apply>
                         <apply>
                             <power/>
                             <ci>x_oxirane</ci>
-                            <ci>oxirane_r2</ci>
+                            <apply>
+                                <abs/>
+                                <ci>oxirane_r2</ci>
+                            </apply>
                         </apply>
                     </apply>
                 </apply>
@@ -184,8 +220,8 @@
         <!-- ########################################################################################################-->
         <!-- <><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
      <<<      Reaction 3      >>>-->
-        <variable cmeta:id="rc_f_3" initial_value="0.01" name="k_f_3" units="per_sec_per_2mM"/>
-        <variable cmeta:id="rc_r_3" initial_value="0.1" name="k_r_3" units="per_sec_per_2mM"/>
+        <variable cmeta:id="rc_f_3" initial_value="0.5" name="k_f_3" units="per_sec_per_2mM"/>
+        <variable cmeta:id="rc_r_3" initial_value="0.6" name="k_r_3" units="per_sec_per_2mM"/>
         <variable cmeta:id="ra_3" name="v_3" units="mM_per_sec"/>
         <!-- The rate of reaction (v_3) based on the concentrations of the constituents-->
         <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -200,12 +236,18 @@
                         <apply>
                             <power/>
                             <ci>x_oxirane</ci>
-                            <ci>oxirane_r3</ci>
+                            <apply>
+                                <abs/>
+                                <ci>oxirane_r3</ci>
+                            </apply>
                         </apply>
                         <apply>
                             <power/>
                             <ci>x_NADH</ci>
-                            <ci>NADH_r3</ci>
+                            <apply>
+                                <abs/>
+                                <ci>NADH_r3</ci>
+                            </apply>
                         </apply>
                     </apply>
                     <apply>
@@ -214,12 +256,18 @@
                         <apply>
                             <power/>
                             <ci>x_ethanol</ci>
-                            <ci>ethanol_r3</ci>
+                            <apply>
+                                <abs/>
+                                <ci>ethanol_r3</ci>
+                            </apply>
                         </apply>
                         <apply>
                             <power/>
                             <ci>x_NAD</ci>
-                            <ci>NAD_r3</ci>
+                            <apply>
+                                <abs/>
+                                <ci>NAD_r3</ci>
+                            </apply>
                         </apply>
                     </apply>
                 </apply>

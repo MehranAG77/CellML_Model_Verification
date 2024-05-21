@@ -1,16 +1,20 @@
-from sympy import symbols, lambdify
-import numpy as np
-import scipy.integrate
-import matplotlib.pyplot as plt
-from compound_element_sorter import variable_name_mapper
 
-def sympy_ode_solver( components, concentration_rate_equations ):
+
+
+def sympy_ode_solver( components, concentration_rate_equations, t_max = 10, delta_t = 0.001 ):
 
     """
     This function solves a set of Ordinary Differential Equations (ODEs) by Sympy internal solver which is Runge Kutta 4th order.
     It gets a dictionary mapping the 'compound', represented by its chemical formula, to the equation created by Sympy variables using the stoichiometric matrix
     'components' is the list containing the imported CellML components
     """
+
+    from sympy import symbols, lambdify
+    import numpy as np
+    import scipy.integrate
+    import matplotlib.pyplot as plt
+    from compound_element_sorter import variable_name_mapper
+    import sys
 
     all_symbols = set().union(*[eq.free_symbols for eq in concentration_rate_equations.values()])   # I need to know all variables that I have in these equations. This is why I should have replaced all variables that have values and are not meant ot be solved for
 
@@ -67,9 +71,17 @@ def sympy_ode_solver( components, concentration_rate_equations ):
         for key, value in chebi_to_CellML.items():
 
             if variable == value:
+                
+                try:
 
-                initial_values.append( float(chebi_initial_values[key]) )
-                break
+                    value_to_replace = chebi_initial_values[key]
+                    initial_values.append( float(value_to_replace) )
+                    break
+
+                except ValueError as KE:
+
+                    print("Initial Value is not defined for \"{v}\" and the ODEs cannot be solved without having initial values for all variables".format( v = key ))
+                    sys.exit("Exiting due to an error\nModify CellML file and check to see if you have defined the inital value for this variable")
         
         variable = symbols('x'+str(i))
 
@@ -88,11 +100,8 @@ def sympy_ode_solver( components, concentration_rate_equations ):
     # Now, lets solve the obtained equations
 
     # The time step and End point for the solution
-    t_max = 10
-    delta_t = 0.001
-
-
-
+    #t_max = 25
+    #delta_t = 0.001
 
     t = symbols( 't' )
     f = lambdify( ( t, x ), xdot )
@@ -105,21 +114,72 @@ def sympy_ode_solver( components, concentration_rate_equations ):
 
     y = solution.y
 
-    legends = []
+    return y, t_eval, x, sympy_to_CellML
 
 
-    # This 'for' loop creates the legend based on the CellMl variable names for the independent variables in ODEs
-    for variable in x:
 
-        legends.append( sympy_to_CellML[variable] )
 
-    plt.plot( t_eval, y.T )
-    plt.title( 'Chemical Kinetics' )
-    plt.legend( legends, shadow = True )
-    plt.xlabel('time')
-    plt.ylabel('concentration')
+# /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+# \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+# This function plots the solution
 
-    plt.show()
+def plotter( solutions, time, variables_to_plot, x, sympy_to_CellML ):
+
+    import matplotlib.pyplot as plt
+
+    if not variables_to_plot:
+
+        legends = []
+
+        # This 'for' loop creates the legend based on the CellMl variable names for the independent variables in ODEs
+        for variable in x:
+
+            legends.append( sympy_to_CellML[variable] )
+
+        plt.plot( time, solutions.T )
+        plt.title( 'Chemical Kinetics' )
+        plt.legend( legends, shadow = True )
+        plt.xlabel('time')
+        plt.ylabel('concentration')
+
+        plt.show()
+
+    else:
+
+        sympy_variables_to_plot = []
+
+        legends = []
+
+        for variable in variables_to_plot:
+
+            flag = False
+
+            for to_find in sympy_to_CellML.keys():
+
+                if sympy_to_CellML[to_find] == variable:
+
+                    sympy_variables_to_plot.append( to_find )
+                    legends.append( variable )
+                    digits = ''.join([char for char in str(to_find) if char.isdigit()])
+                    flag = True
+                    break
+            
+            if flag == True:
+
+                plt.plot(time, solutions[int(digits)])
+
+            else:
+
+                print( "**************************************************************\n**************************************************************\nThe variable {v} can't be found in the variables, make sure you have entered it correctly".format( v=variable ) )
+
+
+        plt.title( 'Chemical Kinetics' )
+        plt.legend( legends, shadow = True )
+        plt.xlabel('time')
+        plt.ylabel('concentration')
+
+        plt.show()
+
 
 
 

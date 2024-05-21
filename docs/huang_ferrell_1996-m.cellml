@@ -34,36 +34,36 @@ http://www.CellML.org/
         <variable initial_value="0.12" name="mapkpasetot" public_interface="out" units="micromolar"/>
     </component>
     <component name="rate_constants">
-        <variable cmeta:id="rc_f_1" initial_value="1000" name="a1" public_interface="out" units="second_order_rate_constant_units"/>
-        <variable cmeta:id="rc_f_4" initial_value="1000" name="a2" public_interface="out" units="second_order_rate_constant_units"/>
-        <variable cmeta:id="rc_f_7" initial_value="1000" name="a3" public_interface="out" units="second_order_rate_constant_units"/>
-        <variable cmeta:id="rc_f_10" initial_value="1000" name="a4" public_interface="out" units="second_order_rate_constant_units"/>
-        <variable cmeta:id="rc_f_13" initial_value="1000" name="a5" public_interface="out" units="second_order_rate_constant_units"/>
-        <variable cmeta:id="rc_f_16" initial_value="1000" name="a6" public_interface="out" units="second_order_rate_constant_units"/>
-        <variable cmeta:id="rc_f_19" initial_value="1000" name="a7" public_interface="out" units="second_order_rate_constant_units"/>
-        <variable cmeta:id="rc_f_22" initial_value="1000" name="a8" public_interface="out" units="second_order_rate_constant_units"/>
-        <variable cmeta:id="rc_f_25" initial_value="1000" name="a9" public_interface="out" units="second_order_rate_constant_units"/>
-        <variable cmeta:id="rc_f_28" initial_value="1000" name="a10" public_interface="out" units="second_order_rate_constant_units"/>
-        <variable cmeta:id="rc_f_2" initial_value="150" name="d1" public_interface="out" units="first_order_rate_constant_units"/>
-        <variable cmeta:id="rc_f_5" initial_value="150" name="d2" public_interface="out" units="first_order_rate_constant_units"/>
-        <variable cmeta:id="rc_f_8" initial_value="150" name="d3" public_interface="out" units="first_order_rate_constant_units"/>
-        <variable cmeta:id="rc_f_11" initial_value="150" name="d4" public_interface="out" units="first_order_rate_constant_units"/>
-        <variable cmeta:id="rc_f_14" initial_value="150" name="d5" public_interface="out" units="first_order_rate_constant_units"/>
-        <variable cmeta:id="rc_f_17" initial_value="150" name="d6" public_interface="out" units="first_order_rate_constant_units"/>
-        <variable cmeta:id="rc_f_20" initial_value="150" name="d7" public_interface="out" units="first_order_rate_constant_units"/>
-        <variable cmeta:id="rc_f_23" initial_value="150" name="d8" public_interface="out" units="first_order_rate_constant_units"/>
-        <variable cmeta:id="rc_f_26" initial_value="150" name="d9" public_interface="out" units="first_order_rate_constant_units"/>
-        <variable cmeta:id="rc_f_29" initial_value="150" name="d10" public_interface="out" units="first_order_rate_constant_units"/>
-        <variable cmeta:id="rc_f_3" initial_value="150" name="k1" public_interface="out" units="first_order_rate_constant_units"/>
-        <variable cmeta:id="rc_f_6" initial_value="150" name="k2" public_interface="out" units="first_order_rate_constant_units"/>
-        <variable cmeta:id="rc_f_9" initial_value="150" name="k3" public_interface="out" units="first_order_rate_constant_units"/>
-        <variable cmeta:id="rc_f_12" initial_value="150" name="k4" public_interface="out" units="first_order_rate_constant_units"/>
-        <variable cmeta:id="rc_f_15" initial_value="150" name="k5" public_interface="out" units="first_order_rate_constant_units"/>
-        <variable cmeta:id="rc_f_18" initial_value="150" name="k6" public_interface="out" units="first_order_rate_constant_units"/>
-        <variable cmeta:id="rc_f_21" initial_value="150" name="k7" public_interface="out" units="first_order_rate_constant_units"/>
-        <variable cmeta:id="rc_f_24" initial_value="150" name="k8" public_interface="out" units="first_order_rate_constant_units"/>
-        <variable cmeta:id="rc_f_27" initial_value="150" name="k9" public_interface="out" units="first_order_rate_constant_units"/>
-        <variable cmeta:id="rc_f_30" initial_value="150" name="k10" public_interface="out" units="first_order_rate_constant_units"/>
+        <variable initial_value="1000" name="a1" public_interface="out" units="second_order_rate_constant_units"/>
+        <variable initial_value="1000" name="a2" public_interface="out" units="second_order_rate_constant_units"/>
+        <variable initial_value="1000" name="a3" public_interface="out" units="second_order_rate_constant_units"/>
+        <variable initial_value="1000" name="a4" public_interface="out" units="second_order_rate_constant_units"/>
+        <variable initial_value="1000" name="a5" public_interface="out" units="second_order_rate_constant_units"/>
+        <variable initial_value="1000" name="a6" public_interface="out" units="second_order_rate_constant_units"/>
+        <variable initial_value="1000" name="a7" public_interface="out" units="second_order_rate_constant_units"/>
+        <variable initial_value="1000" name="a8" public_interface="out" units="second_order_rate_constant_units"/>
+        <variable initial_value="1000" name="a9" public_interface="out" units="second_order_rate_constant_units"/>
+        <variable initial_value="1000" name="a10" public_interface="out" units="second_order_rate_constant_units"/>
+        <variable initial_value="150" name="d1" public_interface="out" units="first_order_rate_constant_units"/>
+        <variable initial_value="150" name="d2" public_interface="out" units="first_order_rate_constant_units"/>
+        <variable initial_value="150" name="d3" public_interface="out" units="first_order_rate_constant_units"/>
+        <variable initial_value="150" name="d4" public_interface="out" units="first_order_rate_constant_units"/>
+        <variable initial_value="150" name="d5" public_interface="out" units="first_order_rate_constant_units"/>
+        <variable initial_value="150" name="d6" public_interface="out" units="first_order_rate_constant_units"/>
+        <variable initial_value="150" name="d7" public_interface="out" units="first_order_rate_constant_units"/>
+        <variable initial_value="150" name="d8" public_interface="out" units="first_order_rate_constant_units"/>
+        <variable initial_value="150" name="d9" public_interface="out" units="first_order_rate_constant_units"/>
+        <variable initial_value="150" name="d10" public_interface="out" units="first_order_rate_constant_units"/>
+        <variable initial_value="150" name="k1" public_interface="out" units="first_order_rate_constant_units"/>
+        <variable initial_value="150" name="k2" public_interface="out" units="first_order_rate_constant_units"/>
+        <variable initial_value="150" name="k3" public_interface="out" units="first_order_rate_constant_units"/>
+        <variable initial_value="150" name="k4" public_interface="out" units="first_order_rate_constant_units"/>
+        <variable initial_value="150" name="k5" public_interface="out" units="first_order_rate_constant_units"/>
+        <variable initial_value="150" name="k6" public_interface="out" units="first_order_rate_constant_units"/>
+        <variable initial_value="150" name="k7" public_interface="out" units="first_order_rate_constant_units"/>
+        <variable initial_value="150" name="k8" public_interface="out" units="first_order_rate_constant_units"/>
+        <variable initial_value="150" name="k9" public_interface="out" units="first_order_rate_constant_units"/>
+        <variable initial_value="150" name="k10" public_interface="out" units="first_order_rate_constant_units"/>
     </component>
     <component name="coefficients">
         <variable cmeta:id="co_mos_1" initial_value="-1" name="mos_1" units="dimensionless"/>
@@ -72,122 +72,60 @@ http://www.CellML.org/
         <variable cmeta:id="co_mose1_2" initial_value="-1" name="mose1_2" units="dimensionless"/>
         <variable cmeta:id="co_mosstar_2" initial_value="1" name="mosstar_2" units="dimensionless"/>
         <variable cmeta:id="co_e1_2" initial_value="1" name="e1_2" units="dimensionless"/>
-        <variable cmeta:id="co_mose1_3" initial_value="-1" name="mose1_3" units="dimensionless"/>
-        <variable cmeta:id="co_mosstar_3" initial_value="1" name="mosstar_3" units="dimensionless"/>
-        <variable cmeta:id="co_e1_3" initial_value="1" name="e1_3" units="dimensionless"/>
-        <variable cmeta:id="co_mosstar_4" initial_value="-1" name="mosstar_4" units="dimensionless"/>
-        <variable cmeta:id="co_e2_4" initial_value="-1" name="e2_4" units="dimensionless"/>
-        <variable cmeta:id="co_mosstare2_4" initial_value="1" name="mose2_4" units="dimensionless"/>
-        <variable cmeta:id="co_mosstare2_5" initial_value="-1" name="mose2_5" units="dimensionless"/>
-        <variable cmeta:id="co_mos_5" initial_value="1" name="mos_5" units="dimensionless"/>
-        <variable cmeta:id="co_e2_5" initial_value="1" name="e2_5" units="dimensionless"/>
-        <variable cmeta:id="co_mosstare2_6" initial_value="-1" name="mosstare2_6" units="dimensionless"/>
+        <variable cmeta:id="co_mosstar_3" initial_value="-1" name="mosstar_3" units="dimensionless"/>
+        <variable cmeta:id="co_e2_3" initial_value="-1" name="e2_3" units="dimensionless"/>
+        <variable cmeta:id="co_mosstare2_3" initial_value="1" name="mose2_3" units="dimensionless"/>
+        <variable cmeta:id="co_mosstare2_4" initial_value="-1" name="mose2_4" units="dimensionless"/>
+        <variable cmeta:id="co_mos_4" initial_value="1" name="mos_4" units="dimensionless"/>
+        <variable cmeta:id="co_e2_4" initial_value="1" name="e2_4" units="dimensionless"/>
+        <variable cmeta:id="co_mek_5" initial_value="-1" name="mek_5" units="dimensionless"/>
+        <variable cmeta:id="co_mosstar_5" initial_value="-1" name="mosstar_5" units="dimensionless"/>
+        <variable cmeta:id="co_mekmosstar_5" initial_value="1" name="mekmosstar_5" units="dimensionless"/>
+        <variable cmeta:id="co_mekmosstar_6" initial_value="-1" name="mekmosstar_6" units="dimensionless"/>
+        <variable cmeta:id="co_mekp_6" initial_value="1" name="mekp_6" units="dimensionless"/>
         <variable cmeta:id="co_mosstar_6" initial_value="1" name="mosstar_6" units="dimensionless"/>
-        <variable cmeta:id="co_e2_6" initial_value="1" name="e2_6" units="dimensionless"/>
-        <variable cmeta:id="co_mek_7" initial_value="-1" name="mek_7" units="dimensionless"/>
-        <variable cmeta:id="co_mosstar_7" initial_value="-1" name="mosstar_7" units="dimensionless"/>
-        <variable cmeta:id="co_mekmosstar_7" initial_value="1" name="mekmosstar_7" units="dimensionless"/>
-        <variable cmeta:id="co_mekmosstar_8" initial_value="-1" name="mekmosstar_8" units="dimensionless"/>
-        <variable cmeta:id="co_mekp_8" initial_value="1" name="mekp_8" units="dimensionless"/>
-        <variable cmeta:id="co_mosstar_8" initial_value="1" name="mosstar_8" units="dimensionless"/>
-        <variable cmeta:id="co_mekmosstar_9" initial_value="-1" name="mekmosstar_9" units="dimensionless"/>
-        <variable cmeta:id="co_mekp_9" initial_value="1" name="mekp_9" units="dimensionless"/>
-        <variable cmeta:id="co_mosstar_9" initial_value="1" name="mosstar_9" units="dimensionless"/>
-        <variable cmeta:id="co_mekp_10" initial_value="-1" name="mekp_10" units="dimensionless"/>
-        <variable cmeta:id="co_mekpase_10" initial_value="-1" name="mekpase_10" units="dimensionless"/>
-        <variable cmeta:id="co_mekpmekpase_10" initial_value="1" name="mekpmekpase_10" units="dimensionless"/>
-        <variable cmeta:id="co_mekpmekpase_11" initial_value="-1" name="mekpmekpase_11" units="dimensionless"/>
-        <variable cmeta:id="co_mek_11" initial_value="1" name="mek_11" units="dimensionless"/>
-        <variable cmeta:id="co_mekpase_11" initial_value="1" name="mekpase_11" units="dimensionless"/>
-        <variable cmeta:id="co_mekpmekpase_12" initial_value="-1" name="mekpmekpase_12" units="dimensionless"/>
-        <variable cmeta:id="co_mek_12" initial_value="1" name="mek_12" units="dimensionless"/>
-        <variable cmeta:id="co_mekpase_12" initial_value="1" name="mekpase_12" units="dimensionless"/>
-        <variable cmeta:id="co_mekp_13" initial_value="-1" name="mekp_13" units="dimensionless"/>
-        <variable cmeta:id="co_mosstar_13" initial_value="-1" name="mosstar_13" units="dimensionless"/>
-        <variable cmeta:id="co_mekpmosstar_13" initial_value="1" name="mekpmosstar_13" units="dimensionless"/>
-        <variable cmeta:id="co_mekpmosstar_14" initial_value="-1" name="mekpmosstar_14" units="dimensionless"/>
+        <variable cmeta:id="co_mekp_7" initial_value="-1" name="mekp_7" units="dimensionless"/>
+        <variable cmeta:id="co_mekpase_7" initial_value="-1" name="mekpase_7" units="dimensionless"/>
+        <variable cmeta:id="co_mekpmekpase_7" initial_value="1" name="mekpmekpase_7" units="dimensionless"/>
+        <variable cmeta:id="co_mekpmekpase_8" initial_value="-1" name="mekpmekpase_8" units="dimensionless"/>
+        <variable cmeta:id="co_mek_8" initial_value="1" name="mek_8" units="dimensionless"/>
+        <variable cmeta:id="co_mekpase_8" initial_value="1" name="mekpase_8" units="dimensionless"/>
+        <variable cmeta:id="co_mekp_9" initial_value="-1" name="mekp_9" units="dimensionless"/>
+        <variable cmeta:id="co_mosstar_9" initial_value="-1" name="mosstar_9" units="dimensionless"/>
+        <variable cmeta:id="co_mekpmosstar_9" initial_value="1" name="mekpmosstar_9" units="dimensionless"/>
+        <variable cmeta:id="co_mekpmosstar_10" initial_value="-1" name="mekpmosstar_10" units="dimensionless"/>
+        <variable cmeta:id="co_mekpp_10" initial_value="1" name="mekpp_10" units="dimensionless"/>
+        <variable cmeta:id="co_mosstar_10" initial_value="1" name="mosstar_10" units="dimensionless"/>
+        <variable cmeta:id="co_mekpp_11" initial_value="-1" name="mekpp_11" units="dimensionless"/>
+        <variable cmeta:id="co_mekpase_11" initial_value="-1" name="mekpase_11" units="dimensionless"/>
+        <variable cmeta:id="co_mekppmekpase_11" initial_value="1" name="mekppmekpase_11" units="dimensionless"/>
+        <variable cmeta:id="co_mekppmekpase_12" initial_value="-1" name="mekppmekpase_12" units="dimensionless"/>
+        <variable cmeta:id="co_mekp_12" initial_value="1" name="mekp_12" units="dimensionless"/>
+        <variable cmeta:id="co_mekpase_12" initial_value="1" name="mekpase" units="dimensionless"/>
+        <variable cmeta:id="co_mekpp_13" initial_value="-1" name="mekpp_13" units="dimensionless"/>
+        <variable cmeta:id="co_mapk_13" initial_value="-1" name="mapk_13" units="dimensionless"/>
+        <variable cmeta:id="co_mekppmapk_13" initial_value="1" name="mekppmapk_13" units="dimensionless"/>
+        <variable cmeta:id="co_mekppmapk_14" initial_value="-1" name="mekppmapk_14" units="dimensionless"/>
         <variable cmeta:id="co_mekpp_14" initial_value="1" name="mekpp_14" units="dimensionless"/>
-        <variable cmeta:id="co_mosstar_14" initial_value="1" name="mosstar_14" units="dimensionless"/>
-        <variable cmeta:id="co_mekpmosstar_15" initial_value="-1" name="mekpmosstar_15" units="dimensionless"/>
-        <variable cmeta:id="co_mekpp_15" initial_value="1" name="mekpp_15" units="dimensionless"/>
-        <variable cmeta:id="co_mosstar_15" initial_value="1" name="mosstar_15" units="dimensionless"/>
-        <variable cmeta:id="co_mekpp_16" initial_value="-1" name="mekpp_16" units="dimensionless"/>
-        <variable cmeta:id="co_mekpase_16" initial_value="-1" name="mekpase_16" units="dimensionless"/>
-        <variable cmeta:id="co_mekppmekpase_16" initial_value="1" name="mekppmekpase_16" units="dimensionless"/>
-        <variable cmeta:id="co_mekppmekpase_17" initial_value="-1" name="mekppmekpase_17" units="dimensionless"/>
-        <variable cmeta:id="co_mekp_17" initial_value="1" name="mekp_17" units="dimensionless"/>
-        <variable cmeta:id="co_mekpase_17" initial_value="1" name="mekpase_17" units="dimensionless"/>
-        <variable cmeta:id="co_mekppmekpase_18" initial_value="-1" name="mekppmekpase_18" units="dimensionless"/>
-        <variable cmeta:id="co_mekp_18" initial_value="1" name="mekp_18" units="dimensionless"/>
-        <variable cmeta:id="co_mekpase_18" initial_value="1" name="mekpase_18" units="dimensionless"/>
-        <variable cmeta:id="co_mekpp_19" initial_value="-1" name="mekpp_19" units="dimensionless"/>
-        <variable cmeta:id="co_mapk_19" initial_value="-1" name="mapk_19" units="dimensionless"/>
-        <variable cmeta:id="co_mekppmapk_19" initial_value="1" name="mekppmapk_19" units="dimensionless"/>
-        <variable cmeta:id="co_mekppmapk_20" initial_value="-1" name="mekppmapk_20" units="dimensionless"/>
-        <variable cmeta:id="co_mekpp_20" initial_value="1" name="mekpp_20" units="dimensionless"/>
+        <variable cmeta:id="co_mapkp_14" initial_value="1" name="mapkp_14" units="dimensionless"/>
+        <variable cmeta:id="co_mapkp_15" initial_value="-1" name="mapkp_15" units="dimensionless"/>
+        <variable cmeta:id="co_mapkpase_15" initial_value="-1" name="mapkpase_15" units="dimensionless"/>
+        <variable cmeta:id="co_mapkpmapkpase_15" initial_value="1" name="mapkpmapkpase_15" units="dimensionless"/>
+        <variable cmeta:id="co_mapkpmapkpase_16" initial_value="-1" name="mapkpmapkpase_16" units="dimensionless"/>
+        <variable cmeta:id="co_mapk_16" initial_value="1" name="mapk_16" units="dimensionless"/>
+        <variable cmeta:id="co_mapkpase_16" initial_value="1" name="mapkpase_16" units="dimensionless"/>
+        <variable cmeta:id="co_mapkp_17" initial_value="-1" name="mapkp_17" units="dimensionless"/>
+        <variable cmeta:id="co_mekpp_17" initial_value="-1" name="mekpp_17" units="dimensionless"/>
+        <variable cmeta:id="co_mapkpmekpp_17" initial_value="1" name="mapkpmekpp_17" units="dimensionless"/>
+        <variable cmeta:id="co_mapkpmekpp_18" initial_value="-1" name="mapkpmekpp_18" units="dimensionless"/>
+        <variable cmeta:id="co_mapkpp_18" initial_value="1" name="mapkpp_18" units="dimensionless"/>
+        <variable cmeta:id="co_mekpp_18" initial_value="1" name="mekpp_18" units="dimensionless"/>
+        <variable cmeta:id="co_mapkpp_19" initial_value="-1" name="mapkpp_19" units="dimensionless"/>
+        <variable cmeta:id="co_mapkpase_19" initial_value="-1" name="mapkpase_19" units="dimensionless"/>
+        <variable cmeta:id="co_mapkppmapkpase_19" initial_value="1" name="mekppmapkpase_19" units="dimensionless"/>
+        <variable cmeta:id="co_mapkppmapkpase_20" initial_value="-1" name="mekppmapkpase_20" units="dimensionless"/>
         <variable cmeta:id="co_mapkp_20" initial_value="1" name="mapkp_20" units="dimensionless"/>
-        <variable cmeta:id="co_mekppmapk_21" initial_value="-1" name="mekppmapk_21" units="dimensionless"/>
-        <variable cmeta:id="co_mekpp_21" initial_value="1" name="mekpp_21" units="dimensionless"/>
-        <variable cmeta:id="co_mapk_21" initial_value="1" name="makp_21" units="dimensionless"/>
-        <variable cmeta:id="co_mapkp_22" initial_value="-1" name="mapkp_22" units="dimensionless"/>
-        <variable cmeta:id="co_mapkpase_22" initial_value="-1" name="mapkpase_22" units="dimensionless"/>
-        <variable cmeta:id="co_mapkpmapkpase_22" initial_value="1" name="mapkpmapkpase_22" units="dimensionless"/>
-        <variable cmeta:id="co_mapkpmapkpase_23" initial_value="-1" name="mapkpmapkpase_23" units="dimensionless"/>
-        <variable cmeta:id="co_mapk_23" initial_value="1" name="mapk_23" units="dimensionless"/>
-        <variable cmeta:id="co_mapkpase_23" initial_value="1" name="mapkpase_23" units="dimensionless"/>
-        <variable cmeta:id="co_mapkpmapkpase_24" initial_value="-1" name="mapkpmapkpase_24" units="dimensionless"/>
-        <variable cmeta:id="co_mapk_24" initial_value="1" name="mapk_24" units="dimensionless"/>
-        <variable cmeta:id="co_mapkpase_24" initial_value="1" name="mapkpase_24" units="dimensionless"/>
-        <variable cmeta:id="co_mapkp_25" initial_value="-1" name="mapkp_25" units="dimensionless"/>
-        <variable cmeta:id="co_mekpp_25" initial_value="-1" name="mekpp_25" units="dimensionless"/>
-        <variable cmeta:id="co_mapkpmekpp_25" initial_value="1" name="mapkpmekpp_25" units="dimensionless"/>
-        <variable cmeta:id="co_mapkpmekpp_26" initial_value="-1" name="mapkpmekpp_26" units="dimensionless"/>
-        <variable cmeta:id="co_mapkpp_26" initial_value="1" name="mapkpp_26" units="dimensionless"/>
-        <variable cmeta:id="co_mekpp_26" initial_value="1" name="mekpp_26" units="dimensionless"/>
-        <variable cmeta:id="co_mapkpmekpp_27" initial_value="-1" name="mapkpmekpp_27" units="dimensionless"/>
-        <variable cmeta:id="co_mapkpp_27" initial_value="1" name="mapkpp_27" units="dimensionless"/>
-        <variable cmeta:id="co_mekpp_27" initial_value="1" name="mekpp_27" units="dimensionless"/>
-        <variable cmeta:id="co_mapkpp_28" initial_value="-1" name="mapkpp_28" units="dimensionless"/>
-        <variable cmeta:id="co_mapkpase_28" initial_value="-1" name="mapkpase_28" units="dimensionless"/>
-        <variable cmeta:id="co_mapkppmapkpase_28" initial_value="1" name="mekppmapkpase_28" units="dimensionless"/>
-        <variable cmeta:id="co_mapkppmapkpase_29" initial_value="-1" name="mekppmapkpase_29" units="dimensionless"/>
-        <variable cmeta:id="co_mapkp_29" initial_value="1" name="mapkp_29" units="dimensionless"/>
-        <variable cmeta:id="co_mapkpase_29" initial_value="1" name="mapkpase_29" units="dimensionless"/>
-        <variable cmeta:id="co_mapkppmapkpase_30" initial_value="-1" name="mekppmapkpase_30" units="dimensionless"/>
-        <variable cmeta:id="co_mapkp_30" initial_value="1" name="mapkp_30" units="dimensionless"/>
-        <variable cmeta:id="co_mapkpase_30" initial_value="1" name="mapkpase_30" units="dimensionless"/>
-    </component>
-    <component name="reaction_rates">
-        <variable cmeta:id="ra_1" name="v_1" units="micromolar"/>
-        <variable cmeta:id="ra_2" name="v_2" units="micromolar"/>
-        <variable cmeta:id="ra_3" name="v_3" units="micromolar"/>
-        <variable cmeta:id="ra_4" name="v_4" units="micromolar"/>
-        <variable cmeta:id="ra_5" name="v_5" units="micromolar"/>
-        <variable cmeta:id="ra_6" name="v_6" units="micromolar"/>
-        <variable cmeta:id="ra_7" name="v_7" units="micromolar"/>
-        <variable cmeta:id="ra_8" name="v_8" units="micromolar"/>
-        <variable cmeta:id="ra_9" name="v_9" units="micromolar"/>
-        <variable cmeta:id="ra_10" name="v_10" units="micromolar"/>
-        <variable cmeta:id="ra_11" name="v_11" units="micromolar"/>
-        <variable cmeta:id="ra_12" name="v_12" units="micromolar"/>
-        <variable cmeta:id="ra_13" name="v_13" units="micromolar"/>
-        <variable cmeta:id="ra_14" name="v_14" units="micromolar"/>
-        <variable cmeta:id="ra_15" name="v_15" units="micromolar"/>
-        <variable cmeta:id="ra_16" name="v_16" units="micromolar"/>
-        <variable cmeta:id="ra_17" name="v_17" units="micromolar"/>
-        <variable cmeta:id="ra_18" name="v_18" units="micromolar"/>
-        <variable cmeta:id="ra_19" name="v_19" units="micromolar"/>
-        <variable cmeta:id="ra_20" name="v_20" units="micromolar"/>
-        <variable cmeta:id="ra_21" name="v_21" units="micromolar"/>
-        <variable cmeta:id="ra_22" name="v_22" units="micromolar"/>
-        <variable cmeta:id="ra_23" name="v_23" units="micromolar"/>
-        <variable cmeta:id="ra_24" name="v_24" units="micromolar"/>
-        <variable cmeta:id="ra_25" name="v_25" units="micromolar"/>
-        <variable cmeta:id="ra_26" name="v_26" units="micromolar"/>
-        <variable cmeta:id="ra_27" name="v_27" units="micromolar"/>
-        <variable cmeta:id="ra_28" name="v_28" units="micromolar"/>
-        <variable cmeta:id="ra_29" name="v_29" units="micromolar"/>
-        <variable cmeta:id="ra_30" name="v_30" units="micromolar"/>
+        <variable cmeta:id="co_mapkpase_20" initial_value="1" name="mapkpase_20" units="dimensionless"/>
     </component>
     <component cmeta:id="mos" name="mos">
         <variable name="time" public_interface="in" units="second"/>
@@ -202,12 +140,11 @@ http://www.CellML.org/
         <variable name="d1" public_interface="in" units="first_order_rate_constant_units"/>
         <variable name="k2" public_interface="in" units="first_order_rate_constant_units"/>
         <variable name="mekmosstar" public_interface="in" units="micromolar"/>
-        <variable cmeta:id="va_e1" initial_value="0.0003" name="e_1" units="micromolar"/>
-        <!-- -->
+        <variable cmeta:id="va_e1" name="e1" units="micromolar"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
-                <ci>e_1</ci>
+                <ci>e1</ci>
                 <apply>
                     <minus/>
                     <ci>e1tot</ci>
@@ -252,7 +189,7 @@ http://www.CellML.org/
                             </apply>
                             <ci>mekstarmosstar</ci>
                         </apply>
-                        <ci>e_1</ci>
+                        <ci>e1</ci>
                     </apply>
                     <apply>
                         <times/>
@@ -359,8 +296,7 @@ http://www.CellML.org/
         <variable name="k5" public_interface="in" units="first_order_rate_constant_units"/>
         <variable name="d5" public_interface="in" units="first_order_rate_constant_units"/>
         <variable name="a5" public_interface="in" units="second_order_rate_constant_units"/>
-        <variable cmeta:id="va_e2" initial_value="0.0003" name="e_2" units="micromolar"/>
-        <!-- -->
+        <variable cmeta:id="va_e2" name="e_2" units="micromolar"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -703,8 +639,7 @@ http://www.CellML.org/
         <variable name="mekstarmosstar" public_interface="in" units="micromolar"/>
         <variable name="a5" public_interface="in" units="second_order_rate_constant_units"/>
         <variable name="mosstar" public_interface="in" units="micromolar"/>
-        <variable cmeta:id="va_mekpase" initial_value="0.0003" name="mekpase" units="micromolar"/>
-        <!-- -->
+        <variable cmeta:id="va_mekpase" name="mekpase" units="micromolar"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -1198,8 +1133,7 @@ http://www.CellML.org/
         <variable name="d9" public_interface="in" units="first_order_rate_constant_units"/>
         <variable name="mapkstarmekstarstar" public_interface="in" units="micromolar"/>
         <variable name="k10" public_interface="in" units="first_order_rate_constant_units"/>
-        <variable cmeta:id="va_mapkpase" initial_value="0.12" name="mapkpase" units="micromolar"/>
-        <!-- -->
+        <variable cmeta:id="va_mapkpase" name="mapkpase" units="micromolar"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>

@@ -32,23 +32,27 @@ import sympy_ode_solver as sos
 
 
 
-cellml_file_dir = './docs/reactions_set.cellml'
-cellml_file = './docs/reactions_set.cellml'
+cellml_file_dir = './docs/huang_ferrell_1996.cellml'
+cellml_file = './docs/huang_ferrell_1996.cellml'
 cellml_strict_mode = False
 
 components = cmlr.CellML_reader( cellml_file, cellml_file_dir, cellml_strict_mode )
 
-reaction_rate_equations_dict= eb.equation_builder( components )
+reaction_rate_equations_dict= eb.equation_builder( components, print='off' )
 
 element_indices, compound_indices, symbols_list, compounds, stoichiometric_matrix, reaction_indices = ces.cellml_compound_element_sorter ( components )
 
 element_matrix = emb.elemental_matrix_builder( compound_indices, element_indices, compounds )
 
-concentration_rate_equations = meb.matrix_equation_builder ( stoichiometric_matrix, compound_indices, reaction_indices, reaction_rate_equations_dict, components )
+concentration_rate_equations = meb.matrix_equation_builder ( stoichiometric_matrix, compound_indices, reaction_indices, reaction_rate_equations_dict, components, print='off' )
 
 rate_matrix = rmb.rate_matrix_builder ( symbols_list )
 
 # Calling the function
 vf.verification( stoichiometric_matrix, element_matrix, rate_matrix )
 
-sos.sympy_ode_solver( components, concentration_rate_equations )
+solution, time, x, sympy_to_CellML = sos.sympy_ode_solver( components, concentration_rate_equations, 40, 0.001 )
+
+variables_to_plot = []
+
+sos.plotter(  solution, time, variables_to_plot, x, sympy_to_CellML )
