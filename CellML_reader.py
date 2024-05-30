@@ -23,13 +23,13 @@ cellml_file_dir = './docs/huang_ferrell_1996.cellml'
 cellml_file = './docs/huang_ferrell_1996.cellml'
 cellml_strict_mode = False
 
-def CellML_reader( cellml_file, cellml_file_dir, cellml_strict_mode ):        # strict_mode is True when CellML version is 2.0 and False when 1.0 and 1.1
+def CellML_reader( cellml_file, cellml_file_dir, cellml_strict_mode, print= 'off' ):        # strict_mode is True when CellML version is 2.0 and False when 1.0 and 1.1
 
     model = cellml.parse_model(cellml_file, cellml_strict_mode)
     if cellml.validate_model(model) > 0:
         exit(-1)
 
-    importer = cellml.resolve_imports(model, cellml_file_dir, cellml_strict_mode)
+    importer = cellml.resolve_imports(model, cellml_file_dir, cellml_strict_mode, print )
     if model.hasUnresolvedImports():
         print("unresolved imports?")
         exit(-2)
@@ -37,16 +37,16 @@ def CellML_reader( cellml_file, cellml_file_dir, cellml_strict_mode ):        # 
     if cellml.validate_model(model) > 0:
         print('Validation issues found')
         exit(-3)
-
-    print('Model was parsed, resolved, and validated without any issues.')
+    if print == 'ON' or print == 'On' or print == 'on':
+        print('Model was parsed, resolved, and validated without any issues.')
 
     # need a flattened model for analysing
     flat_model = cellml.flatten_model(model, importer)
     if cellml.validate_model(flat_model) > 0:
         print('Validation issues found in flattened model')
         exit(-4)
-
-    print('Model was flattened without any issues.')
+    if print == 'ON' or print == 'On' or print == 'on':
+        print('Model was flattened without any issues.')
 
     
 

@@ -10,9 +10,12 @@ def verification(stoichiometric_array, elemental_array, rate_array = 0):
     import numpy as np
     import sympy as sp
     import sys
+    from colorama import Fore, Back, Style, init
 
-    print( "\nElemental matrix is:\n", elemental_array )
-    print( "\nStoichiometric matrix is:\n", stoichiometric_array )
+    init(autoreset=True)
+
+    print( Fore.RED + "\nElemental matrix is:\n", elemental_array )
+    print( Fore.YELLOW + "\nStoichiometric matrix is:\n", stoichiometric_array )
 
     elemental_matrix = sp.Matrix(elemental_array)
     stoichiometric_matrix = sp.Matrix(stoichiometric_array)
@@ -30,10 +33,10 @@ def verification(stoichiometric_array, elemental_array, rate_array = 0):
             l = len(nullspace_transposed)
         
             if l == 0:
-                print('There is no Left Null Space for this matrix')
+                print(Fore.CYAN + "There is no Left Null Space for this matrix")
             elif l == 1:
                 nullspace = np.transpose(np.array(nullspace_transposed[0]))
-                print('\nThe Left Null Sapce is:\n', nullspace )
+                print( Fore.CYAN + "\nThe Left Null Sapce is:\n", nullspace )
                 conservation_equations_array = nullspace * rate_array
                 print('\nConservation equations are:\n', conservation_equations_array[0], ' = 0\n', conservation_equations_array[1], ' = 0\n' )
                 return nullspace
@@ -44,14 +47,15 @@ def verification(stoichiometric_array, elemental_array, rate_array = 0):
                     n_t = np.concatenate( ( n_t, nullspace_transposed[counter] ), axis=1 )
                     counter+=1
                 nullspace = np.transpose(n_t)
-                print('\nThe Left Null Space is:\n', nullspace)
+                print( Fore.CYAN + "\nThe Left Null Space is:\n", nullspace)
                 conservation_equations_array = nullspace * rate_array
-                print('\nConservation equations are:\n')
+                print( Fore.MAGENTA + "\nConservation equations are:")
                 
                 count = 0
                 while count < l:
-                    print( conservation_equations_array[count], ' = 0\n')
+                    print( conservation_equations_array[count], ' = 0')
                     count += 1
+                print("\n\n")
                 return nullspace
 
         else:

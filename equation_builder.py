@@ -2,12 +2,17 @@ from sympy import symbols, Eq, simplify, Function, Add
 
 from libcellml import Parser, Printer, Validator, cellmlElementTypeAsString
 
+from colorama import Fore, Back, Style, init
+
+
 # Importing internal packages
 from utilities import print_model
 import cellml
+import chebi_fetch as chf
+import compound_element_sorter as ces
 
 
-def equation_builder( components, print = 'off' ):
+def equation_builder( components, printing = 'off' ):
 
     variables = []      # This list contains the variables of cellml file [In CellML file]
 
@@ -17,6 +22,8 @@ def equation_builder( components, print = 'off' ):
 
     reaction_rate_constants = []     # This list contains the rate constants that are in the model
     
+    boundary_conditions = []
+
     for component in components:
 
         number_of_variables = component.variableCount()
@@ -31,6 +38,7 @@ def equation_builder( components, print = 'off' ):
             elif identifier == 'co': coefficients.append( component.variable(v) )
             elif identifier == 'rc': reaction_rate_constants.append( component.variable(v) )
             elif identifier == 'ra': reaction_rates.append( component.variable(v) )
+            elif identifier == 'bc': boundary_conditions.append( component.variable(v) )
 
     if not reaction_rates:
 
@@ -135,16 +143,45 @@ def equation_builder( components, print = 'off' ):
             reaction_rate_equations_dict[reaction_rate.name()] = rhs_f
             reaction_rate_equations.append(Eq(rate,rhs_f))
 
-    if print == 'on' or print =='On' or print == 'ON':
+    if printing == 'on' or printing =='On' or printing == 'ON':
 
         printer( reaction_rate_equations, 'Rate equations of reactions are as below:' )
 
 
+    bc_equations = {}
+    bc_equations_display = []
 
+    for bc in boundary_conditions:
 
+        bc_name = bc.name()
 
+        bc_chebi = bc.id().split('_')[1].split('.')[0]
 
-    
+        if ces.all_digits( bc_chebi ):
+
+            compound, _ = chf.chebi_comp_parser( bc_chebi )
+
+        else:
+
+            compound = bc_chebi.split('-')[0]
+
+        bc_value = bc.initialValue()
+
+        bc_display_name = 'v_' + compound
+
+        lhs_display = symbols( bc_display_name )
+
+        lhs = symbols( bc_name )
+
+        rhs = float( bc_value )
+
+        bc_equations_display.append( Eq(lhs_display,rhs) )
+
+        bc_equations[bc_name] = rhs
+
+    if printing == 'on' or printing == 'On' or printing == 'ON':
+
+        printer( bc_equations_display, 'Boundary conditions are as below:' )
 
     # Here, I will write the concentration rate equations for the compounds in the reactions
     # Here, I need to check variables and write concentration rate for each
@@ -191,6 +228,18 @@ def equation_builder( components, print = 'off' ):
 
                 constituents[reaction_rate] = reaction_rate_coefficient
 
+        bc_list = []
+
+        for bc in boundary_conditions:
+
+            bc_id = bc.id()
+
+            compound = bc_id.split('_')[1].split('.')[0]
+
+            if compound == ChEBI:
+
+                bc_list.append( symbols( bc.name() ) )
+
 
         t = symbols('t')
 
@@ -200,28 +249,38 @@ def equation_builder( components, print = 'off' ):
 
         rhs = Add()
 
+
         for item in constituents:
 
             rhs += r_symbols[item] * r_symbols[constituents[item]]
 
+        for item in bc_list:
+
+            rhs += item
+
         concentration_rate_equations.append(Eq(lhs,rhs))
 
-    if print == 'on' or print == 'On' or print == 'ON':
+    if printing == 'on' or printing == 'On' or printing == 'ON':
 
         printer( concentration_rate_equations, 'Concentration rate equations are as below:' )
 
 
-    return reaction_rate_equations_dict
-
+    return reaction_rate_equations_dict, bc_equations
 
 
 
 
 def printer( equations, description ):
 
-    print('\n', description, '\n                \u2193\u2193\u2193\u2193\u2193\u2193\u2193\u2193\u2193\u2193\u2193\u2193\n')
+    # Initialize colorama
+    init(autoreset=True)
+    
+    print( Fore.YELLOW + "\n {d} \n                \u2193\u2193\u2193\u2193\u2193\u2193\u2193\u2193\u2193\u2193\u2193\u2193".format(d=description) )
+
     for equation in equations:
 
-            print(equation.lhs, '=', equation.rhs)
+            print( Style.BRIGHT + Fore.RED + "{c}".format( c = equation.lhs ), end='')
+            print( Style.BRIGHT + " = ", end='')
+            print( Style.BRIGHT + Fore.MAGENTA + "{rh}".format( rh = equation.rhs ).rstrip('0') )
 
-    print("\n**********************************************************************")
+    print("**********************************************************************")

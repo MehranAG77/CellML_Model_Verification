@@ -38,6 +38,8 @@ def variable_sorter( components, all_vars = 'Y' ):
 
     rates = []
 
+    boundary_conditions = []
+
     for component in components:
 
         number_of_variables = component.variableCount()
@@ -56,6 +58,7 @@ def variable_sorter( components, all_vars = 'Y' ):
                     elif identifier == 'co': coefficients.append( component.variable(v) )
                     elif identifier == 'rc': rate_constants.append( component.variable(v) )
                     elif identifier == 'ra': rates.append( component.variable(v) )
+                    elif identifier == 'bc': boundary_conditions.append( component.variable(v) )
 
         else:
                     
@@ -73,11 +76,15 @@ def variable_sorter( components, all_vars = 'Y' ):
 
     if ( all_vars == "Y" or all_vars == "y" ): 
 
-        return variables, coefficients, rates, rate_constants
+        return variables, coefficients, rates, rate_constants, boundary_conditions
     
     else:
 
         return variables, coefficients
+    
+
+
+
 
 def variable_name_mapper( components ):
 
@@ -115,7 +122,10 @@ def variable_name_mapper( components ):
 
     return chebi_to_CellML, chebi_initialvalues
 
-
+####################################################################################
+####################################################################################
+####################################################################################
+###############----------------- Main -------------------###########################
 
 def cellml_compound_element_sorter ( components ):
 
@@ -141,10 +151,12 @@ def cellml_compound_element_sorter ( components ):
 
     number_of_components = len( components )
 
-    variables, coefficients = variable_sorter( components , 'n')
+    variables, coefficients, _, _, boundary_conditions = variable_sorter( components )
 
-    for variable in variables:      # After putting the parameters in their corresponding list, I get their ChEBI code and build the matrices
-            
+    # Going through all variables: 1-to get their chemical composition (Or any name assigned to it in ID) 2-Assign indices to the compounds to assign a row in stoichiometric matrix by the index or a column in the elemental matrix
+
+    for variable in variables:
+
         name = variable.name()
 
         chebi_code =  variable.id().split('_')[1]
@@ -168,19 +180,23 @@ def cellml_compound_element_sorter ( components ):
                 for element in formula:
                     composition[element] = 1
 
+        # Storing compound and its corresponding composition in a dictionary
         if compound not in compounds:
                 
             compounds[compound] = composition
 
+        # Assigning an index to the compound
         if compound not in compound_indices:
                 
             compound_indices[compound] = compound_index
             compound_index += 1
-            
+        
+        # Storing the variable's name in CellML (User's input)
         if name not in symbols_list:
 
             symbols_list.append( name )
 
+        # Going through the elements in the chemical compoistion of the compound and assigning an index to each element
         for element in composition:
                         
             if element not in element_indices:
@@ -188,6 +204,7 @@ def cellml_compound_element_sorter ( components ):
                 element_indices[element] = element_index
                 element_index += 1
 
+    # Assigning index to reaction numbers
     for coefficient in coefficients:
             
         chebi_code = coefficient.id().split('_')[1]
@@ -198,41 +215,82 @@ def cellml_compound_element_sorter ( components ):
             reaction_indices[reaction_number] = reaction_index
             reaction_index += 1
 
-    columns = len( reaction_indices ) # Number of columns will be equal to number of reactions in the Stoichiometric matrix
 
-    rows = len( compound_indices ) # Number of rows will be equal to number of compounds in the Stoichiometric matrix
+    bc_coefficients = {}
 
-    # print("The reactions are: {l1}".format(l1=list(reaction_indices.keys())))
-    # print("The Compounds are: {l2}".format(l2=list(compound_indices.keys())))
+    # Now I check the boundary conditions
+    for bc in boundary_conditions:
 
-    stoichiometric_matrix = np.zeros(( rows, columns), dtype = int)
+        reaction_number = bc.id()
 
-    for coefficient in coefficients:
+        if reaction_number not in reaction_indices:
+            reaction_indices[reaction_number] = reaction_index
+            reaction_index += 1
 
-        chebi_code = coefficient.id().split('_')[1]
 
-        reaction_number = coefficient.id().split('_')[2]
+        chebi_code =  bc.id().split('_')[1].split('.')[0]
 
         if all_digits( chebi_code ):
 
-            formula = chf.chebi_formula( chebi_code )
+            compound, composition = chf.chebi_comp_parser( chebi_code )
+
+            try:
+                compounds[compound]
+
+            except KeyError:
+                print(f"The species '{compound}' does not match any available species.")
+                sys.exit("\nModify the equations and run the simulations again to see the figures")    
 
         else:
+            
+            try:
+                compound = chebi_code
+                composition = compounds[compound]
 
-            formula = chebi_code
+            except KeyError:
+                print(f"The species '{chebi_code}' does not match any available species.")
+                sys.exit("\nModify the equations and run the simulations again to see the figures")
 
-        try:
+            # if ( len(chebi_code.split('-')) == 1 ):
+            #     compound = chebi_code
+            #     composition={ chebi_code: 1 }
+            
+            # else:
 
-            row = compound_indices[formula]
+            #     compound = chebi_code.split('-')[0]
+            #     formula = chebi_code.split('-')[1].split('.')
 
-        except KeyError as KE:
+            #     composition={}
+            #     for element in formula:
+            #         composition[element] = 1
 
-            print("The stoichiometric coefficient for compound {v} cannot be found in your coefficients of CellML".format( v = KE ))
-            sys.exit("Exiting due to an error\nModify CellML file and check to see if you have this compound or errors in a ChEBI code in reaction {r}".format( r = reaction_number))
+        for suffix in ['_e', '_i']:
 
-        column = reaction_indices[reaction_number]
+            compound_bc = compound + suffix
 
-        stoichiometric_matrix[ row, column ] = coefficient.initialValue()
-        
+            # Storing compound and its corresponding composition in a dictionary
+            if compound_bc not in compounds:
+                    
+                compounds[compound_bc] = composition
 
-    return element_indices, compound_indices, symbols_list, compounds, stoichiometric_matrix, reaction_indices
+            # Assigning an index to the compound
+            if compound_bc not in compound_indices:
+                    
+                compound_indices[compound_bc] = compound_index
+                compound_index += 1
+
+            if compound_bc not in symbols_list:
+
+                symbols_list.append( compound_bc )
+
+            encoded_coefficient_name = compound_bc + '-' + reaction_number
+
+            if suffix == '_e':
+
+                bc_coefficients[ encoded_coefficient_name ] = -1
+
+            elif suffix == '_i':
+
+                bc_coefficients[ encoded_coefficient_name ] = +1
+
+    return element_indices, compound_indices, reaction_indices, symbols_list, compounds, bc_coefficients

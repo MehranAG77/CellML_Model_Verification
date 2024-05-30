@@ -143,8 +143,8 @@ http://www.CellML.org/
     </component>
     <component name="Rad3">
         <variable cmeta:id="va_Rad3" initial_value="0" name="Rad3" public_interface="out" units="dimensionless"/>
-        <variable cmeta:id="ra_4" name="V_4" public_interface="in" units="first_order_rate_constant"/>
-        <variable cmeta:id="ra_5" name="V_5" public_interface="in" units="first_order_rate_constant"/>
+        <variable cmeta:id="bc_Rad3" name="V_4" public_interface="in" units="first_order_rate_constant"/>
+        <variable cmeta:id="bc_Rad3" name="V_5" public_interface="in" units="first_order_rate_constant"/>
         <variable name="time" public_interface="in" units="minute"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
@@ -166,8 +166,8 @@ http://www.CellML.org/
     </component>
     <component name="p53">
         <variable cmeta:id="va_p53" initial_value="0" name="p53" public_interface="out" units="dimensionless"/>
-        <variable cmeta:id="ra_10" name="V_10" public_interface="in" units="first_order_rate_constant"/>
-        <variable cmeta:id="ra_11" name="V_11" public_interface="in" units="first_order_rate_constant"/>
+        <variable cmeta:id="bc_p53" name="V_10" public_interface="in" units="first_order_rate_constant"/>
+        <variable cmeta:id="bc_p53" name="V_11" public_interface="in" units="first_order_rate_constant"/>
         <variable name="time" public_interface="in" units="minute"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
@@ -189,7 +189,7 @@ http://www.CellML.org/
     </component>
     <component name="preMPF">
         <variable cmeta:id="va_preMPF" initial_value="0.000001" name="preMPF" public_interface="out" units="dimensionless"/>
-        <variable cmeta:id="ra_14" name="V_14" public_interface="in" units="first_order_rate_constant"/>
+        <variable cmeta:id="bc_preMPF" name="V_14" public_interface="in" units="first_order_rate_constant"/>
         <variable cmeta:id="ra_9n" name="V_n9" public_interface="in" units="first_order_rate_constant"/>
         <variable cmeta:id="ra_9" name="V_9" public_interface="in" units="first_order_rate_constant"/>
         <variable name="time" public_interface="in" units="minute"/>
@@ -218,10 +218,10 @@ http://www.CellML.org/
     <component name="MPF">
         <variable cmeta:id="va_MPF" initial_value="0.00000001" name="MPF" public_interface="out" units="dimensionless"/>
         <variable name="V_9" public_interface="in" units="first_order_rate_constant"/>
-        <variable name="V_n23" public_interface="in" units="first_order_rate_constant"/>
+        <variable cmeta:id="ra_23n" name="V_n23" public_interface="in" units="first_order_rate_constant"/>
         <variable name="V_n9" public_interface="in" units="first_order_rate_constant"/>
-        <variable name="V_23" public_interface="in" units="first_order_rate_constant"/>
-        <variable name="V_15" public_interface="in" units="first_order_rate_constant"/>
+        <variable cmeta:id="ra_23" name="V_23" public_interface="in" units="first_order_rate_constant"/>
+        <variable cmeta:id="bc_MPF" name="V_15" public_interface="in" units="first_order_rate_constant"/>
         <variable name="time" public_interface="in" units="minute"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
@@ -252,10 +252,10 @@ http://www.CellML.org/
     </component>
     <component name="p21">
         <variable cmeta:id="va_p21" initial_value="0" name="p21" public_interface="out" units="dimensionless"/>
-        <variable name="V_21" public_interface="in" units="first_order_rate_constant"/>
-        <variable name="V_20" public_interface="in" units="first_order_rate_constant"/>
+        <variable cmeta:id="bc_p21" name="V_21" public_interface="in" units="first_order_rate_constant"/>
+        <variable cmeta:id="bc_p21" name="V_20" public_interface="in" units="first_order_rate_constant"/>
         <variable name="V_n23" public_interface="in" units="first_order_rate_constant"/>
-        <variable name="V_22" public_interface="in" units="first_order_rate_constant"/>
+        <variable cmeta:id="bc_p21" name="V_22" public_interface="in" units="first_order_rate_constant"/>
         <variable name="V_23" public_interface="in" units="first_order_rate_constant"/>
         <variable name="time" public_interface="in" units="minute"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -310,10 +310,10 @@ http://www.CellML.org/
     </component>
     <component name="iCdc25">
         <variable cmeta:id="va_iCdc25" initial_value="0.000001" name="iCdc25" public_interface="out" units="dimensionless"/>
-        <variable name="V_n7" public_interface="in" units="first_order_rate_constant"/>
-        <variable name="V_n3_" public_interface="in" units="first_order_rate_constant"/>
-        <variable name="V_7" public_interface="in" units="first_order_rate_constant"/>
-        <variable name="V_2_" public_interface="in" units="first_order_rate_constant"/>
+        <variable cmeta:id="ra_7n" name="V_n7" public_interface="in" units="first_order_rate_constant"/>
+        <variable cmeta:id="ra_3pn" name="V_n3_" public_interface="in" units="first_order_rate_constant"/>
+        <variable cmeta:id="ra_iCdc25" name="V_7" public_interface="in" units="first_order_rate_constant"/>
+        <variable cmeta:id="ra_iCdc25" name="V_2_" public_interface="in" units="first_order_rate_constant"/>
         <variable name="V_in" public_interface="in" units="first_order_rate_constant"/>
         <variable name="time" public_interface="in" units="minute"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -345,10 +345,10 @@ http://www.CellML.org/
     </component>
     <component name="iCdc25Ps216">
         <variable cmeta:id="va_iCdc25Ps216" initial_value="0.00002" name="iCdc25Ps216" public_interface="out" units="dimensionless"/>
-        <variable name="V_2_" public_interface="in" units="first_order_rate_constant"/>
-        <variable name="V_n18" public_interface="in" units="first_order_rate_constant"/>
-        <variable name="V_18" public_interface="in" units="first_order_rate_constant"/>
-        <variable name="V_3_" public_interface="in" units="first_order_rate_constant"/>
+        <variable cmeta:id="ra_iCdc25Ps216" name="V_2_" public_interface="in" units="first_order_rate_constant"/>
+        <variable cmeta:id="ra_iCdc25Ps216" name="V_n18" public_interface="in" units="first_order_rate_constant"/>
+        <variable cmeta:id="ra_iCdc25Ps216" name="V_18" public_interface="in" units="first_order_rate_constant"/>
+        <variable cmeta:id="ra_iCdc25Ps216" name="V_3_" public_interface="in" units="first_order_rate_constant"/>
         <variable name="time" public_interface="in" units="minute"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>

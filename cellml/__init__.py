@@ -45,14 +45,17 @@ def validate_model(model):
     return validator.issueCount()
 
 
-def resolve_imports(model, base_dir, strict_mode):
+def resolve_imports(model, base_dir, strict_mode, print):
     importer = Importer(strict_mode)
     importer.resolveImports(model, base_dir)
     _dump_issues("resolve_imports", importer)
+
+
     if model.hasUnresolvedImports():
         print("unresolved imports?")
     else:
-        print("no unresolved imports.")
+        if print == 'ON' or print == 'On' or print == 'on':
+            print("no unresolved imports.")
     return importer
 
 

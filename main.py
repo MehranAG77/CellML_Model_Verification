@@ -14,6 +14,7 @@
 # Importing external or built-in packages
 import numpy as np
 import sympy as sp
+import os
 
 # Importing internal packages
 import excel_read as xls
@@ -28,23 +29,28 @@ import equation_builder as eb
 import matrix_equation_builder as meb
 import sympy_ode_solver as sos
 
+command = 'cls' if os.name == 'nt' else 'clear'
+os.system(command)
 
 
 
-
-cellml_file_dir = './docs/huang_ferrell_1996.cellml'
-cellml_file = './docs/huang_ferrell_1996.cellml'
+cellml_file_dir = './docs/reactions_set.cellml'
+cellml_file = './docs/reactions_set.cellml'
 cellml_strict_mode = False
 
 components = cmlr.CellML_reader( cellml_file, cellml_file_dir, cellml_strict_mode )
 
-reaction_rate_equations_dict= eb.equation_builder( components, print='off' )
+variables, coefficients, rates, rate_constants, boundary_conditions = ces.variable_sorter( components )
 
-element_indices, compound_indices, symbols_list, compounds, stoichiometric_matrix, reaction_indices = ces.cellml_compound_element_sorter ( components )
+reaction_rate_equations_dict, bc_equations = eb.equation_builder( components, 'on' ) #print
+
+element_indices, compound_indices, reaction_indices, symbols_list, compounds, bc_coefficients = ces.cellml_compound_element_sorter ( components )
 
 element_matrix = emb.elemental_matrix_builder( compound_indices, element_indices, compounds )
 
-concentration_rate_equations = meb.matrix_equation_builder ( stoichiometric_matrix, compound_indices, reaction_indices, reaction_rate_equations_dict, components, print='off' )
+stoichiometric_matrix = smb.stoichiometric_matrix_builder( reaction_indices, compound_indices, coefficients, bc_coefficients )
+
+concentration_rate_equations = meb.matrix_equation_builder ( stoichiometric_matrix, compound_indices, reaction_indices, reaction_rate_equations_dict, components, 'on' ) #print
 
 rate_matrix = rmb.rate_matrix_builder ( symbols_list )
 

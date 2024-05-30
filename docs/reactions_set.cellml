@@ -272,8 +272,12 @@
                     </apply>
                 </apply>
             </apply>
-            <!-- ########################################################################################################-->
-            <!-- rates of consumption or production of constituents-->
+        </math>
+        <!-- ########################################################################################################-->
+        <!-- Boundary Conditions-->
+        <variable cmeta:id="bc_17234" initial_value="0.02" name="bc_Glucose" units="mM_per_sec"/>
+        <!-- rates of consumption or production of constituents-->
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
                 <apply>
