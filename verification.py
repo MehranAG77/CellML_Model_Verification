@@ -4,7 +4,7 @@ This function receives stoichiometric matrix (numpy array), elemental matrix (nu
 and does some operations to check the model's validity
 """
 
-def verification(stoichiometric_array, elemental_array, rate_array = 0):
+def verification( stoichiometric_array, elemental_array, element_indices , rate_array = 0 ):
 
     # importing external or built-in packages
     import numpy as np
@@ -38,6 +38,7 @@ def verification(stoichiometric_array, elemental_array, rate_array = 0):
                 nullspace = np.transpose(np.array(nullspace_transposed[0]))
                 print( Fore.CYAN + "\nThe Left Null Sapce is:\n", nullspace )
                 conservation_equations_array = nullspace * rate_array
+                print( Style.BRIGHT + Fore.GREEN + "\nCONGRATULATIONS!!! >>>> Your model passed the mass conservation verification test <<<<")
                 print('\nConservation equations are:\n', conservation_equations_array[0], ' = 0\n', conservation_equations_array[1], ' = 0\n' )
                 return nullspace
             else:
@@ -49,6 +50,7 @@ def verification(stoichiometric_array, elemental_array, rate_array = 0):
                 nullspace = np.transpose(n_t)
                 print( Fore.CYAN + "\nThe Left Null Space is:\n", nullspace)
                 conservation_equations_array = nullspace * rate_array
+                print( Style.BRIGHT + Fore.GREEN + "\nCONGRATULATIONS!!! >>>> Your model passed the mass conservation verification test <<<<")
                 print( Fore.MAGENTA + "\nConservation equations are:")
                 
                 count = 0
@@ -59,17 +61,51 @@ def verification(stoichiometric_array, elemental_array, rate_array = 0):
                 return nullspace
 
         else:
-            print('Conservation of Mass is violated\n')
+            print( Style.BRIGHT + Fore.RED + "\nConservation of Mass is violated" )
             
             length = conservation_array.shape[1]
             for i in  range(0,length):
-                if np.all(conservation_array[:, i] == 0):
+                if np.all( conservation_array[:, i] == 0 ):
                     pass
                 else:
-                    print ('Reaction number %i is not correctly defined' %(i+1))
+                    #print ('Reaction number %i is not correctly defined' %(i+1))
+                    column = conservation_array[:, i]
+
+                    non_zero_indices = np.nonzero(column)[0]
+
+                    for species_index in non_zero_indices:
+
+                        for key, value in element_indices.items():
+
+                            if value == species_index:
+                                print( Style.BRIGHT + Fore.CYAN + "\nSpecies", end='' )
+                                print( Style.NORMAL + Fore.YELLOW + f" {key} ", end='')
+                                print( Style.BRIGHT + Fore.CYAN + f"is not conserved in reaction number {i+1}" )
+                                break
+
+                    coefficients = stoichiometric_matrix.T [i,:]
+                    species = rate_array
+                    reactants = []
+                    products =[]
+
+                    for coeff, specie in zip( coefficients, species ):
+                        if coeff < 0:
+                            reactants.append( f"{-coeff} * {specie}" )
+                        elif coeff > 0:
+                            products.append( f"{coeff} * {specie}" )
+
+                    reactants_str = "  +  ".join(reactants)
+                    products_str = "  +  ".join(products)
+
+                    reaction_str = f"{reactants_str} --> {products_str}"
+
+                    print( Style.DIM + f"\nReaction number {i+1}:    ", end='' )
+
+                    print( Style.BRIGHT + Fore.MAGENTA + "{rr}".format( rr = reaction_str ) )
+                    
                     break
             
-            sys.exit("\nModify the equations and run the simulations again to see the figures")
+            sys.exit( Fore.GREEN + "\nModify the equations and run the simulations again to see the figures\n" )
 
     else:
 

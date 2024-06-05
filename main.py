@@ -34,15 +34,15 @@ os.system(command)
 
 
 
-cellml_file_dir = './docs/reactions_set.cellml'
-cellml_file = './docs/reactions_set.cellml'
+cellml_file_dir = './docs/aguda_b_1999.cellml'
+cellml_file = './docs/aguda_b_1999.cellml'
 cellml_strict_mode = False
 
 components = cmlr.CellML_reader( cellml_file, cellml_file_dir, cellml_strict_mode )
 
 variables, coefficients, rates, rate_constants, boundary_conditions = ces.variable_sorter( components )
 
-reaction_rate_equations_dict, bc_equations = eb.equation_builder( components, 'on' ) #print
+# reaction_rate_equations_dict, bc_equations = eb.equation_builder( components, 'on' ) #print
 
 element_indices, compound_indices, reaction_indices, symbols_list, compounds, bc_coefficients = ces.cellml_compound_element_sorter ( components )
 
@@ -50,15 +50,15 @@ element_matrix = emb.elemental_matrix_builder( compound_indices, element_indices
 
 stoichiometric_matrix = smb.stoichiometric_matrix_builder( reaction_indices, compound_indices, coefficients, bc_coefficients )
 
-concentration_rate_equations = meb.matrix_equation_builder ( stoichiometric_matrix, compound_indices, reaction_indices, reaction_rate_equations_dict, components, 'on' ) #print
+# concentration_rate_equations = meb.matrix_equation_builder ( stoichiometric_matrix, compound_indices, reaction_indices, reaction_rate_equations_dict, components, 'on' ) #print
 
 rate_matrix = rmb.rate_matrix_builder ( symbols_list )
 
 # Calling the function
-vf.verification( stoichiometric_matrix, element_matrix, rate_matrix )
+vf.verification( stoichiometric_matrix, element_matrix, element_indices, rate_matrix )
 
-solution, time, x, sympy_to_CellML = sos.sympy_ode_solver( components, concentration_rate_equations, 40, 0.001 )
+# solution, time, x, sympy_to_CellML = sos.sympy_ode_solver( components, concentration_rate_equations, 40, 0.001 )
 
-variables_to_plot = []
+# variables_to_plot = []
 
-sos.plotter(  solution, time, variables_to_plot, x, sympy_to_CellML )
+# sos.plotter(  solution, time, variables_to_plot, x, sympy_to_CellML )

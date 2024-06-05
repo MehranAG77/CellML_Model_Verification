@@ -31,6 +31,7 @@
         <variable cmeta:id="bc_36889.1" initial_value="0.05" name="v_3" units="M_per_sec"/>
         <variable cmeta:id="bc_NO.2" initial_value="-0.2" name="v_4" units="M_per_sec"/>
         <variable cmeta:id="bc_36889.2" initial_value="-0.05" name="v_5" units="M_per_sec"/>
+        <variable cmeta:id="bc_NOBR" initial_value="0.05" name="v_6" units="M_per_sec"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -108,6 +109,7 @@
                         <ci>v_1</ci>
                     </apply>
                     <ci>v_3</ci>
+                    <ci>v_5</ci>
                 </apply>
             </apply>
             <apply>
@@ -120,9 +122,13 @@
                     <ci>x_NOBr</ci>
                 </apply>
                 <apply>
-                    <times/>
-                    <ci>NOBr_r1</ci>
-                    <ci>v_1</ci>
+                    <plus/>
+                    <apply>
+                        <times/>
+                        <ci>NOBr_r1</ci>
+                        <ci>v_1</ci>
+                    </apply>
+                    <ci>v_6</ci>
                 </apply>
             </apply>
         </math>

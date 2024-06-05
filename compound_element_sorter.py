@@ -238,8 +238,8 @@ def cellml_compound_element_sorter ( components ):
                 compounds[compound]
 
             except KeyError:
-                print(f"The species '{compound}' does not match any available species.")
-                sys.exit("\nModify the equations and run the simulations again to see the figures")    
+                print(f"\nThe species '{compound}' with the chebi code '{chebi_code}' does not match any available species.")
+                sys.exit("\nModify the equations and run the simulations again to see the figures\n")    
 
         else:
             

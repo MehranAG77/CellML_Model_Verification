@@ -67,59 +67,38 @@ http://www.CellML.org/
     </component>
     <component name="coefficients">
         <!--var{co_Chk1_1} Chk1_11: dimensionless {init: 1};-->
-        <variable cmeta:id="co_Rad3_4" initial_value="1" name="Rad3_4" units="dimensionless"/>
-        <variable cmeta:id="co_Chk1P_1" initial_value="1" name="Chk1P_1n1" units="dimensionless"/>
-        <variable cmeta:id="co_Chk1P_1-r" initial_value="-1" name="Chk1P_21" units="dimensionless"/>
-        <variable cmeta:id="co_Rad3_5" initial_value="-1" name="Rad3_51" units="dimensionless"/>
-        <variable cmeta:id="co_p53_10" initial_value="1" name="p53_101" units="dimensionless"/>
-        <variable cmeta:id="co_p53_11" initial_value="-1" name="p53_111" units="dimensionless"/>
-        <variable cmeta:id="co_preMPF_9" initial_value="-1" name="preMPF_92" units="dimensionless"/>
-        <variable cmeta:id="co_preMPF_9-r" initial_value="1" name="preMPF_9r" units="dimensionless"/>
-        <variable cmeta:id="co_preMPF_14" initial_value="1" name="preMPF_14" units="dimensionless"/>
-        <variable cmeta:id="co_MPF_9" initial_value="1" name="MPF_91" units="dimensionless"/>
-        <variable cmeta:id="co_MPF_23-r" initial_value="1" name="MPF_23r" units="dimensionless"/>
-        <variable cmeta:id="co_MPF_9-r" initial_value="-1" name="MPF_9r1" units="dimensionless"/>
-        <variable cmeta:id="co_MPF_23" initial_value="-1" name="MPF_231" units="dimensionless"/>
-        <variable cmeta:id="co_MPF_15" initial_value="-1" name="MPF_151" units="dimensionless"/>
-        <variable cmeta:id="co_p21_20" initial_value="1" name="p21_201" units="dimensionless"/>
-        <variable cmeta:id="co_p21_21" initial_value="1" name="p21_211" units="dimensionless"/>
-        <variable cmeta:id="co_p21_23-r" initial_value="1" name="p21_23r1" units="dimensionless"/>
-        <variable cmeta:id="co_p21_22" initial_value="-1" name="p21_221" units="dimensionless"/>
-        <variable cmeta:id="co_p21_23" initial_value="-1" name="p21_231" units="dimensionless"/>
-        <variable cmeta:id="co_p21MPF_23" initial_value="1" name="p21MPF_231" units="dimensionless"/>
-        <variable cmeta:id="co_p21MPF_23-r" initial_value="-1" name="p21MPF_23r1" units="dimensionless"/>
-        <variable cmeta:id="co_iCdc25_7-r" initial_value="1" name="iCdc25_7r1" units="dimensionless"/>
-        <variable cmeta:id="co_iCdc25_3p-r" initial_value="1" name="iCdc25_3pr1" units="dimensionless"/>
-        <variable cmeta:id="co_iCdc25_7" initial_value="-1" name="iCdc25_7" units="dimensionless"/>
-        <variable cmeta:id="co_iCdc25_2p" initial_value="-1" name="iCdc25_2p1" units="dimensionless"/>
+        <variable cmeta:id="co_Chk1P_1" initial_value="1" name="Chk1P_1" units="dimensionless"/>
+        <variable cmeta:id="co_Chk1_1" initial_value="-1" name="Chk1_1" units="dimensionless"/>
+        <variable cmeta:id="co_Rad3_1" initial_value="-1" name="Rad3_1" units="dimensionless"/>
+        <variable cmeta:id="co_Chk1P_2" initial_value="-1" name="Chk1P_2" units="dimensionless"/>
+        <variable cmeta:id="co_aCdc25_2" initial_value="-1" name="aCdc25_2" units="dimensionless"/>
+        <variable cmeta:id="co_aCdc25Ps216_2" initial_value="1" name="aCdc25Ps216_2" units="dimensionless"/>
+        <variable cmeta:id="co_Chk1P_2p" initial_value="-1" name="Chk1P_2p" units="dimensionless"/>
+        <variable cmeta:id="co_iCdc25_2p" initial_value="-1" name="iCdc25_2p" units="dimensionless"/>
         <variable cmeta:id="co_iCdc25Ps216_2p" initial_value="1" name="iCdc25Ps216_2p" units="dimensionless"/>
-        <variable cmeta:id="co_iCdc25Ps216_18-r" initial_value="1" name="iCdc25Ps216_18r" units="dimensionless"/>
-        <variable cmeta:id="co_iCdc25Ps216_18" initial_value="-1" name="iCdc25Ps216_18" units="dimensionless"/>
         <variable cmeta:id="co_iCdc25Ps216_3p" initial_value="-1" name="iCdc25Ps216_3p" units="dimensionless"/>
-        <variable cmeta:id="co_iCdc25Ps216protein1433_3p" initial_value="1" name="iCdc25Ps216protein1433_3p1" units="dimensionless"/>
-        <variable cmeta:id="co_iCdc25Ps216protein1433_3p-r" initial_value="-1" name="iCdc25Ps216protein1433_3pr1" units="dimensionless"/>
-        <variable cmeta:id="co_aCdc25_7" initial_value="1" name="aCdc25_71" units="dimensionless"/>
-        <variable cmeta:id="co_aCdc25_2-r" initial_value="1" name="aCdc25_2r1" units="dimensionless"/>
-        <variable cmeta:id="co_aCdc25_7-r" initial_value="-1" name="aCdc25_7r1" units="dimensionless"/>
-        <variable cmeta:id="co_aCdc25_2" initial_value="-1" name="aCdc25_21" units="dimensionless"/>
-        <variable cmeta:id="co_aCdc25Ps216_2" initial_value="1" name="aCDC25Ps216_21" units="dimensionless"/>
-        <variable cmeta:id="co_aCdc25Ps216_18" initial_value="1" name="aCDC25Ps216_181" units="dimensionless"/>
-        <variable cmeta:id="co_aCdc25Ps216_2-r" initial_value="-1" name="aCDC25Ps216_2r1" units="dimensionless"/>
-        <variable cmeta:id="co_aCdc25Ps216_18-r" initial_value="-1" name="aCDC25Ps216_18r1" units="dimensionless"/>
-        <variable cmeta:id="co_protein1433_6" initial_value="1" name="protein1433_61" units="dimensionless"/>
-        <variable cmeta:id="co_protein1433_13" initial_value="1" name="protein1433_131" units="dimensionless"/>
-        <variable cmeta:id="co_protein1433_3p-r" initial_value="1" name="protein1433_3pr1" units="dimensionless"/>
-        <variable cmeta:id="co_protein1433_3p" initial_value="-1" name="protein1433_3p1" units="dimensionless"/>
-        <variable cmeta:id="co_protein1433_12" initial_value="-1" name="protein1433_121" units="dimensionless"/>
-        <variable cmeta:id="co_Wee1_16" initial_value="1" name="Wee1_161" units="dimensionless"/>
-        <variable cmeta:id="co_Wee1_8-r" initial_value="1" name="Wee1_8r1" units="dimensionless"/>
-        <variable cmeta:id="co_Wee1_8" initial_value="-1" name="Wee1_81" units="dimensionless"/>
-        <variable cmeta:id="co_Wee1P_8" initial_value="1" name="Wee1P_81" units="dimensionless"/>
-        <variable cmeta:id="co_Wee1P_8-r" initial_value="-1" name="Wee1P_8r1" units="dimensionless"/>
-        <variable cmeta:id="co_Wee1P_17" initial_value="-1" name="Wee1P_171" units="dimensionless"/>
+        <variable cmeta:id="co_p1433_3p" initial_value="-1" name="p1433_3p" units="dimensionless"/>
+        <variable cmeta:id="co_iCdc25Ps216p1433_3p" initial_value="1" name="iCdc25Ps216p1433_3p" units="dimensionless"/>
+        <variable cmeta:id="co_iCdc25_7" initial_value="-1" name="iCdc25_7" units="dimensionless"/>
+        <variable cmeta:id="co_MPF_7" initial_value="-1" name="MPF_7" units="dimensionless"/>
+        <variable cmeta:id="co_aCdc25_7" initial_value="1" name="aCdc25_7" units="dimensionless"/>
+        <variable cmeta:id="co_MPF_8" initial_value="-1" name="MPF_8" units="dimensionless"/>
+        <variable cmeta:id="co_Wee1_8" initial_value="-1" name="Wee1_8" units="dimensionless"/>
+        <variable cmeta:id="co_Wee1P_8" initial_value="1" name="Wee1P_8" units="dimensionless"/>
+        <variable cmeta:id="co_aCdc25_9" initial_value="-1" name="aCdc25_9" units="dimensionless"/>
+        <variable cmeta:id="co_aCdc25Ps216_9" initial_value="-1" name="aCdc25Ps216_9" units="dimensionless"/>
+        <variable cmeta:id="co_preMPF_9" initial_value="-1" name="preMPF_9" units="dimensionless"/>
+        <variable cmeta:id="co_MPF_9" initial_value="1" name="MPF_9" units="dimensionless"/>
+        <variable cmeta:id="co_Wee1_9" initial_value="1" name="Wee1_9" units="dimensionless"/>
+        <variable cmeta:id="co_MPF_18" initial_value="-1" name="MPF_18" units="dimensionless"/>
+        <variable cmeta:id="co_iCdc25Ps216_18" initial_value="-1" name="iCdc25Ps216_18" units="dimensionless"/>
+        <variable cmeta:id="co_aCdc25Ps216_18" initial_value="1" name="aCdc25Ps216_18" units="dimensionless"/>
+        <variable cmeta:id="co_MPF_23" initial_value="-1" name="MPF_23" units="dimensionless"/>
+        <variable cmeta:id="co_p21_23" initial_value="-1" name="p21_23" units="dimensionless"/>
+        <variable cmeta:id="co_p21MPF_23" initial_value="1" name="p21MPF_23" units="dimensionless"/>
     </component>
     <component name="Chk1P">
-        <variable cmeta:id="va_Chk1P" initial_value="0.000001" name="Chk1P" public_interface="out" units="dimensionless"/>
+        <variable cmeta:id="va_Chk1P-Chk1.Rad3" initial_value="0.000001" name="Chk1P" public_interface="out" units="dimensionless"/>
         <variable cmeta:id="ra_1n" name="V_n1" public_interface="in" units="first_order_rate_constant"/>
         <variable cmeta:id="ra_1" name="V_1" public_interface="in" units="first_order_rate_constant"/>
         <variable name="time" public_interface="in" units="minute"/>
@@ -143,8 +122,8 @@ http://www.CellML.org/
     </component>
     <component name="Rad3">
         <variable cmeta:id="va_Rad3" initial_value="0" name="Rad3" public_interface="out" units="dimensionless"/>
-        <variable cmeta:id="bc_Rad3" name="V_4" public_interface="in" units="first_order_rate_constant"/>
-        <variable cmeta:id="bc_Rad3" name="V_5" public_interface="in" units="first_order_rate_constant"/>
+        <variable cmeta:id="bc_Rad3.1" name="V_4" public_interface="in" units="first_order_rate_constant"/>
+        <variable cmeta:id="bc_Rad3.2" name="V_5" public_interface="in" units="first_order_rate_constant"/>
         <variable name="time" public_interface="in" units="minute"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
@@ -166,8 +145,8 @@ http://www.CellML.org/
     </component>
     <component name="p53">
         <variable cmeta:id="va_p53" initial_value="0" name="p53" public_interface="out" units="dimensionless"/>
-        <variable cmeta:id="bc_p53" name="V_10" public_interface="in" units="first_order_rate_constant"/>
-        <variable cmeta:id="bc_p53" name="V_11" public_interface="in" units="first_order_rate_constant"/>
+        <variable cmeta:id="bc_p53.1" name="V_10" public_interface="in" units="first_order_rate_constant"/>
+        <variable cmeta:id="bc_p53.2" name="V_11" public_interface="in" units="first_order_rate_constant"/>
         <variable name="time" public_interface="in" units="minute"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
@@ -216,7 +195,7 @@ http://www.CellML.org/
         </math>
     </component>
     <component name="MPF">
-        <variable cmeta:id="va_MPF" initial_value="0.00000001" name="MPF" public_interface="out" units="dimensionless"/>
+        <variable cmeta:id="va_MPF-PreMPF.aCdc25" initial_value="0.00000001" name="MPF" public_interface="out" units="dimensionless"/>
         <variable name="V_9" public_interface="in" units="first_order_rate_constant"/>
         <variable cmeta:id="ra_23n" name="V_n23" public_interface="in" units="first_order_rate_constant"/>
         <variable name="V_n9" public_interface="in" units="first_order_rate_constant"/>
@@ -252,10 +231,10 @@ http://www.CellML.org/
     </component>
     <component name="p21">
         <variable cmeta:id="va_p21" initial_value="0" name="p21" public_interface="out" units="dimensionless"/>
-        <variable cmeta:id="bc_p21" name="V_21" public_interface="in" units="first_order_rate_constant"/>
-        <variable cmeta:id="bc_p21" name="V_20" public_interface="in" units="first_order_rate_constant"/>
+        <variable cmeta:id="bc_p21.1" name="V_21" public_interface="in" units="first_order_rate_constant"/>
+        <variable cmeta:id="bc_p21.2" name="V_20" public_interface="in" units="first_order_rate_constant"/>
         <variable name="V_n23" public_interface="in" units="first_order_rate_constant"/>
-        <variable cmeta:id="bc_p21" name="V_22" public_interface="in" units="first_order_rate_constant"/>
+        <variable cmeta:id="bc_p21.3" name="V_22" public_interface="in" units="first_order_rate_constant"/>
         <variable name="V_23" public_interface="in" units="first_order_rate_constant"/>
         <variable name="time" public_interface="in" units="minute"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -286,7 +265,7 @@ http://www.CellML.org/
         </math>
     </component>
     <component name="p21_MPF">
-        <variable cmeta:id="va_p21MPF" initial_value="0" name="p21_MPF" public_interface="out" units="dimensionless"/>
+        <variable cmeta:id="va_p21MPF-p21.MPF" initial_value="0" name="p21_MPF" public_interface="out" units="dimensionless"/>
         <variable name="V_23" public_interface="in" units="first_order_rate_constant"/>
         <variable name="V_n23" public_interface="in" units="first_order_rate_constant"/>
         <variable name="time" public_interface="in" units="minute"/>
@@ -313,7 +292,7 @@ http://www.CellML.org/
         <variable cmeta:id="ra_7n" name="V_n7" public_interface="in" units="first_order_rate_constant"/>
         <variable cmeta:id="ra_3pn" name="V_n3_" public_interface="in" units="first_order_rate_constant"/>
         <variable cmeta:id="ra_iCdc25" name="V_7" public_interface="in" units="first_order_rate_constant"/>
-        <variable cmeta:id="ra_iCdc25" name="V_2_" public_interface="in" units="first_order_rate_constant"/>
+        <variable name="V_2_" public_interface="in" units="first_order_rate_constant"/>
         <variable name="V_in" public_interface="in" units="first_order_rate_constant"/>
         <variable name="time" public_interface="in" units="minute"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -344,11 +323,11 @@ http://www.CellML.org/
         </math>
     </component>
     <component name="iCdc25Ps216">
-        <variable cmeta:id="va_iCdc25Ps216" initial_value="0.00002" name="iCdc25Ps216" public_interface="out" units="dimensionless"/>
+        <variable cmeta:id="va_iCdc25Ps216-Chk1P.iCdc25" initial_value="0.00002" name="iCdc25Ps216" public_interface="out" units="dimensionless"/>
         <variable cmeta:id="ra_iCdc25Ps216" name="V_2_" public_interface="in" units="first_order_rate_constant"/>
-        <variable cmeta:id="ra_iCdc25Ps216" name="V_n18" public_interface="in" units="first_order_rate_constant"/>
-        <variable cmeta:id="ra_iCdc25Ps216" name="V_18" public_interface="in" units="first_order_rate_constant"/>
-        <variable cmeta:id="ra_iCdc25Ps216" name="V_3_" public_interface="in" units="first_order_rate_constant"/>
+        <variable name="V_n18" public_interface="in" units="first_order_rate_constant"/>
+        <variable name="V_18" public_interface="in" units="first_order_rate_constant"/>
+        <variable name="V_3_" public_interface="in" units="first_order_rate_constant"/>
         <variable name="time" public_interface="in" units="minute"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
@@ -377,7 +356,7 @@ http://www.CellML.org/
         </math>
     </component>
     <component name="iCdc25Ps216_protein1433">
-        <variable cmeta:id="va_iCdc25Ps216protein1433" initial_value="0.03" name="iCdc25Ps216_protein1433" public_interface="out" units="dimensionless"/>
+        <variable cmeta:id="va_iCdc25Ps216p1433-iCdc25Ps216.p1433" initial_value="0.03" name="iCdc25Ps216_protein1433" public_interface="out" units="dimensionless"/>
         <variable name="V_3_" public_interface="in" units="first_order_rate_constant"/>
         <variable name="V_n3_" public_interface="in" units="first_order_rate_constant"/>
         <variable name="V_ex" public_interface="in" units="first_order_rate_constant"/>
@@ -405,7 +384,7 @@ http://www.CellML.org/
         </math>
     </component>
     <component name="aCdc25">
-        <variable cmeta:id="va_aCdc25" initial_value="0.000001" name="aCdc25" public_interface="out" units="dimensionless"/>
+        <variable cmeta:id="va_aCdc25-iCdc25.MPF" initial_value="0.000001" name="aCdc25" public_interface="out" units="dimensionless"/>
         <variable name="V_7" public_interface="in" units="first_order_rate_constant"/>
         <variable name="V_n2" public_interface="in" units="first_order_rate_constant"/>
         <variable name="V_n7" public_interface="in" units="first_order_rate_constant"/>
@@ -438,7 +417,7 @@ http://www.CellML.org/
         </math>
     </component>
     <component name="aCdc25Ps216">
-        <variable cmeta:id="va_aCdc25Ps216" initial_value="0" name="aCdc25Ps216" public_interface="out" units="dimensionless"/>
+        <variable cmeta:id="va_aCdc25Ps216-Chk1P.aCdc25" initial_value="0" name="aCdc25Ps216" public_interface="out" units="dimensionless"/>
         <variable name="V_2" public_interface="in" units="first_order_rate_constant"/>
         <variable name="V_18" public_interface="in" units="first_order_rate_constant"/>
         <variable name="V_n2" public_interface="in" units="first_order_rate_constant"/>
@@ -471,9 +450,9 @@ http://www.CellML.org/
         </math>
     </component>
     <component name="protein1433">
-        <variable cmeta:id="va_protein1433" initial_value="2" name="protein1433" public_interface="out" units="dimensionless"/>
-        <variable name="V_6" public_interface="in" units="first_order_rate_constant"/>
-        <variable name="V_13" public_interface="in" units="first_order_rate_constant"/>
+        <variable cmeta:id="va_p1433" initial_value="2" name="protein1433" public_interface="out" units="dimensionless"/>
+        <variable cmeta:id="bc_p1433.1" name="V_6" public_interface="in" units="first_order_rate_constant"/>
+        <variable cmeta:id="bc_p1433.2" name="V_13" public_interface="in" units="first_order_rate_constant"/>
         <variable name="V_n3_" public_interface="in" units="first_order_rate_constant"/>
         <variable name="V_3_" public_interface="in" units="first_order_rate_constant"/>
         <variable name="V_12" public_interface="in" units="first_order_rate_constant"/>
@@ -507,7 +486,7 @@ http://www.CellML.org/
     </component>
     <component name="Wee1">
         <variable cmeta:id="va_Wee1" initial_value="0.001" name="Wee1" public_interface="out" units="dimensionless"/>
-        <variable name="V_16" public_interface="in" units="first_order_rate_constant"/>
+        <variable cmeta:id="bc_Wee1" name="V_16" public_interface="in" units="first_order_rate_constant"/>
         <variable name="V_n8" public_interface="in" units="first_order_rate_constant"/>
         <variable name="V_8" public_interface="in" units="first_order_rate_constant"/>
         <variable name="time" public_interface="in" units="minute"/>
@@ -534,10 +513,10 @@ http://www.CellML.org/
         </math>
     </component>
     <component name="Wee1P">
-        <variable cmeta:id="va_Wee1P" initial_value="0" name="Wee1P" public_interface="out" units="dimensionless"/>
+        <variable cmeta:id="va_Wee1P-Wee1.MPF" initial_value="0" name="Wee1P" public_interface="out" units="dimensionless"/>
         <variable name="V_8" public_interface="in" units="first_order_rate_constant"/>
         <variable name="V_n8" public_interface="in" units="first_order_rate_constant"/>
-        <variable name="V_17" public_interface="in" units="first_order_rate_constant"/>
+        <variable cmeta:id="bc_Wee1P" name="V_17" public_interface="in" units="first_order_rate_constant"/>
         <variable name="time" public_interface="in" units="minute"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
@@ -580,7 +559,7 @@ http://www.CellML.org/
     <component name="V_1">
         <variable name="V_1" public_interface="out" units="first_order_rate_constant"/>
         <variable name="k1" public_interface="in" units="first_order_rate_constant"/>
-        <variable name="Chk1" units="dimensionless"/>
+        <variable cmeta:id="va_Chk1" name="Chk1" units="dimensionless"/>
         <variable name="Chk1P" public_interface="in" units="dimensionless"/>
         <variable initial_value="1" name="Chk1_T" units="dimensionless"/>
         <variable name="Rad3" public_interface="in" units="dimensionless"/>
@@ -666,7 +645,7 @@ http://www.CellML.org/
         </math>
     </component>
     <component name="V_2_">
-        <variable cmeta:id="ra_2p" name="V_2_" public_interface="out" units="first_order_rate_constant"/>
+        <variable name="V_2_" public_interface="out" units="first_order_rate_constant"/>
         <variable name="k2_" public_interface="in" units="first_order_rate_constant"/>
         <variable name="kctak1_" public_interface="in" units="first_order_rate_constant"/>
         <variable name="Chk1P" public_interface="in" units="dimensionless"/>
@@ -693,7 +672,7 @@ http://www.CellML.org/
         </math>
     </component>
     <component name="V_3_">
-        <variable cmeta:id="ra_3p" name="V_3_" public_interface="out" units="first_order_rate_constant"/>
+        <variable name="V_3_" public_interface="out" units="first_order_rate_constant"/>
         <variable name="k3_" public_interface="in" units="first_order_rate_constant"/>
         <variable name="iCdc25Ps216" public_interface="in" units="dimensionless"/>
         <variable name="protein1433" public_interface="in" units="dimensionless"/>
@@ -711,7 +690,7 @@ http://www.CellML.org/
         </math>
     </component>
     <component name="V_n3_">
-        <variable cmeta:id="ra_3pn" name="V_n3_" public_interface="out" units="first_order_rate_constant"/>
+        <variable name="V_n3_" public_interface="out" units="first_order_rate_constant"/>
         <variable name="kn3_" public_interface="in" units="first_order_rate_constant"/>
         <variable name="iCdc25Ps216_protein1433" public_interface="in" units="dimensionless"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -797,7 +776,7 @@ http://www.CellML.org/
         </math>
     </component>
     <component name="V_n7">
-        <variable cmeta:id="ra_7n" name="V_n7" public_interface="out" units="first_order_rate_constant"/>
+        <variable name="V_n7" public_interface="out" units="first_order_rate_constant"/>
         <variable name="kn7" public_interface="in" units="first_order_rate_constant"/>
         <variable name="aCdc25" public_interface="in" units="dimensionless"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -1122,7 +1101,7 @@ http://www.CellML.org/
         </math>
     </component>
     <component name="V_23">
-        <variable cmeta:id="ra_23" name="V_23" public_interface="out" units="first_order_rate_constant"/>
+        <variable name="V_23" public_interface="out" units="first_order_rate_constant"/>
         <variable name="k23" public_interface="in" units="first_order_rate_constant"/>
         <variable name="MPF" public_interface="in" units="dimensionless"/>
         <variable name="p21" public_interface="in" units="dimensionless"/>
@@ -1140,7 +1119,7 @@ http://www.CellML.org/
         </math>
     </component>
     <component name="V_n23">
-        <variable cmeta:id="ra_23n" name="V_n23" public_interface="out" units="first_order_rate_constant"/>
+        <variable name="V_n23" public_interface="out" units="first_order_rate_constant"/>
         <variable name="kn23" public_interface="in" units="first_order_rate_constant"/>
         <variable name="p21_MPF" public_interface="in" units="dimensionless"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
