@@ -32,6 +32,13 @@ import sys
 
 
 def elemental_matrix_builder ( compound_indices, element_indices, compounds ):
+    
+    """
+    This function takes three dictionaris: 1- compound_indices: This dictionary contains compounds with their corresponding index.
+    2- element_indices: This dictionary contains elements of the compounds in the model with their corresponding indices.
+    3- compounds: This dictionary contains compounds with their compostion as another dictionary stored as a value in the current dictionary
+    The function returns the Elemental matrix as anumpy array
+    """
 
     rows = len( element_indices )   # The number of rows will be the number of elements we have so it is as the length of the element dictionary
     

@@ -1,4 +1,13 @@
 
+# importing external or built-in packages
+from sympy import symbols, lambdify
+import numpy as np
+import scipy.integrate
+import matplotlib.pyplot as plt
+import sys
+
+# importing internal packages
+from compound_element_sorter import variable_name_mapper
 
 
 def sympy_ode_solver( components, concentration_rate_equations, t_max = 10, delta_t = 0.001 ):
@@ -9,29 +18,23 @@ def sympy_ode_solver( components, concentration_rate_equations, t_max = 10, delt
     'components' is the list containing the imported CellML components
     """
 
-    from sympy import symbols, lambdify
-    import numpy as np
-    import scipy.integrate
-    import matplotlib.pyplot as plt
-    from compound_element_sorter import variable_name_mapper
-    import sys
 
-    all_symbols = set().union(*[eq.free_symbols for eq in concentration_rate_equations.values()])   # I need to know all variables that I have in these equations. This is why I should have replaced all variables that have values and are not meant ot be solved for
+    all_symbols = set().union( *[eq.free_symbols for eq in concentration_rate_equations.values()] )     # I need to know all variables that I have in these equations. This is why I should have replaced all variables that have values and are not meant ot be solved for
 
-    number_of_variables = str(len(all_symbols)) # I need to count the number of variables that I have so I can create the list of sympy variables as 'x' shown below
+    number_of_variables = str(len(all_symbols))                                                         # I need to count the number of variables that I have so I can create the list of sympy variables as 'x' shown below
 
-    sympy_to_CellML = {}    # I need to map sympy variables to CellML variables written by user. This is because I have ChEBI code and variable name for the variables that I have
-                            # For construction of the stoichiometric matrix, I used ChEBI codes and here I need variable names
+    sympy_to_CellML = {}                                                                                # I need to map sympy variables to CellML variables written by user. This is because I have ChEBI code and variable name for the variables that I have
+                                                                                                        # For construction of the stoichiometric matrix, I used ChEBI codes and here I need variable names
 
-    sympy_equations ={}
+    sympy_equations = {}                                                                                # This dictionary will store the sympy equations for concentration rate equations
+
+    initial_values = []                                                                                 # Initial values should be stored in the same order as variables in 'x'
+
+    xdot = []                                                                                           # Sympy needs the equations in the set as a list containing all the equations
+
+    x = symbols( 'x:' + number_of_variables )                                                           # Creation of the number of Sympy variables that I need
 
     chebi_to_CellML, chebi_initial_values = variable_name_mapper( components )
-
-    initial_values = [] # Initial values should be stored in the same order as variables in 'x'
-
-    xdot = []   # Sympy needs the equations in the set as a list containing all the equations
-
-    x = symbols( 'x:' + number_of_variables )# Creation of the number of Sympy variables that I need
 
     # I need to replace the CellML variables I have used to write the equations with the Sympy variables which are like 'x0', 'x1', 'x3', ...
 
@@ -98,10 +101,6 @@ def sympy_ode_solver( components, concentration_rate_equations, t_max = 10, delt
     #################################################################
 
     # Now, lets solve the obtained equations
-
-    # The time step and End point for the solution
-    #t_max = 25
-    #delta_t = 0.001
 
     t = symbols( 't' )
     f = lambdify( ( t, x ), xdot )
@@ -179,29 +178,3 @@ def plotter( solutions, time, variables_to_plot, x, sympy_to_CellML ):
         plt.ylabel('concentration')
 
         plt.show()
-
-
-
-
-
-
-if __name__ == '__main__':
-
-    import CellML_reader as cmlr
-    import compound_element_sorter as ces
-    import equation_builder as eb
-    import matrix_equation_builder as meb
-
-    cellml_file_dir = './docs/NitrosylBromide.cellml'
-    cellml_file = './docs/NitrosylBromide.cellml'
-    cellml_strict_mode = False
-
-    components = cmlr.CellML_reader( cellml_file, cellml_file_dir, cellml_strict_mode )
-
-    element_indices, compound_indices, symbols_list, compounds, stoichiometric_matrix, reaction_indices = ces.cellml_compound_element_sorter ( components )
-
-    equations_dict = eb.equation_builder( components )
-
-    equations = meb.matrix_equation_builder ( stoichiometric_matrix, compound_indices, reaction_indices, equations_dict, components )
-
-    sympy_ode_solver( components, equations )

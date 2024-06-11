@@ -1,9 +1,3 @@
-"""
-This function receives a string which includes ChEBI code for the compound and uses EBI API to search for the compounds chemical composition and fetches it
-Then using the chemparse package decomposes the chemical formula to its elements and returns it as a dictionary
-It should be mentioned that some ChEBI compounds don't have chemical formula registered for them and some have two different chemical compositions assigned to them
-"""
-
 # Importing external packages
 import libchebipy as chb
 import chemparse as chp
@@ -11,6 +5,12 @@ import chemparse as chp
 
 # chebi_code is a string which contains ChEBI code like '46683'
 def chebi_comp_parser( chebi_code ):
+
+    """
+    This function receives a string which includes ChEBI code for the compound and uses EBI API to search for the compounds chemical composition and fetches it
+    Then using the chemparse package decomposes the chemical formula to its elements and returns it as a dictionary
+    It should be mentioned that some ChEBI compounds don't have chemical formula registered for them and some have two different chemical compositions assigned to them
+    """
 
     chebi_entity = chb.ChebiEntity(chebi_code)
     name = chebi_entity.get_name()
@@ -52,6 +52,11 @@ def chebi_comp_parser( chebi_code ):
 
 
 def chebi_formula ( chebi_code ):
+    
+    """
+    This function receives a string which includes ChEBI code for the compound and uses EBI API to search for the compound's chemical composition and fetches it
+    It should be mentioned that some ChEBI compounds don't have chemical formula registered for them and some have two different chemical compositions assigned to them
+    """
 
     chebi_entity = chb.ChebiEntity(chebi_code)
 
@@ -79,6 +84,9 @@ def chebi_formula ( chebi_code ):
             print( "Chemical formula for this copmound is: {v}".format( v = formula ) )
 
     return formula
+
+
+
 
 
 

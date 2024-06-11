@@ -1,10 +1,4 @@
 
-
-"""
-This function takes a list containing the dataframes (as a list variable) for reaction compound elements
-"""
-
-
 # Importing external and built-in packages
 import numpy as np
 import pandas as pd
@@ -13,7 +7,14 @@ import pandas as pd
 import excel_read as xls
 
 
+
+
+
 def comp_extract( compounds_df ):
+
+    """
+    This function takes a list containing the dataframes (as a list variable) for reaction compound elements
+    """
 
     compounds = {}   # This dictionary will contain compounds as keys and a dictionary (containing compound elements and their respective subscript) as values
 

@@ -1,7 +1,3 @@
-"""
-This function receives a list containing the compounds as strings and returns a sympy matrix containing the parameters of the compounds
-"""
-
 
 # Importing external or built-in packages
 import numpy as np
@@ -9,6 +5,10 @@ import sympy as sp
 
 
 def rate_matrix_builder( compounds ):
+
+    """
+    This function receives a list containing the compounds as strings and returns a sympy matrix containing the parameters of the compounds
+    """
 
     symbols_list = sp.symbols(compounds)
 

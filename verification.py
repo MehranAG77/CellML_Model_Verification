@@ -1,18 +1,18 @@
 
-"""
-This function receives stoichiometric matrix (numpy array), elemental matrix (numpy array), and symbolic parameters as a rates array (sympy array)
-and does some operations to check the model's validity
-"""
+# importing external or built-in packages
+import numpy as np
+import sympy as sp
+import sys
+from colorama import Fore, Back, Style, init
 
-def verification( stoichiometric_array, elemental_array, element_indices , rate_array = 0 ):
+def verification( stoichiometric_array, elemental_array, element_indices, compound_indices, reaction_indices, rate_array = 0 ):
 
-    # importing external or built-in packages
-    import numpy as np
-    import sympy as sp
-    import sys
-    from colorama import Fore, Back, Style, init
+    """
+    This function receives stoichiometric matrix (numpy array), elemental matrix (numpy array), and symbolic parameters as a rates array (sympy array)
+    and does some operations to check the model's validity
+    """
 
-    init(autoreset=True)
+    init( autoreset=True )
 
     print( Fore.RED + "\nElemental matrix is:\n", elemental_array )
     print( Fore.YELLOW + "\nStoichiometric matrix is:\n", stoichiometric_array )
@@ -68,7 +68,13 @@ def verification( stoichiometric_array, elemental_array, element_indices , rate_
                 if np.all( conservation_array[:, i] == 0 ):
                     pass
                 else:
-                    #print ('Reaction number %i is not correctly defined' %(i+1))
+
+                    for key, value in reaction_indices.items():
+
+                        if value == i:
+                            reaction = key
+                            break
+
                     column = conservation_array[:, i]
 
                     non_zero_indices = np.nonzero(column)[0]
@@ -80,26 +86,35 @@ def verification( stoichiometric_array, elemental_array, element_indices , rate_
                             if value == species_index:
                                 print( Style.BRIGHT + Fore.CYAN + "\nSpecies", end='' )
                                 print( Style.NORMAL + Fore.YELLOW + f" {key} ", end='')
-                                print( Style.BRIGHT + Fore.CYAN + f"is not conserved in reaction number {i+1}" )
+                                print( Style.BRIGHT + Fore.CYAN + f"is not conserved in reaction {reaction}" )
                                 break
 
                     coefficients = stoichiometric_matrix.T [i,:]
-                    species = rate_array
+
                     reactants = []
                     products =[]
 
-                    for coeff, specie in zip( coefficients, species ):
-                        if coeff < 0:
-                            reactants.append( f"{-coeff} * {specie}" )
-                        elif coeff > 0:
-                            products.append( f"{coeff} * {specie}" )
+                    for j, coeff in enumerate( coefficients ):
+
+                        if coeff != 0:
+
+                            for key, value in compound_indices.items():
+
+                                if value == j:
+                                    compound = key
+                                    break
+
+                            if coeff < 0:
+                                reactants.append( f"{-coeff} * {compound}" )
+                            elif coeff > 0:
+                                products.append( f"{coeff} * {compound}" )
 
                     reactants_str = "  +  ".join(reactants)
                     products_str = "  +  ".join(products)
 
                     reaction_str = f"{reactants_str} --> {products_str}"
 
-                    print( Style.DIM + f"\nReaction number {i+1}:    ", end='' )
+                    print( Style.DIM + f"\nReaction {reaction}:    ", end='' )
 
                     print( Style.BRIGHT + Fore.MAGENTA + "{rr}".format( rr = reaction_str ) )
                     
