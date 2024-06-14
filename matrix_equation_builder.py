@@ -16,7 +16,7 @@ def matrix_equation_builder ( stoichiometric_matrix, rows, columns, reaction_rat
     And the function returns the concentration rate equations
     """
 
-    _ , _ , reaction_rates, _ , boundary_conditions = ces.variable_sorter( components )
+    _ , _ , reaction_rates, _ , boundary_conditions, _ = ces.variable_sorter( components )
 
     concentration_rate_equations = {}                                                           # This dictionary will map the compound name to the corresponding equation for it
 

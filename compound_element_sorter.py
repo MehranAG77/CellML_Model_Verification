@@ -33,7 +33,7 @@ def cellml_compound_element_sorter ( components ):
     """
 
 
-    compounds = {}              # This dictionary will store the compounds and their chemical composition
+    compound_to_composition = {}              # This dictionary will store the compounds and their chemical composition
 
     reaction_indices = {}       # This dictionary keeps an index for each reaction that is used in constructing stoichiometric matrix ==> {'r1': 0, 'r2': 1, ...} "It can be unordered numbers for reactions or any alphabets ==> {'r10': 0, ...}"
 
@@ -53,9 +53,9 @@ def cellml_compound_element_sorter ( components ):
 
     symbols_list = []           # This list contains the list of symbols
 
-    bc_coefficients = {}        # This is a dictionary to store the compound names for boundary conditions and a value showing if the compound is an external or internal one.
+    bcvirtual_compound_coefficients = {}        # This is a dictionary to store the compound names for boundary conditions and a value showing if the compound is an external or internal one.
 
-    variables, coefficients, _, _, boundary_conditions = variable_sorter( components )
+    variables, coefficients, _ , _ , boundary_conditions, _ = variable_sorter( components )
 
     # Going through all variables: 1-to get their chemical composition (Or any name assigned to it in ID) 2-Assign indices to the compounds to assign a row in stoichiometric matrix by the index or a column in the elemental matrix
 
@@ -90,9 +90,9 @@ def cellml_compound_element_sorter ( components ):
                     composition[element] = 1
 
         # Storing compound and its corresponding composition in a dictionary if it hasn't been done previously
-        if compound not in compounds:
+        if compound not in compound_to_composition:
                 
-            compounds[compound] = composition
+            compound_to_composition[compound] = composition
 
         # Assigning an index to the compound if it hasn't been done previously
         if compound not in compound_indices:
@@ -153,7 +153,7 @@ def cellml_compound_element_sorter ( components ):
 
             # Here I check to see if it already exists in the compounds dictionary, if it exists, then it's OK, if not, so there is something wrong in the user's input
             try:
-                compounds[compound]
+                compound_to_composition[compound]
 
             except KeyError:
                 print(f"\nThe species '{compound}' with the chebi code '{chebi_code}' does not match any available species.")
@@ -163,7 +163,7 @@ def cellml_compound_element_sorter ( components ):
             
             try:
                 compound = chebi_code
-                composition = compounds[compound]
+                composition = compound_to_composition[compound]
 
             except KeyError:
                 print(f"The species '{chebi_code}' does not match any available species.")
@@ -175,9 +175,9 @@ def cellml_compound_element_sorter ( components ):
             compound_bc = compound + suffix
 
             # Storing compound and its corresponding composition in a dictionary
-            if compound_bc not in compounds:
+            if compound_bc not in compound_to_composition:
                     
-                compounds[compound_bc] = composition
+                compound_to_composition[compound_bc] = composition
 
             # Assigning an index to the compound
             if compound_bc not in compound_indices:
@@ -194,13 +194,13 @@ def cellml_compound_element_sorter ( components ):
 
             if suffix == '_e':
 
-                bc_coefficients[ encoded_coefficient_name ] = -1
+                bcvirtual_compound_coefficients[ encoded_coefficient_name ] = -1
 
             elif suffix == '_i':
 
-                bc_coefficients[ encoded_coefficient_name ] = +1
+                bcvirtual_compound_coefficients[ encoded_coefficient_name ] = +1
 
-    return element_indices, compound_indices, reaction_indices, symbols_list, compounds, bc_coefficients
+    return element_indices, compound_indices, reaction_indices, symbols_list, compound_to_composition, bcvirtual_compound_coefficients
 
 
 
@@ -232,6 +232,8 @@ def variable_sorter( components, all_vars = 'Y' ):
 
     boundary_conditions = []
 
+    equation_variables = []
+
     for component in components:
 
         number_of_variables = component.variableCount()
@@ -251,6 +253,7 @@ def variable_sorter( components, all_vars = 'Y' ):
                     elif identifier == 'rc': rate_constants.append( component.variable(v) )
                     elif identifier == 'ra': rates.append( component.variable(v) )
                     elif identifier == 'bc': boundary_conditions.append( component.variable(v) )
+                    elif identifier == 'ev': equation_variables.append( component.variable(v) )
 
         else:
                     
@@ -268,7 +271,7 @@ def variable_sorter( components, all_vars = 'Y' ):
 
     if ( all_vars == "Y" or all_vars == "y" ): 
 
-        return variables, coefficients, rates, rate_constants, boundary_conditions
+        return variables, coefficients, rates, rate_constants, boundary_conditions, equation_variables
     
     else:
 

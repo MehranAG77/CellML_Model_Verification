@@ -20,16 +20,6 @@ def equation_builder( components, printing = 'off' ):
     There is an equation printing option which can be turned on if needed
     '''
 
-    variables = []                          # This list contains the variables of cellml file [In CellML file]
-
-    coefficients = []                       # The difference between variables and coefficients is identified by the first part of their id which is like "va_12345_r1", first part indicates that this parameter is a variable
-
-    reaction_rates = []                     # This list contains all the rate variables (classes) for all equations that are in the model
-
-    reaction_rate_constants = []            # This list contains the rate constants (classes) that are in the model
-    
-    boundary_conditions = []                # This list stores the boundary condition variables (classes) defined by the user
-
     reaction_rate_equations = []            # I will store reaction rate equations as sympy equations in this list
 
     reaction_rate_equations_dict = {}       # The dictionary will store reaction rate equations mapped to the variable
@@ -40,11 +30,14 @@ def equation_builder( components, printing = 'off' ):
 
     concentration_rate_equations = []       # Equations for concentration rates will be stored in this list
 
-
-
-
     # ------------ << Calling sorter function to sort the variables into their corresponding lists >> --------------
-    variables, coefficients, reaction_rates, reaction_rate_constants, boundary_conditions = ces.variable_sorter( components )
+    variables, coefficients, reaction_rates, reaction_rate_constants, boundary_conditions, equation_variables = ces.variable_sorter( components )
+
+    # variables => This list contains the concentration variables of compounds in cellml file [In CellML file]
+    # coefficients => The difference between variables and coefficients is identified by the first part of their id which is like "va_12345_r1", first part indicates that this parameter is a variable
+    # reaction_rates => This list contains all the rate variables (classes) for all equations that are in the model
+    # reaction_rate_constants => This list contains the rate constants (classes) that are in the model
+    # boundary_conditions => This list stores the boundary condition variables (classes) defined by the user
 
     # --------------- << Since we build the equations from the coefficients and reaction rates given in the CellML file, if there are no reaction rates, we cannot build the equations >> --------------------
     if not reaction_rates:
@@ -278,6 +271,73 @@ def equation_builder( components, printing = 'off' ):
 
         # And finally I store all of the in the list of concentration rate equations list
         concentration_rate_equations.append(Eq(lhs,rhs))
+
+    '''
+    There are situations that some concentration variables are found from another equation which is a conservation equation.
+    To create the equation for the corresponding variable, I have assigned IDs to variables which form an equation together.
+    Now, I am going to create those equations by reading the IDs, identifying the variables in the same equation and grouping them in a list.
+    Then, I'll create the equation using the created list.
+    '''
+    # At first, I'll search for the variables with no initial value and store their IDs in a python variable
+
+    target_equations = []                           # This list will store the equation ids of the variables with no initial value
+
+    for c_variable in variables:
+
+        if not c_variable.initialValue():
+
+            cv_id = c_variable.id()
+
+            target_equations.append( cv_id.split('_')[2].split('.')[0] )
+    
+    for equation_id in target_equations:
+
+        equation_terms = []
+
+        rhs= Add()
+
+        lhs = Add()
+
+
+
+        for c_variable in variables:
+            
+            if len( c_variable.id().split('_') ) > 2 :
+                cv_id = c_variable.id().split('_')[2].split('.')[0]
+
+                if cv_id == equation_id:
+
+                    equation_terms.append( c_variable.name() )
+
+                    if c_variable.id().split('_')[2].split('.')[1] == 'l':
+
+                        lhs += symbols( c_variable.name() )
+
+                    elif c_variable.id().split('_')[2].split('.')[1] == 'r':
+
+                        rhs += symbols( c_variable.name() )
+
+        for ev_variable in equation_variables:
+
+            ev_id = ev_variable.id().split('_')[1].split('.')[0]
+
+            if ev_id == equation_id:
+
+                equation_terms.append( ev_variable.name() )
+
+                if ev_variable.id().split('_')[1].split('.')[1] == 'l':
+
+                    lhs += symbols( ev_variable.name() )
+
+                elif ev_variable.id().split('_')[1].split('.')[1] == 'r':
+
+                    rhs += symbols( ev_variable.name() )
+
+
+
+
+
+
 
 
     if printing == 'on' or printing == 'On' or printing == 'ON':
