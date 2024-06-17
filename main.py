@@ -44,7 +44,7 @@ components = cmlr.CellML_reader( cellml_file, cellml_file_dir, cellml_strict_mod
 
 variables, coefficients, reaction_rates, rate_constants, boundary_conditions, equation_variables = ces.variable_sorter( components )
 
-reaction_rate_equations_dict, bc_equations_dict = eb.equation_builder( components, 'on' ) #print
+reaction_rate_equations_dict, bc_equations_dict, general_equations = eb.equation_builder( components, 'on' ) #print
 
 element_indices, compound_indices, reaction_indices, symbols_list, compound_to_composition, bcvirtual_compound_coefficients = ces.cellml_compound_element_sorter ( components )
 
@@ -52,7 +52,7 @@ element_matrix = emb.elemental_matrix_builder( compound_indices, element_indices
 
 stoichiometric_matrix = smb.stoichiometric_matrix_builder( reaction_indices, compound_indices, coefficients, bcvirtual_compound_coefficients )
 
-concentration_rate_equations = meb.matrix_equation_builder ( stoichiometric_matrix, compound_indices, reaction_indices, reaction_rate_equations_dict, components, 'on' ) #print
+concentration_rate_equations = meb.matrix_equation_builder ( stoichiometric_matrix, compound_indices, reaction_indices, reaction_rate_equations_dict, general_equations, components, 'on' ) #print
 
 rate_matrix = rmb.rate_matrix_builder ( symbols_list )
 

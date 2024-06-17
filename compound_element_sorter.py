@@ -33,25 +33,25 @@ def cellml_compound_element_sorter ( components ):
     """
 
 
-    compound_to_composition = {}              # This dictionary will store the compounds and their chemical composition
+    compound_to_composition = {}                # This dictionary will store the compounds and their chemical composition
 
-    reaction_indices = {}       # This dictionary keeps an index for each reaction that is used in constructing stoichiometric matrix ==> {'r1': 0, 'r2': 1, ...} "It can be unordered numbers for reactions or any alphabets ==> {'r10': 0, ...}"
+    reaction_indices = {}                       # This dictionary keeps an index for each reaction that is used in constructing stoichiometric matrix ==> {'r1': 0, 'r2': 1, ...} "It can be unordered numbers for reactions or any alphabets ==> {'r10': 0, ...}"
 
-    compound_indices = {}       # This dictionary keeps an index for each compound to be used as a reference to construct stoichiometric matrix ==> {'C6H12O6': 0, 'CO2': 1, ...} so we know that row 0 in matrix is for C6H12O6
+    compound_indices = {}                       # This dictionary keeps an index for each compound to be used as a reference to construct stoichiometric matrix ==> {'C6H12O6': 0, 'CO2': 1, ...} so we know that row 0 in matrix is for C6H12O6
 
-    element_indices ={}         # This dictionary contains elements as keys and assigns a number for each in order to construct the elemental matrix as values ==> {'C': 0, 'H': 1, 'O': 2}
+    element_indices ={}                         # This dictionary contains elements as keys and assigns a number for each in order to construct the elemental matrix as values ==> {'C': 0, 'H': 1, 'O': 2}
 
-    compound_index = 0          # This variable keeps the ordered number for assigning any compound a number
+    compound_index = 0                          # This variable keeps the ordered number for assigning any compound a number
 
-    element_index = 0           # This index keeps track of the order each new element will be put in the elemental matrix
+    element_index = 0                           # This index keeps track of the order each new element will be put in the elemental matrix
 
-    reaction_index = 0          # This index keeps track of the order for reactions to be used as a reference for the column in stoichiometric matrix
+    reaction_index = 0                          # This index keeps track of the order for reactions to be used as a reference for the column in stoichiometric matrix
 
-    variables = []              # This list contains the variables of cellml file [In CellML file, I defined two types of parameters, first type is variable which can change in the model and the second type is coefficient which is constant]
+    variables = []                              # This list contains the variables of cellml file [In CellML file, I defined two types of parameters, first type is variable which can change in the model and the second type is coefficient which is constant]
 
-    coefficients = []           # The difference between variables and coefficients is identified by the first part of their id which is like "va_12345_r1", first part indicates that this parameter is a variable
+    coefficients = []                           # The difference between variables and coefficients is identified by the first part of their id which is like "va_12345_r1", first part indicates that this parameter is a variable
 
-    symbols_list = []           # This list contains the list of symbols
+    symbols_list = []                           # This list contains the list of symbols
 
     bcvirtual_compound_coefficients = {}        # This is a dictionary to store the compound names for boundary conditions and a value showing if the compound is an external or internal one.
 
