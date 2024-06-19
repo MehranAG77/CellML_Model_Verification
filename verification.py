@@ -51,7 +51,7 @@ def verification( stoichiometric_array, elemental_array, element_indices, compou
                 print( Fore.CYAN + "\nThe Left Null Space is:\n", nullspace)
                 conservation_equations_array = nullspace * rate_array
                 print( Style.BRIGHT + Fore.GREEN + "\nCONGRATULATIONS!!! >>>> Your model passed the mass conservation verification test <<<<")
-                print( Fore.MAGENTA + "\nConservation equations are:")
+                print( Fore.MAGENTA + "\nRate of conservation equations are:")
                 
                 count = 0
                 while count < l:
