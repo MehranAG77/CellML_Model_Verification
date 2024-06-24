@@ -222,6 +222,7 @@ def variable_sorter( components, all_vars = 'Y' ):
     This function takes all the components of the CellML file and sorts all the variables of the CellML file into the corresponding lists
     If "all_vars" is selected, all variables will be sorted, if not, only the main variables which are compound concentration variables and stoichiometric coefficients will be sorted and returned
     """
+
     variables = []
 
     coefficients = []
@@ -297,7 +298,7 @@ def variable_name_mapper( components ):
             
         name = variable.name()
 
-        intial_value = variable.initialValue()
+        initial_value = variable.initialValue()
 
         chebi_code =  variable.id().split('_')[1]
 
@@ -309,8 +310,61 @@ def variable_name_mapper( components ):
 
             compound = chebi_code.split('-')[0]
 
-        chebi_initialvalues[compound] = intial_value
+        chebi_initialvalues[compound] = initial_value
 
+        chebi_to_CellML[compound] = name
+
+    return chebi_to_CellML, chebi_initialvalues
+
+
+def initial_value_finder( components, general_equations ):
+
+    chebi_initialvalues = {}
+
+    chebi_to_CellML = {}
+
+    variables, _ = variable_sorter( components , 'n')
+
+    for variable in variables:      # After putting the parameters in their corresponding list, I get their ChEBI code and build the matrices
+
+        chebi_code =  variable.id().split('_')[1]
+
+        if all_digits( chebi_code ):
+
+            compound, _ = chf.chebi_comp_parser( chebi_code )
+
+        else:
+
+            compound = chebi_code.split('-')[0]
+
+
+        if not variable.initialValue().strip():
+
+            name = variable.name()
+
+            rhs = general_equations[name]
+
+            eq_all_symbols = list( rhs.free_symbols )
+
+            for to_find_symbol in eq_all_symbols:
+
+                for to_find_variable in variables:
+
+                    if str( to_find_symbol ) == to_find_variable.name():
+
+                        rhs = rhs.subs( to_find_symbol, to_find_variable.initialValue() )
+
+                        break
+
+            initial_value = str( rhs )
+
+        else:
+
+            initial_value = variable.initialValue()
+            name = variable.name()
+
+
+        chebi_initialvalues[compound] = initial_value
         chebi_to_CellML[compound] = name
 
     return chebi_to_CellML, chebi_initialvalues

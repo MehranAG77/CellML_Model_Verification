@@ -3,7 +3,6 @@ import numpy as np
 from sympy import symbols
 import sympy as sp
 from colorama import Fore, Back, Style, init
-from termcolor import colored
 
 import compound_element_sorter as ces
 import chebi_fetch as chf
@@ -16,19 +15,31 @@ def matrix_equation_builder ( stoichiometric_matrix, rows, columns, reaction_rat
     And the function returns the concentration rate equations
     """
 
-    _ , _ , reaction_rates, _ , boundary_conditions, _ = ces.variable_sorter( components )
+    _ , _ , reaction_rates, _ , boundary_conditions, equation_variables = ces.variable_sorter( components )
 
     concentration_rate_equations = {}                                                           # This dictionary will map the compound name to the corresponding equation for it
 
     chebi_to_CellML, chebi_initial_values = ces.variable_name_mapper( components )
 
+    ev_variables = []
+
+    for equation_variable in equation_variables:
+
+        ev_variables.append( equation_variable.name() )
+
     # ------------ << Since each row shows the reaction a compound participates, we go through each row and find the reactions the compound participates
     # 'rows' is a dictionary mapping compound names to their row position in the stoichiometric matrix, so we get the row number by checking the 'rows' dictionary >> --------------------
     for compound, row_number in rows.items():
 
-        to_find = chebi_to_CellML[ compound ]
+        try:
 
-        if to_find not in general_equations:
+            to_find = chebi_to_CellML[ compound ]
+
+        except:
+
+            to_find = compound
+
+        if to_find not in ev_variables:
 
             temporary_reactions = {}                                                                # To construct the right hand side of the equations, I need to store reaction name with their stoichiometric coefficient which shows the rate of consumption or production of a variable in a reaction
                                                                                                     # I will multiply this reaction rate to its coefficient later, so I need to keep both of them for later use as a mapping
@@ -109,7 +120,7 @@ def printer( equations, description ):
 
         rhs = equations[compound]
 
-        print( Style.BRIGHT + Fore.RED + "d[{c}]/dt".format( c = compound ), end='')
+        print( Style.BRIGHT + Fore.RED + "{c}".format( c = lhs ), end='')
         print( Style.BRIGHT + " = ", end='' )
         print( Style.BRIGHT + Fore.BLUE + "{rh}".format( rh = rhs ) )
 

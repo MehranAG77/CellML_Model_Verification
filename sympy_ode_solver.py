@@ -5,12 +5,13 @@ import numpy as np
 import scipy.integrate
 import matplotlib.pyplot as plt
 import sys
+from colorama import Fore, Back, Style, init
 
 # importing internal packages
-from compound_element_sorter import variable_name_mapper
+from compound_element_sorter import variable_name_mapper, initial_value_finder
 
 
-def sympy_ode_solver( components, concentration_rate_equations, t_max = 10, delta_t = 0.001 ):
+def sympy_ode_solver( components, concentration_rate_equations, general_equations, t_max = 10, delta_t = 0.001 ):
 
     """
     This function solves a set of Ordinary Differential Equations (ODEs) by Sympy internal solver which is Runge Kutta 4th order.
@@ -21,7 +22,17 @@ def sympy_ode_solver( components, concentration_rate_equations, t_max = 10, delt
 
     all_symbols = set().union( *[eq.free_symbols for eq in concentration_rate_equations.values()] )     # I need to know all variables that I have in these equations. This is why I should have replaced all variables that have values and are not meant ot be solved for
 
-    number_of_variables = str(len(all_symbols))                                                         # I need to count the number of variables that I have so I can create the list of sympy variables as 'x' shown below
+    number_of_variables = len(all_symbols)                                                              # I need to count the number of variables that I have so I can create the list of sympy variables as 'x' shown below
+
+    number_of_equations = len( concentration_rate_equations )
+
+    if number_of_variables != number_of_equations:
+
+        # Initialize colorama
+        init(autoreset=True)
+
+        print( Style.BRIGHT + Fore.RED + "The number of equations, {e}, does not match the number of variables, {v}.".format( e = number_of_equations, v = number_of_variables ) )
+        sys.exit("Exiting due to an error\nModify CellML file and check to see if you have defined the equations correctly\n\n")
 
     sympy_to_CellML = {}                                                                                # I need to map sympy variables to CellML variables written by user. This is because I have ChEBI code and variable name for the variables that I have
                                                                                                         # For construction of the stoichiometric matrix, I used ChEBI codes and here I need variable names
@@ -32,9 +43,11 @@ def sympy_ode_solver( components, concentration_rate_equations, t_max = 10, delt
 
     xdot = []                                                                                           # Sympy needs the equations in the set as a list containing all the equations
 
-    x = symbols( 'x:' + number_of_variables )                                                           # Creation of the number of Sympy variables that I need
+    x = symbols( 'x:' + str(number_of_variables) )                                                           # Creation of the number of Sympy variables that I need
 
-    chebi_to_CellML, chebi_initial_values = variable_name_mapper( components )
+    chebi_to_CellML, chebi_initial_values = initial_value_finder( components, general_equations )
+
+
 
     # I need to replace the CellML variables I have used to write the equations with the Sympy variables which are like 'x0', 'x1', 'x3', ...
 
@@ -47,13 +60,18 @@ def sympy_ode_solver( components, concentration_rate_equations, t_max = 10, delt
         # So, I need a 'for loop' to check all the equations
         for key in concentration_rate_equations.keys():
 
-            concentration_rate_equations[key] =concentration_rate_equations[key].subs( variable, x[i] )
+            concentration_rate_equations[key] = concentration_rate_equations[key].subs( variable, x[i] )
 
     for key in concentration_rate_equations.keys():
 
         # key in the concentration_rate_equations dictionary is the compound name as a string in chemical formula format
+        try:
 
-        to_find = chebi_to_CellML[key]  # I get the CellML variable of the chemical formulation. then I need to find its correspondent Sympy variable. Hence, I need a 'for' loop as below
+            to_find = chebi_to_CellML[key]  # I get the CellML variable of the chemical formulation. then I need to find its correspondent Sympy variable. Hence, I need a 'for' loop as below
+
+        except:
+
+            to_find = key
 
         for x_find, value in sympy_to_CellML.items():
             

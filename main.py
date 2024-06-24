@@ -36,8 +36,8 @@ os.system(command)
 
 
 
-cellml_file_dir = './docs/huang_ferrell_1996.cellml'
-cellml_file = './docs/huang_ferrell_1996.cellml'
+cellml_file_dir = './docs/NitrosylBromide.cellml'
+cellml_file = './docs/NitrosylBromide.cellml'
 cellml_strict_mode = False
 
 components = cmlr.CellML_reader( cellml_file, cellml_file_dir, cellml_strict_mode )
@@ -59,7 +59,7 @@ rate_matrix = rmb.rate_matrix_builder ( symbols_list )
 # Calling the function
 vf.verification( stoichiometric_matrix, element_matrix, element_indices, compound_indices, reaction_indices, rate_matrix )
 
-solution, time, x, sympy_to_CellML = sos.sympy_ode_solver( components, concentration_rate_equations, 40, 0.001 )
+solution, time, x, sympy_to_CellML = sos.sympy_ode_solver( components, concentration_rate_equations, general_equations, 40, 0.001 )
 
 variables_to_plot = []
 

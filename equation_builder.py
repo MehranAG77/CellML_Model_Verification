@@ -104,7 +104,7 @@ def equation_builder( components, printing = 'off' ):
 
                 for ids in attending_equations:
 
-                    cv_eq_id = ids.split('.')[0] 
+                    cv_eq_id = ids.split('.')[0]
 
                     # If the equation ID of the concentration variable is the same as equation ID, I will add it to the equations terms
                     if cv_eq_id == equation_id:
@@ -211,14 +211,6 @@ def equation_builder( components, printing = 'off' ):
 
         reaction_no = reaction_rate.id().split('_')[1]      # A sample id: "ra_r1", splitted by '_', first part shows the type of the variable and second part shows the reaction name
 
-        reaction_reactants = {}                             # These two dictionaries will keep the reactants and products of this specific reaction mapped to their stoichiometric coefficients
-
-        reaction_products = {}
-
-        symbols_list = {}                                   # To write the equations in Sympy, all the variables must be converted to symbols of Sympy. This dictionary maps the variable to its Sympy symbol
-
-        
-
         # --------- << At first, we need the reaction rate coefficients >> ------------
         # ------ { Now that we have the raction number, we need to find the reaction rate constant for this reaction. Therefore, we will go through all reaction rate constants and find the ones for this reaction } ------------
         for rate_constant in reaction_rate_constants:
@@ -238,11 +230,6 @@ def equation_builder( components, printing = 'off' ):
                     reverse_rate_value = rate_constant.initialValue()
 
         
-        # Now, we will start writing the right hand side of the equation
-        # First part of right hand side is the forward reaction
-        # rhs_f = forward_rate
-        # rhs_f = rhs_f.subs( forward_rate, forward_rate_value )  # Since we need the values for the known variables to solve the equation, we replace the values
-
         try: 
         
             reverse_rate                                                        # At first, I check to see if there is a reverse rate for the reaction, if not the error can be catched and handled
@@ -280,12 +267,20 @@ def equation_builder( components, printing = 'off' ):
                         break
                 
                 try:
+
+                    sv = v_item.id().split('_')[3]
+
+                except:
+
+                    sv = ''
+
+                try:
                     
                     reverse_rate
 
                     if int(value) < 0:                  # When the value for the stoichiometric coefficient is negative, it is considered as a reactant
 
-                        if not v_item.initialValue():
+                        if (not v_item.initialValue()) and (sv != 'sv'):
 
                             rhs_f = rhs_f * ( ( general_equations[variable] ) ** abs( int(value) )  )
 
@@ -295,7 +290,7 @@ def equation_builder( components, printing = 'off' ):
 
                     elif int(value) > 0:                # When the value for the stoichiometric coefficient is positive, it is considered as a product
 
-                        if not v_item.initialValue():
+                        if (not v_item.initialValue()) and (sv != 'sv'):
                             
                             rhs_r = rhs_r * ( ( general_equations[variable] ) ** abs( int(value) )  )
 
@@ -311,7 +306,7 @@ def equation_builder( components, printing = 'off' ):
 
                     if int(value) < 0:                  # When the value for the stoichiometric coefficient is negative, it is considered as a reactant
 
-                        if not v_item.initialValue():
+                        if (not v_item.initialValue()) and (sv != 'sv'):
 
                             rhs_f = rhs_f * ( ( general_equations[variable] ) ** abs( int(value) )  )
 
@@ -323,36 +318,17 @@ def equation_builder( components, printing = 'off' ):
                         print("The stoichiometric coefficient for {c} is set to zero which is wrong".format( c = coefficient ))
                         exit()
 
-        #         symbols_list[variable] = symbols(variable)
-        #         symbols_list[coefficient] = symbols(coefficient)
+        try:
 
-        # # # Now, we will start writing the right hand side of the equation
-        # # # First part of right hand side is the forward reaction
-        # # rhs_f = forward_rate
-        # # rhs_f = rhs_f.subs( forward_rate, forward_rate_value )  # Since we need the values for the known variables to solve the equation, we replace the values
+            reverse_rate
 
-        # # for item in reaction_reactants:
+            reaction_rate_equations_dict[reaction_rate.name()] = rhs_f - rhs_r
+            reaction_rate_equations.append( Eq(rate,rhs_f-rhs_r) )
 
-        # #     rhs_f = rhs_f * ( symbols_list[item] ** reaction_reactants[item] )
+        except:
 
-        # try: 
-        
-        #     # reverse_rate                                                        # At first, I check to see if there is a reverse rate for the reaction, if not the error can be catched and handled
-
-        #     # rhs_r = reverse_rate
-        #     # rhs_r = rhs_r.subs( reverse_rate, reverse_rate_value )
-
-        #     # for item in reaction_products:
-
-        #     #     rhs_r = rhs_r * ( symbols_list[item] ** reaction_products[item] )
-
-        #     reaction_rate_equations_dict[reaction_rate.name()] = rhs_f - rhs_r
-        #     reaction_rate_equations.append( Eq(rate,rhs_f-rhs_r) )
-
-        # except:                                                                  # If there is not a reverse rate, the right hand side written for the forward rate is considered as the reaction rate for the reation rate variable we were handling
-
-        reaction_rate_equations_dict[reaction_rate.name()] = rhs_f
-        reaction_rate_equations.append( Eq(rate,rhs_f) )
+            reaction_rate_equations_dict[reaction_rate.name()] = rhs_f
+            reaction_rate_equations.append( Eq(rate,rhs_f) )
 
     # ------- << Since sometimes I don't want to print out the equations, I have defined a printing function to control the output >> -------------
     if printing == 'on' or printing =='On' or printing == 'ON':
