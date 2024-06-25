@@ -19,7 +19,7 @@ def matrix_equation_builder ( stoichiometric_matrix, rows, columns, reaction_rat
 
     concentration_rate_equations = {}                                                           # This dictionary will map the compound name to the corresponding equation for it
 
-    chebi_to_CellML, chebi_initial_values = ces.variable_name_mapper( components )
+    chebi_to_CellML, chebi_initial_values = ces.initial_value_finder( components, general_equations )
 
     ev_variables = []
 
@@ -39,7 +39,7 @@ def matrix_equation_builder ( stoichiometric_matrix, rows, columns, reaction_rat
 
             to_find = compound
 
-        if to_find not in ev_variables:
+        if ( to_find not in ev_variables ) and ( compound in chebi_initial_values ):
 
             temporary_reactions = {}                                                                # To construct the right hand side of the equations, I need to store reaction name with their stoichiometric coefficient which shows the rate of consumption or production of a variable in a reaction
                                                                                                     # I will multiply this reaction rate to its coefficient later, so I need to keep both of them for later use as a mapping

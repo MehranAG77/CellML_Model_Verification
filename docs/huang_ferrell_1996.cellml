@@ -70,7 +70,7 @@ http://www.CellML.org/
         <variable cmeta:id="co_e1_1" initial_value="-1" name="e1_1" units="dimensionless"/>
         <variable cmeta:id="co_mose1_1" initial_value="1" name="mose1_1" units="dimensionless"/>
         <variable cmeta:id="co_mose1_2" initial_value="-1" name="mose1_2" units="dimensionless"/>
-        <variable cmeta:id="co_mosstar_2" initial_value="1" name="mosstar_2" units="dimensionless"/>
+        <variable cmeta:id="co_mos_2" initial_value="1" name="mosstar_2" units="dimensionless"/>
         <variable cmeta:id="co_e1_2" initial_value="1" name="e1_2" units="dimensionless"/>
         <variable cmeta:id="co_mose1_3" initial_value="-1" name="mose1_3" units="dimensionless"/>
         <variable cmeta:id="co_mosstar_3" initial_value="1" name="mosstar_3" units="dimensionless"/>
@@ -79,16 +79,16 @@ http://www.CellML.org/
         <variable cmeta:id="co_e2_4" initial_value="-1" name="e2_4" units="dimensionless"/>
         <variable cmeta:id="co_mosstare2_4" initial_value="1" name="mose2_4" units="dimensionless"/>
         <variable cmeta:id="co_mosstare2_5" initial_value="-1" name="mose2_5" units="dimensionless"/>
-        <variable cmeta:id="co_mos_5" initial_value="1" name="mos_5" units="dimensionless"/>
+        <variable cmeta:id="co_mosstar_5" initial_value="1" name="mos_5" units="dimensionless"/>
         <variable cmeta:id="co_e2_5" initial_value="1" name="e2_5" units="dimensionless"/>
         <variable cmeta:id="co_mosstare2_6" initial_value="-1" name="mosstare2_6" units="dimensionless"/>
-        <variable cmeta:id="co_mosstar_6" initial_value="1" name="mosstar_6" units="dimensionless"/>
+        <variable cmeta:id="co_mos_6" initial_value="1" name="mos_6" units="dimensionless"/>
         <variable cmeta:id="co_e2_6" initial_value="1" name="e2_6" units="dimensionless"/>
         <variable cmeta:id="co_mek_7" initial_value="-1" name="mek_7" units="dimensionless"/>
         <variable cmeta:id="co_mosstar_7" initial_value="-1" name="mosstar_7" units="dimensionless"/>
         <variable cmeta:id="co_mekmosstar_7" initial_value="1" name="mekmosstar_7" units="dimensionless"/>
         <variable cmeta:id="co_mekmosstar_8" initial_value="-1" name="mekmosstar_8" units="dimensionless"/>
-        <variable cmeta:id="co_mekp_8" initial_value="1" name="mekp_8" units="dimensionless"/>
+        <variable cmeta:id="co_mek_8" initial_value="1" name="mek_8" units="dimensionless"/>
         <variable cmeta:id="co_mosstar_8" initial_value="1" name="mosstar_8" units="dimensionless"/>
         <variable cmeta:id="co_mekmosstar_9" initial_value="-1" name="mekmosstar_9" units="dimensionless"/>
         <variable cmeta:id="co_mekp_9" initial_value="1" name="mekp_9" units="dimensionless"/>
@@ -97,7 +97,7 @@ http://www.CellML.org/
         <variable cmeta:id="co_mekpase_10" initial_value="-1" name="mekpase_10" units="dimensionless"/>
         <variable cmeta:id="co_mekpmekpase_10" initial_value="1" name="mekpmekpase_10" units="dimensionless"/>
         <variable cmeta:id="co_mekpmekpase_11" initial_value="-1" name="mekpmekpase_11" units="dimensionless"/>
-        <variable cmeta:id="co_mek_11" initial_value="1" name="mek_11" units="dimensionless"/>
+        <variable cmeta:id="co_mekp_11" initial_value="1" name="mekp_11" units="dimensionless"/>
         <variable cmeta:id="co_mekpase_11" initial_value="1" name="mekpase_11" units="dimensionless"/>
         <variable cmeta:id="co_mekpmekpase_12" initial_value="-1" name="mekpmekpase_12" units="dimensionless"/>
         <variable cmeta:id="co_mek_12" initial_value="1" name="mek_12" units="dimensionless"/>
@@ -106,7 +106,7 @@ http://www.CellML.org/
         <variable cmeta:id="co_mosstar_13" initial_value="-1" name="mosstar_13" units="dimensionless"/>
         <variable cmeta:id="co_mekpmosstar_13" initial_value="1" name="mekpmosstar_13" units="dimensionless"/>
         <variable cmeta:id="co_mekpmosstar_14" initial_value="-1" name="mekpmosstar_14" units="dimensionless"/>
-        <variable cmeta:id="co_mekpp_14" initial_value="1" name="mekpp_14" units="dimensionless"/>
+        <variable cmeta:id="co_mekp_14" initial_value="1" name="mekp_14" units="dimensionless"/>
         <variable cmeta:id="co_mosstar_14" initial_value="1" name="mosstar_14" units="dimensionless"/>
         <variable cmeta:id="co_mekpmosstar_15" initial_value="-1" name="mekpmosstar_15" units="dimensionless"/>
         <variable cmeta:id="co_mekpp_15" initial_value="1" name="mekpp_15" units="dimensionless"/>
@@ -115,7 +115,7 @@ http://www.CellML.org/
         <variable cmeta:id="co_mekpase_16" initial_value="-1" name="mekpase_16" units="dimensionless"/>
         <variable cmeta:id="co_mekppmekpase_16" initial_value="1" name="mekppmekpase_16" units="dimensionless"/>
         <variable cmeta:id="co_mekppmekpase_17" initial_value="-1" name="mekppmekpase_17" units="dimensionless"/>
-        <variable cmeta:id="co_mekp_17" initial_value="1" name="mekp_17" units="dimensionless"/>
+        <variable cmeta:id="co_mekpp_17" initial_value="1" name="mekp_17" units="dimensionless"/>
         <variable cmeta:id="co_mekpase_17" initial_value="1" name="mekpase_17" units="dimensionless"/>
         <variable cmeta:id="co_mekppmekpase_18" initial_value="-1" name="mekppmekpase_18" units="dimensionless"/>
         <variable cmeta:id="co_mekp_18" initial_value="1" name="mekp_18" units="dimensionless"/>
@@ -125,15 +125,15 @@ http://www.CellML.org/
         <variable cmeta:id="co_mekppmapk_19" initial_value="1" name="mekppmapk_19" units="dimensionless"/>
         <variable cmeta:id="co_mekppmapk_20" initial_value="-1" name="mekppmapk_20" units="dimensionless"/>
         <variable cmeta:id="co_mekpp_20" initial_value="1" name="mekpp_20" units="dimensionless"/>
-        <variable cmeta:id="co_mapkp_20" initial_value="1" name="mapkp_20" units="dimensionless"/>
+        <variable cmeta:id="co_mapk_20" initial_value="1" name="mapkp_20" units="dimensionless"/>
         <variable cmeta:id="co_mekppmapk_21" initial_value="-1" name="mekppmapk_21" units="dimensionless"/>
         <variable cmeta:id="co_mekpp_21" initial_value="1" name="mekpp_21" units="dimensionless"/>
-        <variable cmeta:id="co_mapk_21" initial_value="1" name="makp_21" units="dimensionless"/>
+        <variable cmeta:id="co_mapkp_21" initial_value="1" name="makp_21" units="dimensionless"/>
         <variable cmeta:id="co_mapkp_22" initial_value="-1" name="mapkp_22" units="dimensionless"/>
         <variable cmeta:id="co_mapkpase_22" initial_value="-1" name="mapkpase_22" units="dimensionless"/>
         <variable cmeta:id="co_mapkpmapkpase_22" initial_value="1" name="mapkpmapkpase_22" units="dimensionless"/>
         <variable cmeta:id="co_mapkpmapkpase_23" initial_value="-1" name="mapkpmapkpase_23" units="dimensionless"/>
-        <variable cmeta:id="co_mapk_23" initial_value="1" name="mapk_23" units="dimensionless"/>
+        <variable cmeta:id="co_mapkp_23" initial_value="1" name="mapk_23" units="dimensionless"/>
         <variable cmeta:id="co_mapkpase_23" initial_value="1" name="mapkpase_23" units="dimensionless"/>
         <variable cmeta:id="co_mapkpmapkpase_24" initial_value="-1" name="mapkpmapkpase_24" units="dimensionless"/>
         <variable cmeta:id="co_mapk_24" initial_value="1" name="mapk_24" units="dimensionless"/>
@@ -142,7 +142,7 @@ http://www.CellML.org/
         <variable cmeta:id="co_mekpp_25" initial_value="-1" name="mekpp_25" units="dimensionless"/>
         <variable cmeta:id="co_mapkpmekpp_25" initial_value="1" name="mapkpmekpp_25" units="dimensionless"/>
         <variable cmeta:id="co_mapkpmekpp_26" initial_value="-1" name="mapkpmekpp_26" units="dimensionless"/>
-        <variable cmeta:id="co_mapkpp_26" initial_value="1" name="mapkpp_26" units="dimensionless"/>
+        <variable cmeta:id="co_mapkp_26" initial_value="1" name="mapkpp_26" units="dimensionless"/>
         <variable cmeta:id="co_mekpp_26" initial_value="1" name="mekpp_26" units="dimensionless"/>
         <variable cmeta:id="co_mapkpmekpp_27" initial_value="-1" name="mapkpmekpp_27" units="dimensionless"/>
         <variable cmeta:id="co_mapkpp_27" initial_value="1" name="mapkpp_27" units="dimensionless"/>
@@ -151,7 +151,7 @@ http://www.CellML.org/
         <variable cmeta:id="co_mapkpase_28" initial_value="-1" name="mapkpase_28" units="dimensionless"/>
         <variable cmeta:id="co_mapkppmapkpase_28" initial_value="1" name="mekppmapkpase_28" units="dimensionless"/>
         <variable cmeta:id="co_mapkppmapkpase_29" initial_value="-1" name="mekppmapkpase_29" units="dimensionless"/>
-        <variable cmeta:id="co_mapkp_29" initial_value="1" name="mapkp_29" units="dimensionless"/>
+        <variable cmeta:id="co_mapkpp_29" initial_value="1" name="mapkp_29" units="dimensionless"/>
         <variable cmeta:id="co_mapkpase_29" initial_value="1" name="mapkpase_29" units="dimensionless"/>
         <variable cmeta:id="co_mapkppmapkpase_30" initial_value="-1" name="mekppmapkpase_30" units="dimensionless"/>
         <variable cmeta:id="co_mapkp_30" initial_value="1" name="mapkp_30" units="dimensionless"/>
@@ -203,7 +203,7 @@ http://www.CellML.org/
         <variable name="k2" public_interface="in" units="first_order_rate_constant_units"/>
         <variable name="mekmosstar" public_interface="in" units="micromolar"/>
         <variable cmeta:id="va_e1_eq30.r" name="e_1" units="micromolar"/>
-        <!-- -->
+        <!-- #1-->
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -280,6 +280,7 @@ http://www.CellML.org/
         <variable name="e1tot" public_interface="in" units="micromolar"/>
         <variable name="d1" public_interface="in" units="first_order_rate_constant_units"/>
         <variable name="k1" public_interface="in" units="first_order_rate_constant_units"/>
+        <!-- #2-->
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -360,7 +361,7 @@ http://www.CellML.org/
         <variable name="d5" public_interface="in" units="first_order_rate_constant_units"/>
         <variable name="a5" public_interface="in" units="second_order_rate_constant_units"/>
         <variable cmeta:id="va_e2_eq31.r" name="e_2" units="micromolar"/>
-        <!-- -->
+        <!-- #3-->
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -492,6 +493,7 @@ http://www.CellML.org/
         <variable name="e2tot" public_interface="in" units="micromolar"/>
         <variable name="d2" public_interface="in" units="first_order_rate_constant_units"/>
         <variable name="k2" public_interface="in" units="first_order_rate_constant_units"/>
+        <!-- #4-->
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -543,6 +545,7 @@ http://www.CellML.org/
         <variable name="d3" public_interface="in" units="first_order_rate_constant_units"/>
         <variable name="k4" public_interface="in" units="first_order_rate_constant_units"/>
         <variable name="mekstarmekpase" public_interface="in" units="micromolar"/>
+        <!-- #5-->
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -625,6 +628,7 @@ http://www.CellML.org/
         <variable name="mosstar" public_interface="in" units="micromolar"/>
         <variable name="d3" public_interface="in" units="first_order_rate_constant_units"/>
         <variable name="k3" public_interface="in" units="first_order_rate_constant_units"/>
+        <!-- #6-->
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -704,7 +708,7 @@ http://www.CellML.org/
         <variable name="a5" public_interface="in" units="second_order_rate_constant_units"/>
         <variable name="mosstar" public_interface="in" units="micromolar"/>
         <variable cmeta:id="va_mekpase_eq33.r" name="mekpase" units="micromolar"/>
-        <!-- -->
+        <!-- #7-->
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -781,6 +785,7 @@ http://www.CellML.org/
         <variable name="mekstar" public_interface="in" units="micromolar"/>
         <variable name="mekpasetot" public_interface="in" units="micromolar"/>
         <variable name="mekstarstarmekpase" public_interface="in" units="micromolar"/>
+        <!-- #8-->
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -828,6 +833,7 @@ http://www.CellML.org/
         <variable name="k5" public_interface="in" units="first_order_rate_constant_units"/>
         <variable name="mekstar" public_interface="in" units="micromolar"/>
         <variable name="mosstar" public_interface="in" units="micromolar"/>
+        <!-- #9-->
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -883,6 +889,7 @@ http://www.CellML.org/
         <variable name="k9" public_interface="in" units="first_order_rate_constant_units"/>
         <variable name="a9" public_interface="in" units="second_order_rate_constant_units"/>
         <variable name="mapk" units="micromolar"/>
+        <!-- #10-->
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -1003,6 +1010,7 @@ http://www.CellML.org/
         <variable name="mekstarmekpase" public_interface="in" units="micromolar"/>
         <variable name="d6" public_interface="in" units="first_order_rate_constant_units"/>
         <variable name="k6" public_interface="in" units="first_order_rate_constant_units"/>
+        <!-- #11-->
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -1056,6 +1064,7 @@ http://www.CellML.org/
         <variable name="mekstarstar" public_interface="in" units="micromolar"/>
         <variable name="d7" public_interface="in" units="first_order_rate_constant_units"/>
         <variable name="k8" public_interface="in" units="first_order_rate_constant_units"/>
+        <!-- #12-->
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -1128,6 +1137,7 @@ http://www.CellML.org/
         <variable name="d7" public_interface="in" units="first_order_rate_constant_units"/>
         <variable name="k7" public_interface="in" units="first_order_rate_constant_units"/>
         <variable name="a7" public_interface="in" units="second_order_rate_constant_units"/>
+        <!-- #13-->
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -1198,8 +1208,9 @@ http://www.CellML.org/
         <variable name="d9" public_interface="in" units="first_order_rate_constant_units"/>
         <variable name="mapkstarmekstarstar" public_interface="in" units="micromolar"/>
         <variable name="k10" public_interface="in" units="first_order_rate_constant_units"/>
-        <variable cmeta:id="va_mapkpase_eq35.r" initial_value="0.12" name="mapkpase" units="micromolar"/>
-        <!-- -->
+        <variable cmeta:id="va_mapkpase_eq35.r" name="mapkpase" units="micromolar"/>
+        <!-- It is being solved in Python-->
+        <!-- #14-->
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -1278,6 +1289,7 @@ http://www.CellML.org/
         <variable name="k9" public_interface="in" units="first_order_rate_constant_units"/>
         <variable name="mapkstar" public_interface="in" units="micromolar"/>
         <variable name="mekstarstar" public_interface="in" units="micromolar"/>
+        <!-- #15-->
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -1321,6 +1333,7 @@ http://www.CellML.org/
         <variable name="mapkstar" public_interface="in" units="micromolar"/>
         <variable name="mekstarstar" public_interface="in" units="micromolar"/>
         <variable name="mapkstarmekstarstar" public_interface="in" units="micromolar"/>
+        <!-- #16-->
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -1373,6 +1386,7 @@ http://www.CellML.org/
         <variable name="mapkstarstarmapkpase" public_interface="in" units="micromolar"/>
         <variable name="d8" public_interface="in" units="first_order_rate_constant_units"/>
         <variable name="k8" public_interface="in" units="first_order_rate_constant_units"/>
+        <!-- # 17-->
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -1421,6 +1435,7 @@ http://www.CellML.org/
         <variable name="mapkstarmapkpase" public_interface="in" units="micromolar"/>
         <variable name="d10" public_interface="in" units="first_order_rate_constant_units"/>
         <variable name="k10" public_interface="in" units="first_order_rate_constant_units"/>
+        <!-- #18-->
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>

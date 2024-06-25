@@ -140,7 +140,7 @@ def sympy_ode_solver( components, concentration_rate_equations, general_equation
 # \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
 # This function plots the solution
 
-def plotter( solutions, time, variables_to_plot, x, sympy_to_CellML ):
+def plotter( solutions, time, variables_to_plot, x, sympy_to_CellML, show_legends = 'on' ):
 
     import matplotlib.pyplot as plt
 
@@ -155,7 +155,8 @@ def plotter( solutions, time, variables_to_plot, x, sympy_to_CellML ):
 
         plt.plot( time, solutions.T )
         plt.title( 'Chemical Kinetics' )
-        plt.legend( legends, shadow = True )
+        if show_legends == 'on' or show_legends == 'On' or show_legends == 'ON':
+            plt.legend( legends, shadow = True )
         plt.xlabel('time')
         plt.ylabel('concentration')
 
@@ -191,8 +192,10 @@ def plotter( solutions, time, variables_to_plot, x, sympy_to_CellML ):
 
 
         plt.title( 'Chemical Kinetics' )
-        plt.legend( legends, shadow = True )
+        if show_legends == 'on' or show_legends == 'On' or show_legends == 'ON':
+            plt.legend( legends, shadow = True )
         plt.xlabel('time')
         plt.ylabel('concentration')
+        plt.grid(True)
 
         plt.show()

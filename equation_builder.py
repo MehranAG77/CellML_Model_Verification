@@ -386,6 +386,10 @@ def equation_builder( components, printing = 'off' ):
 
         id = v_item.id()                                # id of the variable
 
+        if  ( not v_item.initialValue().strip() ) and ( len(id.split('_')) < 4 ):
+
+            continue
+
         ChEBI = id.split('_')[1].split('-')[0]          # Variable chebi code or name is the second in the id
 
         variable_name = v_item.name()                   # The name of the variable in CellML which user has written

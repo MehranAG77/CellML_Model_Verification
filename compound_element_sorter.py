@@ -327,7 +327,9 @@ def initial_value_finder( components, general_equations ):
 
     for variable in variables:      # After putting the parameters in their corresponding list, I get their ChEBI code and build the matrices
 
-        chebi_code =  variable.id().split('_')[1]
+        v_id = variable.id()
+
+        chebi_code =  v_id.split('_')[1]
 
         if all_digits( chebi_code ):
 
@@ -337,6 +339,9 @@ def initial_value_finder( components, general_equations ):
 
             compound = chebi_code.split('-')[0]
 
+        if  ( not variable.initialValue().strip() ) and ( len(v_id.split('_')) < 4 ):
+
+            continue
 
         if not variable.initialValue().strip():
 
@@ -356,7 +361,7 @@ def initial_value_finder( components, general_equations ):
 
                         break
 
-            initial_value = str( rhs )
+            initial_value = str( rhs ).rstrip('0')
 
         else:
 
